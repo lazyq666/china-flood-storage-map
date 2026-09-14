@@ -172,21 +172,23 @@
     };
   }
 
-  function calculateLocationConfidence(evidence) {
+  function calculateLocationConfidence(evidence, { hasPublishableBoundary = true } = {}) {
     const officialMap = evidence?.officialMap || {};
-    const placeSearch = evidence?.placeSearch || {};
     const administrativeMatch = evidence?.administrativeMatch || {};
     const sources = Array.isArray(evidence?.governmentSources) ? evidence.governmentSources : [];
     const supportingSources = sources.filter((source) =>
       source
       && source.supportsLocation === true
-      && ["official-document", "government-news", "mainstream-news"].includes(source.sourceType)
+      && /^https?:\/\//.test(String(source.url || ""))
     );
-    const adminMatched = administrativeMatch.overall === "matched";
-    const selectedCandidate = placeSearch.selectedCandidateId
-      || placeSearch.selectedCandidate?.id
-      || null;
-
+    if (!hasPublishableBoundary) {
+      return {
+        confidence: "none",
+        ruleId: "N1",
+        label: "暂不判断",
+        reason: "没有可发布的空间几何，不生成位置判断。"
+      };
+    }
     if (officialMap.available === true && officialMap.usableForLocation === true) {
       return {
         confidence: "high",
@@ -196,39 +198,14 @@
       };
     }
 
-    if (placeSearch.status === "unique"
-      && selectedCandidate
-      && supportingSources.length
-      && adminMatched) {
-      return {
-        confidence: "high",
-        ruleId: "H2",
-        label: "确信度高",
-        reason: "唯一同名地物与政府公文或新闻所述行政区域一致。"
-      };
-    }
-
-    if (placeSearch.status === "multiple-resolved"
-      && selectedCandidate
-      && supportingSources.length
-      && adminMatched) {
-      return {
-        confidence: "high",
-        ruleId: "H3",
-        label: "确信度高",
-        reason: "多个同名候选经政府公文或新闻排查后保留唯一地址，且行政区域一致。"
-      };
-    }
-
-    if (placeSearch.status === "none"
-      && supportingSources.length
+    if (supportingSources.length
       && evidence?.conclusion?.hasFuzzyLocation === true
       && administrativeMatch.overall !== "mismatch") {
       return {
         confidence: "medium",
         ruleId: "M1",
         label: "确信度中",
-        reason: "未找到可用同名地物，但政府公文或新闻能够支持一个模糊位置。"
+        reason: "公开资料能够支持一个行政区域或模糊位置，但没有可再分发的第三方地物检索缓存。"
       };
     }
 

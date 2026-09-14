@@ -22,7 +22,6 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
     await cp(path.join(root, entry.name), path.join(output, entry.name));
   }
 }
-await cp(path.join(root, "assets"), path.join(output, "assets"), { recursive: true });
 for (const entry of await readdir(path.join(root, "data"), { withFileTypes: true })) {
   if (entry.isFile() && entry.name.endsWith(".js") && !entry.name.startsWith("map-config.")) {
     await cp(path.join(root, "data", entry.name), path.join(output, "data", entry.name));

@@ -5,7 +5,6 @@
   const basins = window.FLOOD_STORAGE_BASINS || [];
   const locationHints = window.FLOOD_STORAGE_LOCATION_HINTS || {};
   const locationCache = window.FLOOD_STORAGE_LOCATION_CACHE?.zones || {};
-  const amapDLocations = window.FLOOD_STORAGE_AMAP_D_LOCATIONS?.zones || {};
   const dLocationEstimates = window.FLOOD_STORAGE_D_LOCATION_ESTIMATES?.zones || {};
   const locationEvidencePayload = window.FLOOD_STORAGE_LOCATION_EVIDENCE || {};
   const locationEvidence = locationEvidencePayload.zones || {};
@@ -30,6 +29,16 @@
     minSize: 8,
     maxSize: 26
   });
+  const BASIN_SLUGS = Object.freeze({
+    "长江流域": "changjiang",
+    "黄河流域": "huanghe",
+    "淮河流域": "huaihe",
+    "海河流域": "haihe",
+    "松花江流域": "songhuajiang",
+    "珠江流域": "zhujiang"
+  });
+  const DEFAULT_PAGE_TITLE = "全国蓄滞洪区地图｜97处名录、位置与公开证据";
+  const DEFAULT_PAGE_DESCRIPTION = "查询全国97处国家蓄滞洪区的名称、所属流域、所在省份、资料推定范围、位置证据与公开来源。地图不代表法定边界，仅供位置理解。";
   const LIMITATION_ICONS = Object.freeze({
     officialMap: '<svg class="limitation-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 5-3 8 3 5-3v15l-5 3-8-3-5 3V6Z"/><path d="M8 3v15M16 6v15M4 4l16 16"/></svg>',
     fieldVerification: '<svg class="limitation-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><path d="M12 7v4M12 15h.01"/></svg>',
@@ -100,7 +109,6 @@
     detailKeyFacts: document.getElementById("detailKeyFacts"),
     detailLimitations: document.getElementById("detailLimitations"),
     detailOfficialMap: document.getElementById("detailOfficialMap"),
-    detailAmapCandidates: document.getElementById("detailAmapCandidates"),
     detailApproximateBoundary: document.getElementById("detailApproximateBoundary"),
     detailReferenceCluesRow: document.getElementById("detailReferenceCluesRow"),
     detailReferenceClues: document.getElementById("detailReferenceClues"),
@@ -118,6 +126,59 @@
     return String(value ?? "").replace(/[&<>'"]/g, (char) => ({
       "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
     })[char]);
+  }
+
+  function zoneSlug(zone) {
+    const index = String(zone.id || "").match(/(\d+)$/)?.[1] || "00";
+    return `${BASIN_SLUGS[zone.basin] || "zone"}-${index}`;
+  }
+
+  function setMetaContent(selector, content) {
+    document.head.querySelector(selector)?.setAttribute("content", content);
+  }
+
+  function updateDocumentMetadata(zone) {
+    const canonical = document.head.querySelector('link[rel="canonical"]');
+    if (!zone) {
+      document.title = DEFAULT_PAGE_TITLE;
+      setMetaContent('meta[name="description"]', DEFAULT_PAGE_DESCRIPTION);
+      setMetaContent('meta[property="og:title"]', DEFAULT_PAGE_TITLE);
+      setMetaContent('meta[property="og:description"]', DEFAULT_PAGE_DESCRIPTION);
+      setMetaContent('meta[name="twitter:title"]', DEFAULT_PAGE_TITLE);
+      setMetaContent('meta[name="twitter:description"]', DEFAULT_PAGE_DESCRIPTION);
+      if (canonical) {
+        const rootUrl = new URL("/", canonical.href);
+        canonical.href = rootUrl.href;
+        setMetaContent('meta[property="og:url"]', rootUrl.href);
+      }
+      return;
+    }
+
+    const evidence = evidenceEntry(zone.name);
+    const hint = locationHints[zone.name] || {};
+    const position = String(evidence.conclusion?.positionText || hint.rawLocation || "相关行政区域")
+      .replace(/[。；;\s]+$/, "");
+    const title = `${zone.name}在哪里？位置与公开证据｜全国蓄滞洪区地图`;
+    const description = `${zone.name}是${zone.basin}国家蓄滞洪区名录对象。查看其${position}的位置资料、地图表达、证据来源与不确定性说明。`;
+    document.title = title;
+    setMetaContent('meta[name="description"]', description);
+    setMetaContent('meta[property="og:title"]', title);
+    setMetaContent('meta[property="og:description"]', description);
+    setMetaContent('meta[name="twitter:title"]', title);
+    setMetaContent('meta[name="twitter:description"]', description);
+    if (canonical) {
+      const zoneUrl = new URL(`/zones/${zoneSlug(zone)}/`, canonical.href);
+      canonical.href = zoneUrl.href;
+      setMetaContent('meta[property="og:url"]', zoneUrl.href);
+    }
+  }
+
+  function syncSelectedZoneUrl(zone) {
+    const url = new URL(window.location.href);
+    if (zone) url.searchParams.set("zone", zone.id);
+    else url.searchParams.delete("zone");
+    window.history.replaceState(null, "", url);
+    updateDocumentMetadata(zone);
   }
 
   function showToast(message) {
@@ -162,7 +223,7 @@
   }
 
   function locationEntry(zoneName) {
-    const entry = { ...(locationCache[zoneName] || {}), ...(amapDLocations[zoneName] || {}) };
+    const entry = { ...(locationCache[zoneName] || {}) };
     if (locationBoundaries[zoneName]) entry.approximateBoundary = locationBoundaries[zoneName];
     const estimate = dLocationEstimates[zoneName];
     if (estimate?.mapTarget && !entry.areaApproximation && !entry.engineeringAnchor) {
@@ -180,7 +241,6 @@
       reviewedAt: null,
       fieldVerified: false,
       officialMap: { available: false, usableForLocation: false },
-      placeSearch: { status: "none", candidates: [], selectedCandidate: null },
       referenceClues: [],
       governmentSources: [],
       administrativeMatch: { overall: "unavailable", matchedAreas: [] },
@@ -518,6 +578,8 @@
     });
     updateZoneMarkerMode();
     renderApproximateLocations();
+    const selectedZone = zones.find((zone) => zone.id === state.selectedZoneId);
+    if (selectedZone) focusLocation(selectedZone);
     if (state.classification === "province" && state.category !== "全部") {
       focusProvince(state.category);
     } else if (state.classification === "basin" && state.category !== "全部") {
@@ -1507,14 +1569,6 @@
     }
   }
 
-  function compactAdministrativeText(candidate) {
-    return [...new Set([
-      candidate?.province,
-      candidate?.city,
-      candidate?.district
-    ].filter(Boolean))].join("");
-  }
-
   function uniqueSourcesByUrl(sources, seenUrls) {
     return sources.filter((source) => {
       const url = String(source?.url || "").trim();
@@ -1527,26 +1581,6 @@
   function renderEvidenceDetails(zone, evidence, boundary) {
     const spatial = publicSpatialMeta(zone.name);
     const officialMap = evidence.officialMap || {};
-    const candidates = evidence.placeSearch?.candidates || [];
-    const contextAnchors = (evidence.placeSearch?.contextAnchors || [])
-      .filter((anchor) => !candidates.some((candidate) => candidate.id === anchor.id));
-    const displayedCandidates = [
-      ...candidates.map((candidate) => ({ ...candidate, displayRole: candidate.id === evidence.placeSearch.selectedCandidateId ? "采用" : "同名地物" })),
-      ...contextAnchors.map((candidate) => ({ ...candidate, displayRole: "位置侧证" }))
-    ];
-    if (displayedCandidates.length) {
-      els.detailAmapCandidates.innerHTML = displayedCandidates.map((candidate) => {
-        const selected = candidate.id === evidence.placeSearch.selectedCandidateId;
-        const area = compactAdministrativeText(candidate);
-        return `<div class="evidence-candidate${selected ? " is-selected" : ""}">
-          <span>${escapeHtml(candidate.name)}${area ? `（${escapeHtml(area)}）` : ""}</span>
-          <i>${escapeHtml(candidate.displayRole)}</i>
-        </div>`;
-      }).join("");
-    } else {
-      els.detailAmapCandidates.innerHTML = '<p>未找到可用于定位的同名地物或相关地标。</p>';
-    }
-
     if (boundary) {
       const areaText = boundary.referenceAreaSqKm
         ? `资料面积约 ${escapeHtml(boundary.referenceAreaSqKm)} km² · 图示面积约 ${escapeHtml(Number(Number(boundary.geometryAreaSqKm).toFixed(2)))} km²`
@@ -1667,6 +1701,7 @@
     if (!zone) return;
     clearMapHover();
     state.selectedZoneId = zoneId;
+    syncSelectedZoneUrl(zone);
     renderList();
     const entry = locationEntry(zone.name);
     const hint = locationHints[zone.name];
@@ -1700,6 +1735,7 @@
     els.detailPanel.classList.remove("open");
     els.detailPanel.setAttribute("aria-hidden", "true");
     state.selectedZoneId = null;
+    syncSelectedZoneUrl(null);
     clearFocus();
     renderList();
     updateMapLabelSelection();
@@ -1824,6 +1860,10 @@
     renderFilters();
     renderList();
     bindEvents();
+    const requestedZoneId = new URLSearchParams(window.location.search).get("zone");
+    if (requestedZoneId && zones.some((zone) => zone.id === requestedZoneId)) {
+      selectZone(requestedZoneId, false);
+    }
     initMap();
   }
 
