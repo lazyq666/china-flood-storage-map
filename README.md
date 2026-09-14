@@ -39,11 +39,12 @@ macOS 启动脚本需要 Python 3，用于提供本地网页服务。
 - 输出目录：`dist`。
 - 环境变量 `AMAP_KEY`：填写高德 Web 端 Key。该值会随网页下发，不应当作服务端密钥。
 - 加密 Secret `AMAP_SECURITY_JS_CODE`：填写高德安全码。安全码仅由 `functions/_AMapService/` 下的 Cloudflare Pages Function 在服务端读取，不会写入发布页面。
+- 环境变量 `SITE_URL`：填写生产站点的完整 HTTPS 地址（例如 `https://map.example.com`，末尾斜杠可省略）。该值用于 canonical、Open Graph URL、`robots.txt` 和 `sitemap.xml`；未配置时构建会回退到 Cloudflare 自动提供的 `CF_PAGES_URL`。
 - 可选环境变量：`AMAP_SERVICE_HOST`，默认值为同域路径 `/_AMapService`，通常无需设置。
 
 可选环境变量 `OSM_NOMINATIM_ENDPOINT` 和 `OSM_OVERPASS_ENDPOINT` 仅用于接入部署者自有的代理或已获授权的兼容服务。默认留空时，站点不会直接请求 OSM 基金会的公共 Nominatim 或公共 Overpass 实例；地点搜索仍使用高德，但检索结果只在当前页面会话中展示，不写回仓库数据。
 
-构建脚本只发布页面资源，并从环境变量生成不含安全码的浏览器配置；缺少 `AMAP_KEY` 时会停止构建。`dist/_routes.json` 仅让 `/_AMapService/*` 请求触发 Function，其他静态资源不计入 Functions 调用。Function 只接受 GET/HEAD，并仅转发本站使用的行政区、范围地点检索、文本地点检索和地图样式路径；未知路径、编码分隔符、异常跳转和其他方法会被拒绝。Git 仓库中不保存密钥。部署后，在高德配置中核对网站域名白名单，并确认访问 `/_AMapService/` 时由 Pages Function 响应。后续推送到 `main` 会由关联的 Cloudflare Pages 项目自动部署。
+构建脚本只发布页面资源，并从环境变量生成不含安全码的浏览器配置；缺少 `AMAP_KEY` 时会停止构建。构建还会生成可索引的完整名录页、97 个区域详情页、`robots.txt` 和 `sitemap.xml`。`dist/_routes.json` 仅让 `/_AMapService/*` 请求触发 Function，其他静态资源不计入 Functions 调用。Function 只接受 GET/HEAD，并仅转发本站使用的行政区、范围地点检索、文本地点检索和地图样式路径；未知路径、编码分隔符、异常跳转和其他方法会被拒绝。Git 仓库中不保存密钥。部署后，在高德配置中核对网站域名白名单，并确认访问 `/_AMapService/` 时由 Pages Function 响应。后续推送到 `main` 会由关联的 Cloudflare Pages 项目自动部署。
 
 Cloudflare 控制台路径：`Workers & Pages → 项目 → Settings → Variables and Secrets`。把 `AMAP_SECURITY_JS_CODE` 保存为加密 Secret，并为 Production 和需要的 Preview 环境分别配置。Pages Functions 需要 Git 集成或 Wrangler 部署；Cloudflare Pages 的仪表盘 Direct Upload 不支持 Functions。
 

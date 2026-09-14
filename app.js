@@ -39,6 +39,7 @@
   });
   const DEFAULT_PAGE_TITLE = "全国蓄滞洪区地图｜97处名录、位置与公开证据";
   const DEFAULT_PAGE_DESCRIPTION = "查询全国97处国家蓄滞洪区的名称、所属流域、所在省份、资料推定范围、位置证据与公开来源。地图不代表法定边界，仅供位置理解。";
+  const CANONICAL_SITE_ROOT = document.head.querySelector('link[rel="canonical"]')?.href || "";
   const LIMITATION_ICONS = Object.freeze({
     officialMap: '<svg class="limitation-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 5-3 8 3 5-3v15l-5 3-8-3-5 3V6Z"/><path d="M8 3v15M16 6v15M4 4l16 16"/></svg>',
     fieldVerification: '<svg class="limitation-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><path d="M12 7v4M12 15h.01"/></svg>',
@@ -146,10 +147,9 @@
       setMetaContent('meta[property="og:description"]', DEFAULT_PAGE_DESCRIPTION);
       setMetaContent('meta[name="twitter:title"]', DEFAULT_PAGE_TITLE);
       setMetaContent('meta[name="twitter:description"]', DEFAULT_PAGE_DESCRIPTION);
-      if (canonical) {
-        const rootUrl = new URL("/", canonical.href);
-        canonical.href = rootUrl.href;
-        setMetaContent('meta[property="og:url"]', rootUrl.href);
+      if (canonical && CANONICAL_SITE_ROOT) {
+        canonical.href = CANONICAL_SITE_ROOT;
+        setMetaContent('meta[property="og:url"]', CANONICAL_SITE_ROOT);
       }
       return;
     }
@@ -166,8 +166,8 @@
     setMetaContent('meta[property="og:description"]', description);
     setMetaContent('meta[name="twitter:title"]', title);
     setMetaContent('meta[name="twitter:description"]', description);
-    if (canonical) {
-      const zoneUrl = new URL(`/zones/${zoneSlug(zone)}/`, canonical.href);
+    if (canonical && CANONICAL_SITE_ROOT) {
+      const zoneUrl = new URL(`zones/${zoneSlug(zone)}/`, CANONICAL_SITE_ROOT);
       canonical.href = zoneUrl.href;
       setMetaContent('meta[property="og:url"]', zoneUrl.href);
     }

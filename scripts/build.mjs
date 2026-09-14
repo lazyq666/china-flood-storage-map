@@ -1,6 +1,7 @@
 import { cp, mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { buildSeoPages } from "./seo.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const output = path.join(root, "dist");
@@ -8,6 +9,7 @@ const key = process.env.AMAP_KEY?.trim();
 const serviceHost = process.env.AMAP_SERVICE_HOST?.trim() || "/_AMapService";
 const nominatimEndpoint = process.env.OSM_NOMINATIM_ENDPOINT?.trim() || "";
 const overpassEndpoint = process.env.OSM_OVERPASS_ENDPOINT?.trim() || "";
+const siteUrl = process.env.SITE_URL?.trim() || process.env.CF_PAGES_URL?.trim() || "";
 
 if (!key) {
   throw new Error("请在部署平台设置 AMAP_KEY 环境变量。");
@@ -39,4 +41,8 @@ await writeFile(
   path.join(output, "_routes.json"),
   `${JSON.stringify({ version: 1, include: ["/_AMapService/*"], exclude: [] }, null, 2)}\n`
 );
-console.log("站点已生成到 dist/。");
+const seo = await buildSeoPages({ root, output, siteUrl });
+console.log(`站点已生成到 dist/，包含 ${seo.zoneCount} 个可索引的蓄滞洪区详情页。`);
+if (!seo.siteUrl) {
+  console.warn("未设置 SITE_URL 或 CF_PAGES_URL：详情页已生成，但 canonical 与 sitemap.xml 将等待生产域名配置。");
+}
