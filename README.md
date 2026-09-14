@@ -39,7 +39,7 @@ macOS 启动脚本需要 Python 3，用于提供本地网页服务。
 - 输出目录：`dist`。
 - 环境变量 `AMAP_KEY`：填写高德 Web 端 Key。该值会随网页下发，不应当作服务端密钥。
 - 加密 Secret `AMAP_SECURITY_JS_CODE`：填写高德安全码。安全码仅由 `functions/_AMapService/` 下的 Cloudflare Pages Function 在服务端读取，不会写入发布页面。
-- 环境变量 `SITE_URL`：填写生产站点的完整 HTTPS 地址（例如 `https://map.example.com`，末尾斜杠可省略）。该值用于 canonical、Open Graph URL、`robots.txt` 和 `sitemap.xml`；未配置时构建会回退到 Cloudflare 自动提供的 `CF_PAGES_URL`。
+- 环境变量 `SITE_URL`：生产环境填写 `https://hongqu.wayout.top/`。该值用于 canonical、Open Graph URL、`robots.txt` 和 `sitemap.xml`；构建脚本也内置此正式域名作为安全默认值，避免把 Cloudflare 预览地址误写为 canonical。
 - 可选环境变量：`AMAP_SERVICE_HOST`，默认值为同域路径 `/_AMapService`，通常无需设置。
 
 可选环境变量 `OSM_NOMINATIM_ENDPOINT` 和 `OSM_OVERPASS_ENDPOINT` 仅用于接入部署者自有的代理或已获授权的兼容服务。默认留空时，站点不会直接请求 OSM 基金会的公共 Nominatim 或公共 Overpass 实例；地点搜索仍使用高德，但检索结果只在当前页面会话中展示，不写回仓库数据。
@@ -64,4 +64,4 @@ node --test tests/*.test.mjs
 
 项目维护者原创且有权许可的代码采用 [PolyForm Noncommercial License 1.0.0](./LICENSE)：允许非商业使用、修改和分发，不允许商业使用。该许可证属于 source-available（源代码可用）许可证，不是 OSI 认可的开源许可证。
 
-网络资料、地图数据和高德服务不自动适用上述代码许可证。界面中来源不明的四张 PNG 已移除并由项目内 HTML/CSS/SVG 重建；数据的第三方许可边界请阅读 [第三方资料与授权说明](./THIRD_PARTY_NOTICES.md)。安全问题报告方式见 [安全政策](./SECURITY.md)。
+网络资料、地图数据和高德服务不自动适用上述代码许可证。界面中三张来源不明的 PNG 已移除并由项目内 HTML/CSS/SVG 重建；原 `assets/logo.png` 已按项目维护者要求恢复，其权利状态单独说明。数据的第三方许可边界请阅读 [第三方资料与授权说明](./THIRD_PARTY_NOTICES.md)。安全问题报告方式见 [安全政策](./SECURITY.md)。
