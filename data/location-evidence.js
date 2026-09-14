@@ -1,84 +1,53 @@
 (function () {
   "use strict";
   const payload = {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "generatedAt": "2026-09-14T02:03:50.699Z",
-  "methodology": "automation/location-confidence-methodology.md",
-  "reasoningMethod": "compact-three-stage-evidence-chain",
+  "methodology": "docs/location-confidence-methodology.md",
+  "reasoningMethod": "public-source-evidence-chain",
   "referenceCluePolicy": {
     "confidenceEligible": false,
     "purpose": "百科资料只用于发现历史地名、别名、相邻地物和地理关系；不能单独提高位置确信度。",
-    "boundaryRule": "百科内嵌地图坐标不得直接作为蓄滞洪区边界。只有经官方资料或行政区交叉核验的检索词，且出现在最终位置结论中，才可继续用于高德地物检索和边界约束。"
+    "boundaryRule": "百科资料只能用于发现检索词；未由公开资料交叉核验的线索不得提高确信度或用于确定边界。"
   },
   "summary": {
     "total": 97,
     "confidenceCounts": {
-      "high": 30,
-      "medium": 67
+      "none": 25,
+      "medium": 69,
+      "high": 3
     },
     "fieldVerified": 0,
     "supportingSourceCounts": {
-      "2": 3,
-      "3": 19,
-      "4": 43,
-      "5": 16,
-      "6": 11,
+      "0": 1,
+      "1": 15,
+      "2": 11,
+      "3": 15,
+      "4": 30,
+      "5": 12,
+      "6": 8,
       "7": 2,
-      "8": 2,
-      "10": 1
+      "8": 1,
+      "9": 2
     },
-    "referenceClueCount": 8
+    "referenceClueCount": 8,
+    "reviewNote": "已移除高德地物检索缓存、含高德定位材料的推定范围及未逐页核验的自动生成引用；全部位置仍未经实地核验。",
+    "removedThirdPartyBoundaryCount": 25
   },
   "zones": [
     {
       "id": "长江-01",
       "name": "围堤湖",
       "basin": "长江流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T08:03:02.403Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "汉寿县围堤湖分洪闸管理所",
-            "location": "111.94484816,28.97242887",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "1",
-            "name": "北拐村村民委员会",
-            "location": "111.91639976,28.95716666",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "围堤湖",
-            "location": "111.94612384,28.96389858",
-            "anchorKind": "place-name"
-          },
-          {
-            "id": "3",
-            "name": "围堤湖村",
-            "location": "111.96823935,28.9423154",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [
         {
@@ -118,38 +87,6 @@
         }
       ],
       "governmentSources": [
-        {
-          "title": "湖南主体功能区规划附表23",
-          "publisher": "",
-          "url": "https://fgw.hunan.gov.cn/xxgk_70899/ghjh/201605/W020160518614311086449.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "沅南垸工程环评隔堤关系",
-          "publisher": "",
-          "url": "https://sthjj.changde.gov.cn/group1/M00/04/7C/ClADFGhPjAeAQ1HMAA6m-mL8W8I198.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "常德水利局围堤湖图页",
-          "publisher": "",
-          "url": "https://slj.changde.gov.cn/zhdt/ztzl1/hzzgz/content_1093818",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "围堤湖官方图",
-          "publisher": "",
-          "url": "https://slj.changde.gov.cn/upload/sslj/contentmanage/article/image/2024/11/13/3a9eda3c8e49430f8e37e5b99fbe3a9c.png",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap众包地理参考",
           "publisher": "",
@@ -246,69 +183,24 @@
       "aliases": [
         "围堤湖垸",
         "围堤湖蓄洪垸"
-      ],
-      "chatgptExtractionPath": "automation/output/remaining-chatgpt-2026-09-13/publications/2026-09-13T08-03-02-403Z-长江-01/extraction.json"
+      ]
     },
     {
       "id": "长江-02",
       "name": "六角山",
       "basin": "长江流域",
-      "confidence": "medium",
-      "confidenceLabel": "确信度中",
-      "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T08:03:10.366Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "六角山·蒋家嘴镇—百禄桥镇交界一带",
-            "location": "112.25587,28.824439",
-            "anchorKind": "area-estimate"
-          },
-          {
-            "id": "1",
-            "name": "六角山村附近",
-            "location": "112.25587,28.824439",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "2",
-            "name": "湖南省常德市汉寿县蒋家嘴镇",
-            "location": "112.20676,28.822488",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "湖南省常德市汉寿县百禄桥镇",
-            "location": "112.279231,28.78857",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "湖南主体功能区规划附表23",
-          "publisher": "",
-          "url": "https://fgw.hunan.gov.cn/xxgk_70899/ghjh/201605/W020160518614311086449.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "汉寿水利局两蓄洪垸加固验收",
           "publisher": "",
@@ -324,14 +216,6 @@
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "已有研究实际26页，基准未声明"
-        },
-        {
-          "title": "常德益阳交界水域巡查",
-          "publisher": "",
-          "url": "https://slj.changde.gov.cn/zhdt/sldt/content_795335",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
         },
         {
           "title": "2020农村道路计划",
@@ -459,100 +343,21 @@
       "aliases": [
         "六角山垸",
         "六角山蓄洪垸"
-      ],
-      "chatgptExtractionPath": "automation/output/remaining-chatgpt-2026-09-13/publications/2026-09-13T08-03-10-366Z-长江-02/extraction.json"
+      ]
     },
     {
       "id": "长江-03",
       "name": "九垸",
       "basin": "长江流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T08:28:48.893Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 64,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "九垸",
-            "location": "111.92749277,29.56163826",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "澧水",
-            "location": "111.72517602,29.61805366",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "澧水",
-            "location": "111.95936406,29.53669236",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "3",
-            "name": "澧水",
-            "location": "111.91042687,29.60786939",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "4",
-            "name": "澧水",
-            "location": "111.95385606,29.47896754",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "5",
-            "name": "澧水",
-            "location": "111.8762718,29.57681883",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "6",
-            "name": "澧水",
-            "location": "111.80226301,29.60340518",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "7",
-            "name": "澧县九垸乡公共卫生管理办",
-            "location": "111.9279733,29.56281212",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "8",
-            "name": "甘家湾村村民委员会",
-            "location": "111.92778199,29.56115836",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "甘家湾村退役军人服务中心",
-            "location": "111.927693,29.56223466",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "10",
-            "name": "毕黄村村民委员会",
-            "location": "111.91714966,29.5898968",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [
         {
@@ -632,46 +437,6 @@
       ],
       "governmentSources": [
         {
-          "title": "湖南省政府2015年度堤防加固公告",
-          "publisher": "",
-          "url": "https://www.hunan.gov.cn/topic/hnzfxxgk2015/zdjsxm/ztbxx/201510/t20151013_1893604.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南省主体功能区规划（2012；2016公开）附表23",
-          "publisher": "",
-          "url": "https://fgw.hunan.gov.cn/xxgk_70899/ghjh/201605/W020160518614311086449.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南水利厅西官垸环评",
-          "publisher": "",
-          "url": "https://slt.hunan.gov.cn/xxgk/tzgg/201010/t20101021_3325432.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南民政厅小渡口镇与九垸乡撤并资料（2017）",
-          "publisher": "",
-          "url": "https://mzt.hunan.gov.cn/mzt/xxgk/gzdt/ttxw/ttxw4/201705/t20170523_4228041.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南水利厅松滋河系工程答复",
-          "publisher": "",
-          "url": "https://slt.hunan.gov.cn/xxgk/jyta/rdjy/201510/t20151015_3434720.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
           "title": "九垸补查：常德港规划甘家湾澧水防洪堤",
           "publisher": "",
           "url": "https://cdjkq.changde.gov.cn/upload/cdjkq/application/2025/11/20/%E5%B8%B8%E5%BE%B7%E6%B8%AF%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92%EF%BC%882021-2035%E5%B9%B4%EF%BC%89.pdf?t=1763603658868&utm_source=chatgpt.com",
@@ -686,46 +451,6 @@
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "二手转载"
-        },
-        {
-          "title": "长江委三不管水位站资料",
-          "publisher": "",
-          "url": "https://zy.cjh.com.cn/article_2161_259435.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "省水利厅2017洪水风险图编制答复",
-          "publisher": "",
-          "url": "https://slt.hunan.gov.cn/slt/xxgk/jyta/zxta/201709/t20170908_7641306.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "澧县公开卫生机构定位",
-          "publisher": "",
-          "url": "https://www.li-xian.gov.cn/zwgk/public/6616363/1168639651.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，原坐标基准未注明"
-        },
-        {
-          "title": "湖南生态环境厅甘家湾水源关系",
-          "publisher": "",
-          "url": "https://sthjt.hunan.gov.cn/sthjt/xxgk/tzgg/gg/202206/t20220609_25441853.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "澧淞毛家岔堤排除依据",
-          "publisher": "",
-          "url": "https://slt.hunan.gov.cn/xxgk/slxw/slxw_1/201010/t20101018_3332366.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
         },
         {
           "title": "OpenStreetMap众包地理参考",
@@ -884,8 +609,7 @@
           }
         ]
       },
-      "aliases": [],
-      "chatgptExtractionPath": "automation/output/hunan-revisit-chatgpt-2026-09-13/publications/2026-09-13T08-28-48-893Z-长江-03/extraction.json"
+      "aliases": []
     },
     {
       "id": "长江-04",
@@ -894,57 +618,15 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-14T02:03:50.699Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 24,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "官垸镇人民政府",
-            "location": "112.016325,29.555389",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "2015省政府工程公告",
-          "publisher": "",
-          "url": "https://www.hunan.gov.cn/topic/hnzfxxgk2015/zdjsxm/ztbxx/201510/t20151013_1893604.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "2010西官环评",
-          "publisher": "",
-          "url": "https://slt.hunan.gov.cn/xxgk/tzgg/201010/t20101021_3325432.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "官垸镇地处松滋中西支之间",
-          "publisher": "",
-          "url": "https://www.li-xian.gov.cn/xwzx/zjdt/content_99391",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "官垸水文站",
           "publisher": "",
@@ -952,14 +634,6 @@
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "综合页面，未独立读取具体站点原文"
-        },
-        {
-          "title": "毛家岔环评横向水系关系",
-          "publisher": "",
-          "url": "https://www.li-xian.gov.cn/Upload/main/ContentManage/Article/File/2024/07/24/202407241746059622.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
         },
         {
           "title": "入河排污口论证附图9水系图",
@@ -1092,8 +766,7 @@
           }
         ]
       },
-      "aliases": [],
-      "chatgptExtractionPath": "automation/output/xiguan-jiuyuan-review-2026-09-14/publications/2026-09-14T02-03-50-699Z-长江-04/extraction.json"
+      "aliases": []
     },
     {
       "id": "长江-05",
@@ -1102,133 +775,15 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13T04:25:34.332Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "大湖口镇潭子口村村委会",
-            "location": "112.09136552,29.61777836",
-            "anchorKind": "locality"
-          },
-          {
-            "id": "1",
-            "name": "大湖口镇大湖口社区退役军人服务站",
-            "location": "112.10578349,29.5698168",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "大湖口镇新剅社区居民委员会",
-            "location": "112.07323683,29.51000976",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "安乡县大湖口镇荆湘种养专业合作社",
-            "location": "112.09306213,29.51196314",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "人社服务窗口(安乡县大湖口镇政务服务中心)",
-            "location": "112.10994899,29.57128063",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "大湖口镇天福村退役军人服务站",
-            "location": "112.09144336,29.49889074",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "黄山头镇人民政府",
-            "location": "112.16917838,29.65573809",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "黄山头镇公共卫生管理办公室",
-            "location": "112.16321413,29.59750393",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "8",
-            "name": "安乡县黄山头镇委员会",
-            "location": "112.16974707,29.65594608",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "安乡县黄山头镇供销社",
-            "location": "112.17056213,29.65551645",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "10",
-            "name": "黄山头镇人民代表大会",
-            "location": "112.16973508,29.65565803",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "湖南省政府2015年度堤防加固公告",
-          "publisher": "",
-          "url": "https://www.hunan.gov.cn/topic/hnzfxxgk2015/zdjsxm/ztbxx/201510/t20151013_1893604.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南省主体功能区规划附表23",
-          "publisher": "",
-          "url": "https://fgw.hunan.gov.cn/xxgk_70899/ghjh/201605/W020160518614311086449.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南水利厅安澧西线巡查（2019）",
-          "publisher": "",
-          "url": "https://slt.hunan.gov.cn/ztzl/fxzsxcp/201907/t20190711_5390396.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南交通运输厅张九台大桥",
-          "publisher": "",
-          "url": "https://jtt.hunan.gov.cn/jtt/xxgk/gzdt/szdt1/202309/t20230901_29474373.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "岳阳档案典型堤垸兴废录",
-          "publisher": "",
-          "url": "https://daj.yueyang.gov.cn/6658/6667/content_572808.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "红网新码头防汛报道（2020）",
           "publisher": "",
@@ -1424,8 +979,7 @@
           }
         ]
       },
-      "aliases": [],
-      "chatgptExtractionPath": "automation/output/hunan-chatgpt-2026-09-13/publications/2026-09-13T04-25-34-332Z-长江-05/extraction.json"
+      "aliases": []
     },
     {
       "id": "长江-06",
@@ -1434,96 +988,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "道水",
-            "location": "111.81484744,29.58784064",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "道水",
-            "location": "111.77090852,29.57147946",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "道水",
-            "location": "111.73309398,29.54340968",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "3",
-            "name": "澧南镇人民政府",
-            "location": "111.72885259,29.5940703",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "中共澧县澧南镇委员会",
-            "location": "111.72888665,29.59435042",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "澧县澧南镇财政所",
-            "location": "111.72886262,29.59429338",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "澧南镇退役军人服务站",
-            "location": "111.72888966,29.59438243",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "澧南镇双荷村村委会",
-            "location": "111.73737702,29.59250097",
-            "anchorKind": "locality"
-          },
-          {
-            "id": "8",
-            "name": "澧县澧南镇回龙村退役军人服务站",
-            "location": "111.74468218,29.58318708",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "澧南镇栗木村退役军人服务站",
-            "location": "111.73873166,29.58716317",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "10",
-            "name": "澧南镇松林村退役军人服务站",
-            "location": "111.69865697,29.5812538",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "11",
-            "name": "澧县澧南镇刘市社区退役军人服务站",
-            "location": "111.72485387,29.59741115",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -1616,131 +1086,15 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13T04:25:36.582Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 56,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "三岔河镇人民政府",
-            "location": "112.28972758,29.414326",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "安乡县三岔河镇政务服务中心",
-            "location": "112.28748474,29.41282455",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "三岔河镇驿码头村村部",
-            "location": "112.26476806,29.47124853",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "安乡县三岔河镇观音塘",
-            "location": "112.2418082,29.3937695",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "安乡县三岔河镇政协",
-            "location": "112.28963542,29.41386864",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "三岔河镇国土资源所",
-            "location": "112.28788728,29.41357142",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "三岔河镇三多社区退役军人服务站",
-            "location": "112.26994272,29.42017849",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "安乡县三岔河镇沙包洲",
-            "location": "112.21952769,29.48981253",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "官垱镇人民政府",
-            "location": "112.23837136,29.58962174",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "安乡县官垱镇胡家村村民委员会",
-            "location": "112.2788123,29.58421793",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "10",
-            "name": "中共安乡县官垱镇委员会",
-            "location": "112.23843935,29.59022289",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "11",
-            "name": "官垱镇便民服务中心",
-            "location": "112.23842436,29.59009986",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "湖南省政府2015年度堤防加固公告",
-          "publisher": "",
-          "url": "https://www.hunan.gov.cn/topic/hnzfxxgk2015/zdjsxm/ztbxx/201510/t20151013_1893604.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南水利厅安化垸环评（2010）",
-          "publisher": "",
-          "url": "https://slt.hunan.gov.cn/xxgk/tzgg/201010/t20101021_3326469.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南省主体功能区规划附表23",
-          "publisher": "",
-          "url": "https://fgw.hunan.gov.cn/xxgk_70899/ghjh/201605/W020160518614311086449.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南水利厅2025安澧安昌安化分别列名答复",
-          "publisher": "",
-          "url": "https://slt.hunan.gov.cn/slt/xxgk/jyta/zxta/202508/t20250819_33776902.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "湖南红网2015安乡区划调整",
           "publisher": "",
@@ -1772,14 +1126,6 @@
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "河道中心线的位置参照；按官方水系拓扑对应命名，非实测堤线"
-        },
-        {
-          "title": "DataV公开县界参考（仅约束未实测的分区连接段）",
-          "publisher": "",
-          "url": "https://geo.datav.aliyun.com/areas_v3/bound/430700_full.json",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "GCJ-02转WGS84；不是蓄滞洪区图；与实际隔堤/分区线是否重合待核"
         }
       ],
       "verifiedAdministrativeAreas": [
@@ -1896,8 +1242,7 @@
           }
         ]
       },
-      "aliases": [],
-      "chatgptExtractionPath": "automation/output/hunan-chatgpt-2026-09-13/publications/2026-09-13T04-25-36-582Z-长江-07/extraction.json"
+      "aliases": []
     },
     {
       "id": "长江-08",
@@ -1906,123 +1251,15 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13T04:25:38.399Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 46,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "藕池河西支",
-            "location": "112.2685186,29.45040915",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "藕池河西支",
-            "location": "112.23507144,29.61249203",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "三岔河镇人民政府",
-            "location": "112.28972758,29.414326",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "安乡县三岔河镇政务服务中心",
-            "location": "112.28748474,29.41282455",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "三岔河镇驿码头村村部",
-            "location": "112.26476806,29.47124853",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "安乡县三岔河镇观音塘",
-            "location": "112.2418082,29.3937695",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "安乡县三岔河镇政协",
-            "location": "112.28963542,29.41386864",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "三岔河镇国土资源所",
-            "location": "112.28788728,29.41357142",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "三岔河镇三多社区退役军人服务站",
-            "location": "112.26994272,29.42017849",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "安乡县三岔河镇沙包洲",
-            "location": "112.21952769,29.48981253",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "10",
-            "name": "新口村村民委员会",
-            "location": "112.27609298,29.49833811",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "11",
-            "name": "三岔河镇新口村退役军人服务站",
-            "location": "112.27761198,29.49641748",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "湖南省主体功能区规划（2012）附表23",
-          "publisher": "",
-          "url": "https://fgw.hunan.gov.cn/xxgk_70899/ghjh/201605/W020160518614311086449.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南省水利厅安化垸堤防加固环评公告（2010）",
-          "publisher": "",
-          "url": "https://slt.hunan.gov.cn/xxgk/tzgg/201010/t20101021_3326469.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南省政府2015年度蓄洪垸工程公告",
-          "publisher": "",
-          "url": "https://www.hunan.gov.cn/topic/hnzfxxgk2015/zdjsxm/ztbxx/201510/t20151013_1893604.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OSM河道位置参照 70809710",
           "publisher": "",
@@ -2038,14 +1275,6 @@
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "河道中心线的位置参照；与官方命名的对应依赖水系拓扑，不是法定堤线"
-        },
-        {
-          "title": "DataV公开县界参考（仅作为未实测分界段连接代理）",
-          "publisher": "",
-          "url": "https://geo.datav.aliyun.com/areas_v3/bound/430700_full.json",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "GCJ-02转WGS84；不是蓄滞洪区范围，未取得堤轴时的粗略连接假设"
         }
       ],
       "verifiedAdministrativeAreas": [
@@ -2138,8 +1367,7 @@
           }
         ]
       },
-      "aliases": [],
-      "chatgptExtractionPath": "automation/output/hunan-chatgpt-2026-09-13/publications/2026-09-13T04-25-38-399Z-长江-08/extraction.json"
+      "aliases": []
     },
     {
       "id": "长江-09",
@@ -2148,57 +1376,15 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13T04:25:40.321Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 10,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "浪拔湖镇两太垸（今泰来村一带）",
-            "location": "112.35525304,29.41872452",
-            "anchorKind": "location-clue"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "湖南省主体功能区规划（2012）附表23",
-          "publisher": "",
-          "url": "https://fgw.hunan.gov.cn/xxgk_70899/ghjh/201605/W020160518614311086449.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "南县育乐垸涝区治理工程（二期）环评（2024）",
-          "publisher": "",
-          "url": "https://www.yiyang.gov.cn/yyshjbhj/uploadfiles/202412/2024121316291598700.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "安化垸堤防环评（2010）",
-          "publisher": "",
-          "url": "https://slt.hunan.gov.cn/xxgk/tzgg/201010/t20101021_3326469.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "益阳村级行政地名",
           "publisher": "",
@@ -2332,8 +1518,7 @@
       },
       "aliases": [
         "南鼎垸"
-      ],
-      "chatgptExtractionPath": "automation/output/hunan-chatgpt-2026-09-13/publications/2026-09-13T04-25-40-321Z-长江-09/extraction.json"
+      ]
     },
     {
       "id": "长江-10",
@@ -2342,99 +1527,15 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13T04:25:42.110Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 23,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "南县麻河口镇财政所",
-            "location": "112.27402262,29.294744",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "南县麻河口镇农业综合服务中心",
-            "location": "112.26919625,29.29806426",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "南县麻河口镇人民代表大会",
-            "location": "112.27324819,29.29547096",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "南县麻河口镇上洲村村委会",
-            "location": "112.27955002,29.33327222",
-            "anchorKind": "locality"
-          },
-          {
-            "id": "4",
-            "name": "南县麻河口镇应急救援队",
-            "location": "112.27397862,29.29499214",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "南县麻河口镇官正垸村村民委员会",
-            "location": "112.3213336,29.31649826",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "南县麻河口镇经济发展办公室",
-            "location": "112.2744489,29.29468726",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "和康垸1号特大桥",
-            "location": "112.32292954,29.38506478",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "湖南省主体功能区规划（2012）附表23",
-          "publisher": "",
-          "url": "https://fgw.hunan.gov.cn/xxgk_70899/ghjh/201605/W020160518614311086449.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "南县育乐垸涝区治理工程（二期）环评（2024）",
-          "publisher": "",
-          "url": "https://www.yiyang.gov.cn/yyshjbhj/uploadfiles/202412/2024121316291598700.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "安化垸堤防环评（2010）",
-          "publisher": "",
-          "url": "https://slt.hunan.gov.cn/xxgk/tzgg/201010/t20101021_3326469.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "益阳公共资源交易2023实施方案",
           "publisher": "",
@@ -2474,14 +1575,6 @@
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "河道中心线的位置参照；与官方命名的对应依赖水系拓扑，不是法定堤线"
-        },
-        {
-          "title": "DataV公开县界参考（仅作为未实测分界段连接代理）",
-          "publisher": "",
-          "url": "https://geo.datav.aliyun.com/areas_v3/bound/430900_full.json",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "GCJ-02转WGS84；不是蓄滞洪区范围，未取得堤轴时的粗略连接假设"
         }
       ],
       "verifiedAdministrativeAreas": [
@@ -2598,8 +1691,7 @@
           }
         ]
       },
-      "aliases": [],
-      "chatgptExtractionPath": "automation/output/hunan-chatgpt-2026-09-13/publications/2026-09-13T04-25-42-110Z-长江-10/extraction.json"
+      "aliases": []
     },
     {
       "id": "长江-11",
@@ -2608,97 +1700,15 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13T04:25:43.660Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 65,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "澧水",
-            "location": "112.27689706,29.06895869",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "澧水",
-            "location": "112.26295717,29.1025488",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "澧水",
-            "location": "112.22430448,29.27443737",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "3",
-            "name": "北河口社区居委会",
-            "location": "112.31221581,29.37443035",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "麻河口镇北河口社区退役军人服务站",
-            "location": "112.31194033,29.37485913",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "麻河口派出所",
-            "location": "112.27866011,29.29517989",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "麻河口镇委",
-            "location": "112.27434183,29.29471521",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "麻河口政务服务中心",
-            "location": "112.27539663,29.29569863",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "南县公安局交通警察大队麻河口中队",
-            "location": "112.2736174,29.29523305",
-            "anchorKind": "engineering"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "益阳市2026湖区堤垸基本情况表",
-          "publisher": "",
-          "url": "https://www.yiyang.gov.cn/yysw/uploadfiles/202603/2026030315342017687.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南主体功能区规划附表23",
-          "publisher": "",
-          "url": "https://fgw.hunan.gov.cn/xxgk_70899/ghjh/201605/W020160518614311086449.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "南县育乐垸涝区治理（二期）环评（2024）",
           "publisher": "",
@@ -2706,22 +1716,6 @@
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "须使用单垸段落，不能把四垸项目合计套给南汉"
-        },
-        {
-          "title": "南汉堤防加固环评公告（2010）",
-          "publisher": "",
-          "url": "https://slt.hunan.gov.cn/xxgk/tzgg/201010/t20101021_3326121.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "益阳市水利局水位控制站表（2025）",
-          "publisher": "",
-          "url": "https://www.yiyang.gov.cn/yysw/6088/6102/content_2077609.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
         },
         {
           "title": "南汉堤段桩号工程资料（2025）",
@@ -2786,14 +1780,6 @@
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "河道中心线的位置参照；按官方水系拓扑对应命名，非实测堤线"
-        },
-        {
-          "title": "DataV公开县界参考（仅约束未实测的分区连接段）",
-          "publisher": "",
-          "url": "https://geo.datav.aliyun.com/areas_v3/bound/430900_full.json",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "GCJ-02转WGS84；不是蓄滞洪区图；与实际隔堤/分区线是否重合待核"
         }
       ],
       "verifiedAdministrativeAreas": [
@@ -2950,8 +1936,7 @@
           }
         ]
       },
-      "aliases": [],
-      "chatgptExtractionPath": "automation/output/hunan-chatgpt-2026-09-13/publications/2026-09-13T04-25-43-660Z-长江-11/extraction.json"
+      "aliases": []
     },
     {
       "id": "长江-12",
@@ -2960,36 +1945,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 4,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "沙头镇民主垸中心水利管理站",
-            "location": "112.46735373,28.64833399",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "1",
-            "name": "民主垸乡贤研究会",
-            "location": "112.55088778,28.72653816",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -3082,30 +2043,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 2,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "沅江市共双茶垸分洪闸管理所",
-            "location": "112.68285405,28.90128965",
-            "anchorKind": "engineering"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -3198,101 +2141,15 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13T04:25:27.370Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 25,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "鹤龙湖镇政府",
-            "location": "112.85324416,28.66729991",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "湘阴县鹤龙湖镇委",
-            "location": "112.85223385,28.66731068",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "鹤龙湖镇保合社区居民委员会",
-            "location": "112.86716417,28.68080648",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "湘阴县鹤龙湖镇财政所",
-            "location": "112.85105186,28.66741283",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "湘阴县鹤龙湖镇双龙社区居民委员会",
-            "location": "112.77770339,28.67569328",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "湘阴县鹤龙湖镇不动产登记所",
-            "location": "112.8502173,28.66755539",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "湘阴县鹤龙湖镇龙江社区居民委员会",
-            "location": "112.78299846,28.67510722",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "湖南主体功能区规划附表23",
-          "publisher": "",
-          "url": "https://fgw.hunan.gov.cn/xxgk_70899/ghjh/201605/W020160518614311086449.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南水利厅城西垸堤防环评（2010）",
-          "publisher": "",
-          "url": "https://slt.hunan.gov.cn/slt/xxgk/tzgg/201010/t20101021_3325965.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "岳阳水利局濠河口工程许可（2025）",
-          "publisher": "",
-          "url": "https://swj.yueyang.gov.cn/6855/6879/65259/65282/65284/content_2354989.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湘阴防汛预案（2015）",
-          "publisher": "",
-          "url": "https://www.xiangyin.gov.cn/31185/31200/62787/62789/content_983089.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "湘阴河湖概况",
           "publisher": "",
@@ -3300,14 +2157,6 @@
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "内湖集雨不可直接升级全垸面积"
-        },
-        {
-          "title": "岳阳楼区公开环评（2018）",
-          "publisher": "",
-          "url": "https://www.yylq.gov.cn/uploadfiles/201808/20180808163739327.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
         },
         {
           "title": "OSM河道位置参照 148207766",
@@ -3432,8 +2281,7 @@
           }
         ]
       },
-      "aliases": [],
-      "chatgptExtractionPath": "automation/output/hunan-chatgpt-2026-09-13/publications/2026-09-13T04-25-27-370Z-长江-14/extraction.json"
+      "aliases": []
     },
     {
       "id": "长江-15",
@@ -3442,54 +2290,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "屈原农场七分场",
-            "location": "112.98610759,28.83469077",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "屈原农场三分场",
-            "location": "112.92511406,28.97081354",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "屈原农场四分场",
-            "location": "112.94446529,28.91155017",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "屈原农场八分场",
-            "location": "112.89455268,28.89019313",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "屈原农场五分场",
-            "location": "112.97661669,28.88363139",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -3580,110 +2386,18 @@
       "id": "长江-16",
       "name": "义和垸",
       "basin": "长江流域",
-      "confidence": "medium",
-      "confidenceLabel": "确信度中",
-      "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T08:28:43.390Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 51,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "湘阴县静河镇政府",
-            "location": "112.83666173,28.59516372",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "静河镇司法所",
-            "location": "112.82168474,28.60323879",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "静河镇退役军人服务站",
-            "location": "112.83672163,28.59536671",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "静河镇卫生计生监督管理所",
-            "location": "112.86501766,28.60062186",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "4",
-            "name": "静河镇计划生育协会",
-            "location": "112.86500367,28.60056586",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "麦子村退役军人服务站",
-            "location": "112.84195703,28.60715973",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "红旗村退役军人服务站",
-            "location": "112.82718136,28.6224314",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "金兴村退役军人服务站",
-            "location": "112.8292158,28.587332",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "湖南主体功能区规划附表23",
-          "publisher": "",
-          "url": "https://fgw.hunan.gov.cn/xxgk_70899/ghjh/201605/W020160518614311086449.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "岳阳楼区环评蓄滞洪区汇总（2018）",
-          "publisher": "",
-          "url": "https://www.yylq.gov.cn/uploadfiles/201808/20180808163739327.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湘阴义合金鸡垸哑湖资料",
-          "publisher": "",
-          "url": "https://www.xiangyin.gov.cn/yyjc/jc_xyx/125/453/content_10425.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湘阴静河工程批复（2025）",
-          "publisher": "",
-          "url": "https://www.xiangyin.gov.cn/31185/32018/32020/32030/66901/content_2262821.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "湖南水利厅义合金鸡旧环评索引（2010）",
           "publisher": "",
@@ -3693,36 +2407,12 @@
           "locationSummary": "原页404，ChatGPT依据搜索索引；不可视为已成功读取原文"
         },
         {
-          "title": "湘阴防汛预案",
-          "publisher": "",
-          "url": "https://www.xiangyin.gov.cn/31185/31200/62787/62789/content_983089.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湘阴2025现行三垸名称说明",
-          "publisher": "",
-          "url": "https://www.xiangyin.gov.cn/31203/31208/content_2311358.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
           "title": "湘阴水利划界方案表2.4，PDF22页/印刷18页",
           "publisher": "",
           "url": "https://www.xiangyin.gov.cn/uploadfiles/202109/20210916173155747.pdf",
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "直接列义合东湖湘江东支堤和静河义合金鸡一线堤，未附完整图册"
-        },
-        {
-          "title": "湘阴2020防汛预案附山堤段",
-          "publisher": "",
-          "url": "https://www.xiangyin.gov.cn/31185/31200/62787/62790/content_1675611.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
         },
         {
           "title": "湘阴2019河湖划界公示",
@@ -3876,8 +2566,7 @@
         "义合垸",
         "义合金鸡垸",
         "义和金鸡垸"
-      ],
-      "chatgptExtractionPath": "automation/output/hunan-revisit-chatgpt-2026-09-13/publications/2026-09-13T08-28-43-390Z-长江-16/extraction.json"
+      ]
     },
     {
       "id": "长江-17",
@@ -3886,89 +2575,15 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13T08:28:35.907Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 9,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "湘阴县行政位置代理点",
-            "location": "112.90924542,28.69012365",
-            "anchorKind": "location-clue"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "湖南主体功能区规划附表23",
-          "publisher": "",
-          "url": "https://fgw.hunan.gov.cn/xxgk_70899/ghjh/201605/W020160518614311086449.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南水利厅白泥湖垸灌溉资料（2018）",
-          "publisher": "",
-          "url": "https://slt.hunan.gov.cn/ztzl/qmtxhzz/201812/t20181217_5239827.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湘阴水利工程管理保护范围划界方案（2021）",
-          "publisher": "",
-          "url": "https://www.xiangyin.gov.cn/uploadfiles/202109/20210916173155747.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湘阴河湖概况",
-          "publisher": "",
-          "url": "https://www.xiangyin.gov.cn/yyjc/jc_xyx/125/453/content_10425.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湘阴防汛应急预案（2020）",
-          "publisher": "",
-          "url": "https://www.xiangyin.gov.cn/31185/31200/62787/62790/content_1675611.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "岳阳楼区公开环评（2018）",
-          "publisher": "",
-          "url": "https://www.yylq.gov.cn/uploadfiles/201808/20180808163739327.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湘阴2025三垸分类说明",
-          "publisher": "",
-          "url": "https://www.xiangyin.gov.cn/31203/31208/content_2311358.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "湖南交通运输厅2025鸡啼湖堤段答复",
           "publisher": "",
@@ -4102,8 +2717,7 @@
       },
       "aliases": [
         "白泥湖垸"
-      ],
-      "chatgptExtractionPath": "automation/output/hunan-revisit-chatgpt-2026-09-13/publications/2026-09-13T08-28-35-907Z-长江-17/extraction.json"
+      ]
     },
     {
       "id": "长江-18",
@@ -4112,163 +2726,15 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13T04:25:46.234Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 68,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "藕池河",
-            "location": "112.46341578,29.43311262",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "藕池河",
-            "location": "112.4229721,29.52024247",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "藕池河东支",
-            "location": "112.6385177,29.33388436",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "3",
-            "name": "藕池河东支",
-            "location": "112.71358796,29.31512918",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "4",
-            "name": "藕池河东支",
-            "location": "112.53931504,29.30560342",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "5",
-            "name": "藕池河东支",
-            "location": "112.49653754,29.31885171",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "6",
-            "name": "藕池河东支",
-            "location": "112.46152156,29.43182526",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "7",
-            "name": "藕池河东支",
-            "location": "112.44021321,29.39216235",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "8",
-            "name": "藕池河东支",
-            "location": "112.43261811,29.50765378",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "9",
-            "name": "藕池河东支",
-            "location": "112.3657322,29.45987038",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "10",
-            "name": "藕池河东支",
-            "location": "112.37259373,29.51664347",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "11",
-            "name": "华容县操军镇人民政府",
-            "location": "112.42563749,29.38750486",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "湖南主体功能区规划附表23",
-          "publisher": "",
-          "url": "https://fgw.hunan.gov.cn/xxgk_70899/ghjh/201605/W020160518614311086449.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "华容县蓄滞洪垸名录",
-          "publisher": "",
-          "url": "https://www.huarong.gov.cn/33159/37006/37007/37024/37159/content_1141484.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "华容水利工程管理保护范围划界方案（2021）",
-          "publisher": "",
-          "url": "https://huarong.gov.cn/uploadfiles/202111/20211115092246295.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "华容防汛方案（2025）",
-          "publisher": "",
-          "url": "https://www.huarong.gov.cn/uploadfiles/202512/2025123109472743488.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "益阳水利环境资料水系说明（2025）",
-          "publisher": "",
-          "url": "https://www.yiyang.gov.cn/yyshjbhj/uploadfiles/202507/2025070417094430057.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "华容梅田湖镇概况（2023）",
-          "publisher": "",
-          "url": "https://www.huarong.gov.cn/33159/37006/37007/37019/37114/content_2133450.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖南防汛行政责任名单（2024）",
-          "publisher": "",
-          "url": "https://yjt.hunan.gov.cn/yjt/tszt/ywzl/aqsczbgjsnxd/202404/t20240430_33294181.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "华容十四五水安全保障规划",
-          "publisher": "",
-          "url": "https://www.huarong.gov.cn/33159/37006/37008/37038/37268/content_1997103.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OSM河道位置参照 70808144",
           "publisher": "",
@@ -4410,88 +2876,21 @@
       },
       "aliases": [
         "集成安合垸"
-      ],
-      "chatgptExtractionPath": "automation/output/hunan-chatgpt-2026-09-13/publications/2026-09-13T04-25-46-234Z-长江-18/extraction.json"
+      ]
     },
     {
       "id": "长江-19",
       "name": "钱粮湖",
       "basin": "长江流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "medium",
+      "confidenceLabel": "确信度中",
+      "ruleId": "M1",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 23,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "钱粮湖",
-            "location": "112.74269636,29.44978487",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "钱粮湖",
-            "location": "113.75141927,28.96564788",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "钱粮湖汽车站",
-            "location": "112.6939248,29.44908251",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "钱粮湖镇人民政府",
-            "location": "112.68917595,29.45079065",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "钱粮湖派出所",
-            "location": "112.69186788,29.4467256",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "钱粮湖镇采桑湖渔场",
-            "location": "112.79463675,29.49939825",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "岳阳市君山区钱粮湖镇卫生院",
-            "location": "112.69258211,29.45377137",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "钱粮湖人民法庭",
-            "location": "112.69495849,29.45318638",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "钱粮湖土鸭馆(新枫巷)",
-            "location": "113.14493439,29.35747792",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -4586,30 +2985,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 4,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "岳阳市君山区建设垸修防委员会",
-            "location": "112.92073527,29.5446344",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -4699,87 +3080,15 @@
       "id": "长江-21",
       "name": "建新农场",
       "basin": "长江流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "medium",
+      "confidenceLabel": "确信度中",
+      "ruleId": "M1",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 21,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "建新农场",
-            "location": "112.85581764,29.50564429",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "湖南省建新农场综合加工厂",
-            "location": "112.85630164,29.50306938",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "建新农场十大队",
-            "location": "112.93436712,29.4529571",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "建新农场七大队",
-            "location": "112.90009507,29.48068089",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "建新农场五大队",
-            "location": "112.86236053,29.49479693",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "建新农场四大队",
-            "location": "112.8647649,29.49294841",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "建新农场一大队",
-            "location": "112.84042606,29.51145043",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "建新农场二大队",
-            "location": "112.84218288,29.5356809",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "建新农场六大队",
-            "location": "112.88125305,29.48367809",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "建新农场三大队",
-            "location": "112.85243294,29.51375753",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -4874,84 +3183,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 48,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "君山农场",
-            "location": "113.00475394,29.44130934",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "柳林洲街道办事处",
-            "location": "113.03186747,29.42415309",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "君山区柳林洲街道办事处君山大道办公区",
-            "location": "113.00695736,29.45478267",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "中共君山区柳林洲街道办事处委员会",
-            "location": "113.03195581,29.4244765",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "中共柳林洲街道纪律检查委员会",
-            "location": "113.00504725,29.44384049",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "柳林洲街道办事处旅游路社区工作站",
-            "location": "112.99991594,29.43138768",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "岳阳市君山区柳林洲街道办事处柳毅社区工作站",
-            "location": "113.00485202,29.4378729",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "君山区柳林洲街道办事处计生协会",
-            "location": "113.03157952,29.4245355",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "中共柳林洲街道工作委员会",
-            "location": "113.03145506,29.424234",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "柳林洲街道办事处信访办",
-            "location": "113.03141191,29.42418785",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -5044,30 +3281,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "东浃村（人工指定绘图中心）",
-            "location": "112.784676,29.24438",
-            "anchorKind": "manual-location-center"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -5117,8 +3336,8 @@
       },
       "conclusion": {
         "hasFuzzyLocation": true,
-        "positionText": "大通湖东垸涉及华容县注滋口镇、南县华阁镇；分洪闸位于华容县注滋口镇东浃村湖堤。按人工标记，以东浃村（GCJ-02：112.784676, 29.244380）为猜测边界绘制中心。",
-        "reasoning": "按用户指定的东浃村GCJ-02坐标112.784676,29.244380为中心，以项目原有230.1平方公里参考面积形成方案C闭合猜测边界。岳阳广电报道用于核对分洪闸所在地；村级标记不是分洪闸精确坐标或官方区域中心。报道保护面积220.69平方公里另记，不替换显示面积口径。",
+        "positionText": "大通湖东垸涉及华容县注滋口镇、南县华阁镇；分洪闸位于华容县注滋口镇东浃村湖堤",
+        "reasoning": "公开资料仅支持行政区域或模糊范围；未保留第三方地图坐标或地物检索结果。",
         "reasoningSteps": [
           {
             "stage": "source-verification",
@@ -5159,7 +3378,7 @@
             "stage": "decision",
             "title": "位置结论",
             "outcome": "已验收",
-            "detail": "位置结论：大通湖东垸涉及华容县注滋口镇、南县华阁镇；分洪闸位于华容县注滋口镇东浃村湖堤。按人工标记，以东浃村（GCJ-02：112.784676, 29.244380）为猜测边界绘制中心。现有证据只支持到该范围，确信度中。",
+            "detail": "此前用于辅助判断的第三方地图坐标已从公开数据中移除；本步骤不再作为提高位置确信度的依据。",
             "references": []
           }
         ]
@@ -5172,84 +3391,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 22,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "陆城镇人民政府",
-            "location": "113.29869205,29.58426647",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "中共岳阳市云溪区陆城镇委员会",
-            "location": "113.29918889,29.58416816",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "陆城镇人民代表大会",
-            "location": "113.29905467,29.584275",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "岳阳市云溪区陆城镇香铺村村民委员会",
-            "location": "113.31122082,29.57938774",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "陆城镇陆城村退役军人服务站",
-            "location": "113.29919451,29.57963167",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "陆城镇退役军人服务站",
-            "location": "113.29904365,29.58425497",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "岳阳市云溪区陆城镇财政所",
-            "location": "113.29936203,29.5823058",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "陆城镇农村集体资源交易中心",
-            "location": "113.2994582,29.58232695",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "陆城镇枫桥湖花园管理中心",
-            "location": "113.24126054,29.5371471",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "9",
-            "name": "云溪区陆城镇陆逊社区居民委员会",
-            "location": "113.30038487,29.59459527",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -5340,81 +3487,15 @@
       "id": "长江-25",
       "name": "荆江分洪区",
       "basin": "长江流域",
-      "confidence": "medium",
-      "confidenceLabel": "确信度中",
-      "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T07:43:19.920Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 85,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "荆江大道",
-            "location": "112.22382045,30.05989565",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "荆江路",
-            "location": "112.23574831,30.28812438",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "荆江大道",
-            "location": "112.21967886,30.06061255",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "荆江路",
-            "location": "112.22573118,30.28591713",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "荆江大堤",
-            "location": "112.23309971,30.06253065",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "荆江一路",
-            "location": "112.31731421,29.73914173",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "埠河镇太平口村退役军人服务站",
-            "location": "112.16558885,30.28074729",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "公安县荆江分洪区总排渠管理段",
-            "location": "112.21062368,29.90874547",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "8",
-            "name": "荆江分洪区南闸纪念公园",
-            "location": "112.17275688,29.66596581",
-            "anchorKind": "engineering"
-          }
-        ]
       },
       "referenceClues": [
         {
@@ -5452,30 +3533,6 @@
         }
       ],
       "governmentSources": [
-        {
-          "title": "湖北省荆江分蓄洪区工程管理局",
-          "publisher": "",
-          "url": "https://slt.hubei.gov.cn/fbjd/xxgkml/czgk/secpart/jgj/202109/P020250310771279336175.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "2024年湖北省3级及以上河道堤防防汛和安全运行责任人名单",
-          "publisher": "",
-          "url": "https://slt.hubei.gov.cn/fbjd/tzgg/202406/P020240611369154553013.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "荆江分洪区近期重点项目环评批复",
-          "publisher": "",
-          "url": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201605/t20160509_337370.htm",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap众包地理参考",
           "publisher": "",
@@ -5559,8 +3616,7 @@
           }
         ]
       },
-      "aliases": [],
-      "chatgptExtractionPath": "automation/output/hubei-chatgpt-2026-09-13/publications/2026-09-13T07-43-19-920Z-长江-25/extraction.json"
+      "aliases": []
     },
     {
       "id": "长江-26",
@@ -5569,65 +3625,15 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13T07:43:24.175Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 1,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "荆州区弥市镇",
-            "location": "112.12402123,30.2240939",
-            "anchorKind": "location-clue"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "荆江分蓄洪区建设工程可研勘察设计招标",
-          "publisher": "",
-          "url": "https://www.hbtba.com/pro/pro.php?id=0558d5ab-3eeb-45ec-8b3e-213931ec6a30",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖北2024堤防名单",
-          "publisher": "",
-          "url": "https://slt.hubei.gov.cn/fbjd/tzgg/202406/P020240611369154553013.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "国家蓄滞洪区有哪些",
-          "publisher": "",
-          "url": "https://spjc.mwr.gov.cn/spjc/hallg/16008/16008_007_001.jsp?mindex=2",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "走进荆江分蓄洪区",
-          "publisher": "",
-          "url": "https://www.cnr.cn/hubei/jiaodian/20200721/t20200721_525174917.shtml",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap众包地理参考",
           "publisher": "",
@@ -5722,8 +3728,7 @@
       "aliases": [
         "涴市扩大区",
         "涴市扩大分洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/hubei-chatgpt-2026-09-13/publications/2026-09-13T07-43-24-175Z-长江-26/extraction.json"
+      ]
     },
     {
       "id": "长江-27",
@@ -5732,96 +3737,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 69,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "虎渡河",
-            "location": "112.13499346,30.23778072",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "虎渡河",
-            "location": "112.11888024,30.02751887",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "虎渡河",
-            "location": "112.1338832,30.13556503",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "3",
-            "name": "虎渡河",
-            "location": "112.15696749,29.92838469",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "4",
-            "name": "虎渡河",
-            "location": "112.19458241,29.62140876",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "5",
-            "name": "孟家溪镇人民政府",
-            "location": "112.09774889,29.85573979",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "中共公安县孟家溪镇委员会",
-            "location": "112.09797882,29.85463678",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "公安县孟家溪镇永新村民委员会",
-            "location": "112.11539618,29.92482282",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "公安县孟家溪镇人民政府民政办公室",
-            "location": "112.09514136,29.85522386",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "孟家溪镇北街",
-            "location": "112.09488027,29.85496074",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "10",
-            "name": "孟家溪镇便民服务中心",
-            "location": "112.09813783,29.85450282",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "11",
-            "name": "孟家溪镇西街",
-            "location": "112.09324354,29.85237484",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -5911,99 +3832,15 @@
       "id": "长江-28",
       "name": "人民大垸",
       "basin": "长江流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "medium",
+      "confidenceLabel": "确信度中",
+      "ruleId": "M1",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "人民大垸",
-            "location": "112.74157673,29.74958187",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "人民大垸",
-            "location": "112.7620924,29.83772059",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "人民大垸",
-            "location": "112.5143841,29.84190888",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "人民大垸农场",
-            "location": "112.78595185,29.7901375",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "监利市人民大垸管理区",
-            "location": "112.70564432,29.82902325",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "5",
-            "name": "人民大垸福利院",
-            "location": "112.73959824,29.83561602",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "人民大垸农场西湖分场",
-            "location": "112.76672684,29.87107819",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "监利市人民大垸管理区水利局",
-            "location": "112.70917859,29.82975487",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "8",
-            "name": "人民大垸农场管理区珠湖分场一队",
-            "location": "112.63478538,29.83006586",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "9",
-            "name": "人民大垸电力局",
-            "location": "112.71555264,29.84006893",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "10",
-            "name": "人民大垸管理区流港分场",
-            "location": "112.76322836,29.83745028",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "11",
-            "name": "人民大垸农场管理区解放",
-            "location": "112.73739114,29.8488255",
-            "anchorKind": "engineering"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -6085,33 +3922,15 @@
       "id": "长江-29",
       "name": "洪湖分洪区",
       "basin": "长江流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "洪湖水体中部（湖泊地标中心代理点）",
-            "location": "113.335527,29.828188",
-            "anchorKind": "manual-location-center"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -6142,8 +3961,8 @@
       },
       "conclusion": {
         "hasFuzzyLocation": true,
-        "positionText": "洪湖市与监利市之间的洪湖周边低地，预估中心取洪湖水体中部。按人工审阅要求，以项目中洪湖湖泊地标（GCJ-02：113.335527, 29.828188）作为猜测边界中心代理点。",
-        "reasoning": "按用户要求，以项目高德洪湖湖泊地标GCJ-02坐标113.335527,29.828188作为湖水中部的中心代理点，绘制闭合猜测边界。不再使用周边道路或行政区点计算中心。主项目保留原图示尺度268.09 km²，审阅候选保留原图示尺度258.81 km²；两者均非已核定洪区面积，水体地标也不是测量质心。",
+        "positionText": "洪湖市与监利市之间的洪湖周边低地，预估中心取洪湖水体中部",
+        "reasoning": "公开资料仅支持行政区域或模糊范围；未保留第三方地图坐标或地物检索结果。",
         "reasoningSteps": [
           {
             "stage": "source-verification",
@@ -6172,7 +3991,7 @@
             "stage": "decision",
             "title": "位置结论",
             "outcome": "已验收",
-            "detail": "位置结论：洪湖市与监利市之间的洪湖周边低地，预估中心取洪湖水体中部。按人工审阅要求，以项目中洪湖湖泊地标（GCJ-02：113.335527, 29.828188）作为猜测边界中心代理点。现有证据相互印证，确信度高。",
+            "detail": "此前用于辅助判断的第三方地图坐标已从公开数据中移除；本步骤不再作为提高位置确信度的依据。",
             "references": []
           }
         ]
@@ -6185,48 +4004,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 19,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "杜家台分洪闸附近（管理分局代理，非闸体精确坐标）",
-            "location": "113.49507,30.373931",
-            "anchorKind": "engineering-proxy"
-          },
-          {
-            "id": "1",
-            "name": "周邦大桥附近（地图名周帮大桥，目视取点）",
-            "location": "113.682295,30.354287",
-            "anchorKind": "engineering-proxy"
-          },
-          {
-            "id": "2",
-            "name": "沉湖水面参照点（非湖泊或洪区中心）",
-            "location": "113.826632,30.303104",
-            "anchorKind": "natural-proxy"
-          },
-          {
-            "id": "3",
-            "name": "黄陵矶出口附近（管理处附近目视取点）",
-            "location": "114.145239,30.438031",
-            "anchorKind": "engineering-proxy"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -6339,48 +4122,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 28,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "北部金水河湖网低地DEM参考点",
-            "location": "114.15561506,30.27759641",
-            "anchorKind": "terrain-reference"
-          },
-          {
-            "id": "1",
-            "name": "中部湖间平原DEM参考点",
-            "location": "114.16557601,30.14757154",
-            "anchorKind": "terrain-reference"
-          },
-          {
-            "id": "2",
-            "name": "斧头湖周边湖盆DEM参考点",
-            "location": "114.21543191,30.05248347",
-            "anchorKind": "terrain-reference"
-          },
-          {
-            "id": "3",
-            "name": "西凉湖周边低地DEM参考点",
-            "location": "114.08068849,29.96762576",
-            "anchorKind": "terrain-reference"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -6495,136 +4242,18 @@
       "id": "长江-32",
       "name": "东西湖",
       "basin": "长江流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T07:43:27.654Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 26,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "东西湖",
-            "location": "114.13630799,30.62008767",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "东西湖大道",
-            "location": "114.148416,30.61795278",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "东西湖互通",
-            "location": "114.04072002,30.6793118",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "东西湖堤",
-            "location": "114.18322435,30.70186588",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "东西湖大堤",
-            "location": "114.2687083,30.68100826",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "东西湖中心广场",
-            "location": "114.13857222,30.62316808",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "东西湖收费站(G42沪蓉高速出口)",
-            "location": "113.98527804,30.71138025",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "东西湖出口(G42沪蓉高速东向)",
-            "location": "113.97904752,30.70951087",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "东西湖大堤",
-            "location": "114.12889186,30.59388344",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "东西湖大道入口(孝感方向)",
-            "location": "114.09929594,30.61806046",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "10",
-            "name": "东西湖区人民政府",
-            "location": "114.13967422,30.65137173",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "武汉市水利工程分级分类名录",
-          "publisher": "",
-          "url": "https://swj.wuhan.gov.cn/xxgk/new_zc/new_qtzdgkwj/202412/t20241226_2508785.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "东西湖排水防涝专项规划2022—2035",
-          "publisher": "",
-          "url": "https://www.dxh.gov.cn/ZWGK/bmxxgk/bwbjxxgk/qswhhpj/qtxxgk/202209/P020260209376280512896.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖北2024堤防名单",
-          "publisher": "",
-          "url": "https://slt.hubei.gov.cn/fbjd/tzgg/202406/P020240611369154553013.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "东西湖加快打造中国网谷",
-          "publisher": "",
-          "url": "https://fgw.wuhan.gov.cn/xwzx/cqfc/202312/t20231221_2325195.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "江岸防汛抗旱预案",
-          "publisher": "",
-          "url": "https://www.jiangan.gov.cn/jaxxw/zfxxgk/zc_41333/qtzdgkwj/zfbwj/202011/t20201102_1488969.shtml",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap众包地理参考",
           "publisher": "",
@@ -6728,135 +4357,24 @@
       },
       "aliases": [
         "东西湖区蓄滞洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/hubei-chatgpt-2026-09-13/publications/2026-09-13T07-43-27-654Z-长江-32/extraction.json"
+      ]
     },
     {
       "id": "长江-33",
       "name": "武湖",
       "basin": "长江流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T07:43:30.044Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "武湖",
-            "location": "114.4998251,30.79755517",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "武湖",
-            "location": "114.49438906,30.77675919",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "武湖",
-            "location": "114.41107625,30.70604972",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "3",
-            "name": "武湖大桥",
-            "location": "114.57506511,30.81402314",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "武湖河道堤防管理段",
-            "location": "114.54377654,30.69159505",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "5",
-            "name": "武湖村村委会",
-            "location": "114.52651483,30.70755134",
-            "anchorKind": "locality"
-          },
-          {
-            "id": "6",
-            "name": "武湖村村民委员会",
-            "location": "114.53348031,30.70625746",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "长江新区阳逻街武湖村退役军人服务站",
-            "location": "114.52652181,30.70757533",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "中共武湖村支部委员会",
-            "location": "114.52652081,30.70754432",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "武湖(地铁站)",
-            "location": "114.43000019,30.70702451",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "10",
-            "name": "武湖正街",
-            "location": "114.42464116,30.6971494",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "湖北鄂政函2024第34号",
-          "publisher": "",
-          "url": "https://www.hubei.gov.cn/xxgk/gb/202406/W020240618393271896187.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "武汉2024水利工程名录",
-          "publisher": "",
-          "url": "https://swj.wuhan.gov.cn/xxgk/new_zc/new_qtzdgkwj/202412/t20241226_2508785.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "湖北公共资源工程信息",
-          "publisher": "",
-          "url": "https://www.hbggzyfwpt.cn/jyxx/jsgcXmxxDetail2?guid=3d2ad1cc-1a53-4a34-a951-f3bb80bc0b5c",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "武湖工程报建",
-          "publisher": "",
-          "url": "https://www.hbbidcloud.cn/shengbenji/jyxx/004001/004001002/20230801/535cbce3-1aab-4e8d-9963-7e73e01e28c4.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap众包地理参考",
           "publisher": "",
@@ -6954,144 +4472,24 @@
       "aliases": [
         "武湖蓄滞洪区",
         "武湖分蓄洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/hubei-chatgpt-2026-09-13/publications/2026-09-13T07-43-30-044Z-长江-33/extraction.json"
+      ]
     },
     {
       "id": "长江-34",
       "name": "张渡湖",
       "basin": "长江流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T07:43:32.203Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 22,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "涨渡湖",
-            "location": "114.70444591,30.6435104",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "涨渡湖街道办事处",
-            "location": "114.79430296,30.6691685",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "涨渡湖派出所",
-            "location": "114.78965744,30.66778273",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "新洲区涨渡湖林场",
-            "location": "114.77626373,30.67305531",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "涨渡湖林场二分场马河湾1号",
-            "location": "114.77604527,30.64196157",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "涨渡湖湿地森林公园",
-            "location": "114.76796138,30.6719649",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "涨渡湖张鱼渔庄",
-            "location": "114.73504228,30.6323693",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "涨渡湖渔场",
-            "location": "114.74518075,30.66594695",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "涨渡湖加油站",
-            "location": "114.77850259,30.74192808",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "涨渡湖抗日根据地纪念碑",
-            "location": "114.75111628,30.70851471",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "10",
-            "name": "涨渡湖闸",
-            "location": "114.73999296,30.60799653",
-            "anchorKind": "engineering"
-          }
-        ]
-      },
       "referenceClues": [],
-      "governmentSources": [
-        {
-          "title": "涨渡湖2025建设工程公众参与公告",
-          "publisher": "",
-          "url": "https://www.whxinzhou.gov.cn/xxgk_29/zcfg/gsgg/202503/t20250327_2558206.shtml",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "涨渡湖2025安全建设方案示意图",
-          "publisher": "",
-          "url": "https://www.whxinzhou.gov.cn/xxgk_29/zcfg/gsgg/202503/W020250327369145455504.png",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "武汉2022人大建议答复",
-          "publisher": "",
-          "url": "https://swj.wuhan.gov.cn/xxgk/new_qtzdgknr/jytabl/202210/t20221026_2071091.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "2005专业文献与图1",
-          "publisher": "",
-          "url": "https://zgglxb.chd.edu.cn/EN/article/downloadArticleFile.do?attachType=PDF&id=1050",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "武汉2024水利工程名录",
-          "publisher": "",
-          "url": "https://swj.wuhan.gov.cn/xxgk/new_zc/new_qtzdgkwj/202412/t20241226_2508785.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        }
-      ],
+      "governmentSources": [],
       "verifiedAdministrativeAreas": [
         "湖北省武汉市新洲区"
       ],
@@ -7179,127 +4577,24 @@
       "aliases": [
         "涨渡湖",
         "涨渡湖蓄滞洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/hubei-chatgpt-2026-09-13/publications/2026-09-13T07-43-32-203Z-长江-34/extraction.json"
+      ]
     },
     {
       "id": "长江-35",
       "name": "白潭湖",
       "basin": "长江流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T07:43:34.411Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 18,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "白潭湖",
-            "location": "114.94771147,30.46213978",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "白潭湖环湖公路",
-            "location": "114.95607537,30.47232472",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "白潭湖源墅",
-            "location": "114.94606411,30.47686685",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "白潭湖活力之门大桥",
-            "location": "114.94294541,30.47366681",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "白潭湖大道",
-            "location": "114.92866915,30.47519283",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "白潭湖潮玩欢乐水世界",
-            "location": "114.94923887,30.47374064",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "黄冈客厅白潭湖一号",
-            "location": "114.94763868,30.47859108",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "白潭湖社区",
-            "location": "114.96196052,30.46391339",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "白潭湖环湖公路与白潭湖路交叉口",
-            "location": "114.94957362,30.4735282",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "南湖路与白潭湖大道交叉口",
-            "location": "114.94950647,30.43750091",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "10",
-            "name": "黄冈市黄州区白潭湖水产保护服务中心",
-            "location": "114.94721723,30.47232661",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "黄冈2023优化调整勘察设计招标",
-          "publisher": "",
-          "url": "https://www.hbbidcloud.cn/huanggang/jyxx/004002/004002002/20230612/77fe9bdd-2d63-40f1-b14f-d8096dcfebe5.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "新洲河道采砂官方资料举水围堤",
-          "publisher": "",
-          "url": "https://www.whxinzhou.gov.cn/xxgk_29/zcfg/gsgg/202309/P020230914574326150834.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "白潭湖水韵新城湖体报道",
-          "publisher": "",
-          "url": "https://www.people.com.cn/24hour/n/2013/1024/c25408-23307423.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap众包地理参考",
           "publisher": "",
@@ -7387,8 +4682,7 @@
       },
       "aliases": [
         "白潭湖蓄滞洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/hubei-chatgpt-2026-09-13/publications/2026-09-13T07-43-34-411Z-长江-35/extraction.json"
+      ]
     },
     {
       "id": "长江-36",
@@ -7397,180 +4691,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "未找到可用同名地物，但政府公文或新闻能够支持一个模糊位置。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 46,
-        "contextAnchors": [
-          {
-            "id": "B0319016AX",
-            "name": "康山乡人民政府",
-            "province": "江西省",
-            "city": "上饶市",
-            "district": "余干县",
-            "address": "瑞康路",
-            "type": "政府机构及社会团体;政府机关;乡镇级政府及事业单位",
-            "location": "116.432743,28.877483",
-            "queryName": "康山乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0FFH1WX2X",
-            "name": "余干县康山乡民政服务站",
-            "province": "江西省",
-            "city": "上饶市",
-            "district": "余干县",
-            "address": "瑞康路余干县康山乡人民政府",
-            "type": "政府机构及社会团体;政府机关;乡镇级政府及事业单位",
-            "location": "116.432517,28.877352",
-            "queryName": "康山乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0GUXZ9V6M",
-            "name": "余干县康山乡退役军人服务站",
-            "province": "江西省",
-            "city": "上饶市",
-            "district": "余干县",
-            "address": "康山乡政府大院",
-            "type": "政府机构及社会团体;政府机关;乡镇级政府及事业单位",
-            "location": "116.432953,28.877456",
-            "queryName": "康山乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0G3SCX3BW",
-            "name": "余干县康山乡大山村退役军人服务站",
-            "province": "江西省",
-            "city": "上饶市",
-            "district": "余干县",
-            "address": "694县道",
-            "type": "政府机构及社会团体;政府机关;乡镇以下级政府及事业单位",
-            "location": "116.439350,28.878316",
-            "queryName": "康山乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0G3SCX3DF",
-            "name": "余干县康山乡府前村退役军人服务站",
-            "province": "江西省",
-            "city": "上饶市",
-            "district": "余干县",
-            "address": "康山乡府前村委会",
-            "type": "政府机构及社会团体;政府机关;乡镇以下级政府及事业单位",
-            "location": "116.428617,28.882492",
-            "queryName": "康山乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0G3SCVV44",
-            "name": "余干县康山乡团结村退役军人服务站",
-            "province": "江西省",
-            "city": "上饶市",
-            "district": "余干县",
-            "address": "康山乡团结村委会",
-            "type": "政府机构及社会团体;政府机关;乡镇以下级政府及事业单位",
-            "location": "116.437474,28.878794",
-            "queryName": "康山乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0G3SCVHWR",
-            "name": "余干县康山乡山头村退役军人服务站",
-            "province": "江西省",
-            "city": "上饶市",
-            "district": "余干县",
-            "address": "山头村委会",
-            "type": "政府机构及社会团体;政府机关;乡镇以下级政府及事业单位",
-            "location": "116.428683,28.858956",
-            "queryName": "康山乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0G3SCVV45",
-            "name": "余干县康山乡王家村退役军人服务站",
-            "province": "江西省",
-            "city": "上饶市",
-            "district": "余干县",
-            "address": "康山乡王家村委会",
-            "type": "政府机构及社会团体;政府机关;乡镇以下级政府及事业单位",
-            "location": "116.428424,28.873140",
-            "queryName": "康山乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B031904BC0",
-            "name": "余干县鄱阳湖管理局",
-            "province": "江西省",
-            "city": "上饶市",
-            "district": "余干县",
-            "address": "田园鄱阳湖骑行道",
-            "type": "政府机构及社会团体;政府机关;区县级政府及事业单位",
-            "location": "116.563221,28.899179",
-            "queryName": "鄱阳湖",
-            "queryRole": "description",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "BZ9LPY003T",
-            "name": "鄱阳湖大道",
-            "province": "江西省",
-            "city": "上饶市",
-            "district": "余干县",
-            "address": "余干县",
-            "type": "地名地址信息;交通地名;道路名",
-            "location": "116.693456,28.725172",
-            "queryName": "鄱阳湖",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0KR71QDT3",
-            "name": "鄱阳湖大道",
-            "province": "江西省",
-            "city": "上饶市",
-            "district": "余干县",
-            "address": "余干县",
-            "type": "地名地址信息;交通地名;道路名",
-            "location": "116.678580,28.757583",
-            "queryName": "鄱阳湖",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0L3M5K3V4",
-            "name": "余干县鄱阳湖湿地生态保护中心",
-            "province": "江西省",
-            "city": "上饶市",
-            "district": "余干县",
-            "address": "世纪大道377号",
-            "type": "政府机构及社会团体;政府机关;政府机关相关",
-            "location": "116.686258,28.699888",
-            "queryName": "鄱阳湖",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -7676,8 +4802,7 @@
             "references": []
           }
         ]
-      },
-      "chatgptExtractionPath": "automation/output/jiangxi-chatgpt-2026-09-13/长江-36/extraction.json"
+      }
     },
     {
       "id": "长江-37",
@@ -7686,23 +4811,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "未找到可用同名地物，但政府公文或新闻能够支持一个模糊位置。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 15,
-        "contextAnchors": []
       },
       "referenceClues": [],
       "governmentSources": [
@@ -7820,8 +4934,7 @@
             "references": []
           }
         ]
-      },
-      "chatgptExtractionPath": "automation/output/jiangxi-chatgpt-2026-09-13/长江-37/extraction.json"
+      }
     },
     {
       "id": "长江-38",
@@ -7830,115 +4943,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "未找到可用同名地物，但政府公文或新闻能够支持一个模糊位置。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 22,
-        "contextAnchors": [
-          {
-            "id": "B0FFGJA992",
-            "name": "蒋巷镇人民政府",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "南昌县",
-            "address": "蒋巷中大道蒋巷镇政府蒋巷镇委",
-            "type": "政府机构及社会团体;政府机关;乡镇级政府及事业单位",
-            "location": "116.018952,28.764690",
-            "queryName": "蒋巷镇",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B031705H5Q",
-            "name": "中共蒋巷镇委员会",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "南昌县",
-            "address": "蒋巷镇",
-            "type": "政府机构及社会团体;政府机关;乡镇级政府及事业单位",
-            "location": "116.024319,28.757793",
-            "queryName": "蒋巷镇",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B03170T9S2",
-            "name": "蒋巷镇垾上村民委员会",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "南昌县",
-            "address": "蒋巷镇旱上村",
-            "type": "政府机构及社会团体;政府机关;乡镇以下级政府及事业单位",
-            "location": "115.977694,28.766766",
-            "queryName": "蒋巷镇",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B03170TRK8",
-            "name": "蒋巷镇蒋巷村民委员会",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "南昌县",
-            "address": "蒋巷街联谊路胡家自然村152号新农贸市场正门斜对面",
-            "type": "政府机构及社会团体;政府机关;乡镇以下级政府及事业单位",
-            "location": "116.025793,28.760320",
-            "queryName": "蒋巷镇",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0FFKVSPMZ",
-            "name": "蒋巷镇居委会",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "南昌县",
-            "address": "望南路与蒋巷街西路交叉口西南40米",
-            "type": "政府机构及社会团体;政府机关;乡镇级政府及事业单位",
-            "location": "116.020381,28.757447",
-            "queryName": "蒋巷镇",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0FFJ4MWCY",
-            "name": "蒋巷镇蒋巷村娄家自然村",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "南昌县",
-            "address": "南昌县",
-            "type": "地名地址信息;地名地址信息;地名地址信息",
-            "location": "116.020903,28.753458",
-            "queryName": "蒋巷镇",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B03170UD20",
-            "name": "南昌县蒋巷镇叶楼村村民委员会",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "南昌县",
-            "address": "蒋巷镇",
-            "type": "政府机构及社会团体;政府机关;乡镇以下级政府及事业单位",
-            "location": "115.976331,28.735793",
-            "queryName": "蒋巷镇",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -8040,8 +5050,7 @@
             "references": []
           }
         ]
-      },
-      "chatgptExtractionPath": "automation/output/jiangxi-chatgpt-2026-09-13/长江-38/extraction.json"
+      }
     },
     {
       "id": "长江-39",
@@ -8050,141 +5059,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "未找到可用同名地物，但政府公文或新闻能够支持一个模糊位置。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "B031703HG4",
-            "name": "铁河乡人民政府",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "新建区",
-            "address": "象山镇",
-            "type": "政府机构及社会团体;政府机关;乡镇级政府及事业单位",
-            "location": "115.975033,29.027576",
-            "queryName": "铁河乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0FFMAVQAN",
-            "name": "铁河乡车辆客运管理站",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "新建区",
-            "address": "铁金段与赤城北路交叉口西北180米",
-            "type": "政府机构及社会团体;政府机关;政府机关相关",
-            "location": "115.970280,29.030380",
-            "queryName": "铁河乡",
-            "queryRole": "description",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "B031702QH0",
-            "name": "中共新建区铁河乡委员会",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "新建区",
-            "address": "铁河乡政府",
-            "type": "政府机构及社会团体;政府机关;乡镇级政府及事业单位",
-            "location": "115.975203,29.027425",
-            "queryName": "铁河乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0MGGP2RK3",
-            "name": "铁河乡就业之家",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "新建区",
-            "address": "铁河乡人民政府东南门北80米",
-            "type": "政府机构及社会团体;政府机关;政府机关相关",
-            "location": "115.975156,29.028016",
-            "queryName": "铁河乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0J02AJZ2Q",
-            "name": "新建区铁河乡公共服务办公室",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "新建区",
-            "address": "苏宁易购西北侧50米",
-            "type": "政府机构及社会团体;政府机关;乡镇级政府及事业单位",
-            "location": "115.969343,29.031117",
-            "queryName": "铁河乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0GUOL672E",
-            "name": "铁河乡退役军人服务站",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "新建区",
-            "address": "赤城北路",
-            "type": "政府机构及社会团体;政府及社会团体相关;政府及社会团体相关",
-            "location": "115.975180,29.027428",
-            "queryName": "铁河乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0M6TD3ELV",
-            "name": "铁河乡街道社区交通安全劝导站",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "新建区",
-            "address": "铁河卫生院南侧130米",
-            "type": "政府机构及社会团体;政府机关;政府机关相关",
-            "location": "115.975656,29.024702",
-            "queryName": "铁河乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0IK2M7WNA",
-            "name": "新建区铁河乡赤城村退役军人服务站",
-            "province": "江西省",
-            "city": "南昌市",
-            "district": "新建区",
-            "address": "铁河敬老院东侧120米",
-            "type": "政府机构及社会团体;政府及社会团体相关;政府及社会团体相关",
-            "location": "115.963425,29.035155",
-            "queryName": "铁河乡",
-            "queryRole": "description",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "B0K17DRNZ0",
-            "name": "方洲斜塘蓄滞洪区安全建设工程分洪口",
-            "province": "",
-            "city": "",
-            "district": "",
-            "address": "江西省南昌市新建区043县道",
-            "type": "地名地址信息;输入提示;地名",
-            "location": "116.003279,29.075631",
-            "queryName": "方洲斜塘",
-            "queryRole": "zone-name",
-            "anchorKind": "engineering"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -8294,8 +5174,7 @@
             "references": []
           }
         ]
-      },
-      "chatgptExtractionPath": "automation/output/jiangxi-chatgpt-2026-09-13/长江-39/extraction.json"
+      }
     },
     {
       "id": "长江-40",
@@ -8304,48 +5183,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 66,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "西隔堤北端判读代理",
-            "location": "115.97002198,30.08937925",
-            "anchorKind": "terrain-reference"
-          },
-          {
-            "id": "1",
-            "name": "西隔堤接黄广大堤判读代理",
-            "location": "116.11326609,29.84165851",
-            "anchorKind": "terrain-reference"
-          },
-          {
-            "id": "2",
-            "name": "东隔堤南部判读代理",
-            "location": "116.70299781,30.07544233",
-            "anchorKind": "terrain-reference"
-          },
-          {
-            "id": "3",
-            "name": "东隔堤接北丘陵判读代理",
-            "location": "116.65288239,30.14435167",
-            "anchorKind": "terrain-reference"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -8474,30 +5317,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 6,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "荒草二圩蓄洪区",
-            "location": "118.31458611,32.01468259",
-            "anchorKind": "location-clue"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -8579,30 +5404,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 7,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "荒草三圩蓄洪区",
-            "location": "118.32427459,32.03007682",
-            "anchorKind": "location-clue"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -8684,90 +5491,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "汊河镇人民政府",
-            "location": "118.59404454,32.22222912",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "中共汊河镇纪律检查委员会",
-            "location": "118.59572026,32.20659055",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "来安县汊河镇镇综合行政执法大队",
-            "location": "118.57928917,32.23872879",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "来安县汊河镇退役军人服务站",
-            "location": "118.59706857,32.20541333",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "来安县汊河镇综治中心",
-            "location": "118.58074117,32.23770442",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "汊河镇汊河社区退役军人服务站",
-            "location": "118.58262338,32.21046392",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "来安县三城镇沈圩村综治中心",
-            "location": "118.51543332,32.2316904",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "沈圩村村民委员会",
-            "location": "118.51539348,32.2318235",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "三城镇沈圩村退役军人服务站",
-            "location": "118.51534664,32.23165966",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "相官村村民委员会",
-            "location": "118.53961053,32.27470792",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "10",
-            "name": "相官村党群服务中心",
-            "location": "118.53984479,32.27461134",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -8846,84 +5575,18 @@
       "id": "长江-44",
       "name": "蒿子圩",
       "basin": "长江流域",
-      "confidence": "medium",
-      "confidenceLabel": "确信度中",
-      "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T05:56:46.423Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 8,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "蒿子圩",
-            "location": "118.50859697,32.14799424",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "江苏省生态空间管控区域规划",
-          "publisher": "",
-          "url": "https://www.jiangsu.gov.cn/module/download/downfile.jsp?classid=0&filename=41d4406973644c03b562924cf59cd693.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "南京水务局：滁河堤防浦口段、蒿子圩闸精细化管理公示",
-          "publisher": "",
-          "url": "https://shuiwu.nanjing.gov.cn/njsswj/202311/t20231120_4101255.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "夏心旻检查部署南京防汛工作",
-          "publisher": "",
-          "url": "https://www.zgjssw.gov.cn/shixianchuanzhen/nanjing/202206/t20220626_7595836.shtml",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "人民日报：南京浦口生态绿色一体化发展",
-          "publisher": "",
-          "url": "https://js.people.com.cn/n2/2021/1109/c360304-34995945.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "永宁街道公开工作资料",
-          "publisher": "",
-          "url": "https://www.pukou.gov.cn/cypk/jdgk/ynjd/gsgg/202301/P020230128620050292809.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "安徽省主体功能区规划（消歧）",
-          "publisher": "",
-          "url": "https://fzghc.aufe.edu.cn/_upload/article/files/82/9b/67ab1c204fc9bb09152914a0edfc/2f868a03-9b82-4166-beae-570f12bcede8.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap众包地理参考",
           "publisher": "",
@@ -9021,7 +5684,7 @@
             "stage": "decision",
             "title": "人工点击验收",
             "outcome": "推测边界用于地图展示",
-            "detail": "旧圆仅围单一地标、范围过大。本候选在该浦口地标附近贴实际滁河弯道收束成小型圩形；1.9 km²水利与1.34 km²生态口径分列，未把河流几何北侧一概当安徽。；无官方圩界和闸口经纬度；北/西侧明确堤名与连续线位；不可据1.9km²机械缩放；南向字段为相邻张圩南至滁河及苏皖分隔关系，具体弯河方位以真实河线核对；西侧、北侧和与张圩接界均为推测连线，未取得连续围堤或闸轴测量坐标。；浦口参考县界用于行政位置和西端小角保守避让（DataV显示数据GCJ-02转WGS84），不等于圩界或法定省界认定；不能用笼统南北岸替代具体河弯。；候选为资料推定范围，非法定边界，未经实地核验。；依据段为地理位置代理，不能认定为测量堤线；未知闭合段明确为推测。",
+            "detail": "此前用于辅助判断的第三方地图坐标已从公开数据中移除；本步骤不再作为提高位置确信度的依据。",
             "references": [
               {
                 "label": "ChatGPT 网页回答",
@@ -9034,52 +5697,21 @@
       "aliases": [
         "蒿子圩滞洪区",
         "蒿子圩蓄滞洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/jiangsu-chatgpt-2026-09-13/publications/2026-09-13T05-56-46-423Z-长江-44/extraction.json"
+      ]
     },
     {
       "id": "黄河-01",
       "name": "北金堤",
       "basin": "黄河流域",
-      "confidence": "medium",
-      "confidenceLabel": "确信度中",
-      "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T07:04:02.889Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 19,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "渠村分洪闸",
-            "location": "115.01262377,35.3738779",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "1",
-            "name": "北金堤滞洪大桥",
-            "location": "115.60330062,35.91007333",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "2",
-            "name": "北金堤大桥",
-            "location": "115.60769036,35.93116728",
-            "anchorKind": "engineering"
-          }
-        ]
       },
       "referenceClues": [
         {
@@ -9118,38 +5750,6 @@
         }
       ],
       "governmentSources": [
-        {
-          "title": "2024河南水利厅洪水风险图包3招标",
-          "publisher": "",
-          "url": "https://kaifeng.zfcg.henan.gov.cn/cmsweb81e27e/henan/rootfiles/2024/10/21/aad0f483f4b043aeb0310c759eb17bc3.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "黄河保护法实施办法草案说明",
-          "publisher": "",
-          "url": "https://oss.henanrd.gov.cn/hnsrd-lzpt-oss001/cms/20241204/564ea852bd9643dfaa28dfa8535dacc0.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "北金堤分滞洪区水利百科",
-          "publisher": "",
-          "url": "https://www.shuizhishi.cn/c/2020-04-09/519338.shtml",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "渠村分洪闸专业调研",
-          "publisher": "",
-          "url": "https://www.yrcti.edu.cn/slgcxy/info/1042/8257.htm",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap众包地理参考",
           "publisher": "",
@@ -9251,58 +5851,21 @@
         "北金堤蓄滞洪区",
         "北金堤分滞洪区",
         "北金堤滞洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/henan-chatgpt-2026-09-13/publications/2026-09-13T07-04-02-889Z-黄河-01/extraction.json"
+      ]
     },
     {
       "id": "黄河-02",
       "name": "东平湖",
       "basin": "黄河流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T07:04:18.809Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 120,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "东平湖",
-            "location": "116.20894691,35.99131911",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "小清河",
-            "location": "116.20240606,36.14207397",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "东平县老湖镇人民政府",
-            "location": "116.26819144,35.99917167",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "大汶河（汶上段）",
-            "location": "116.66172188,35.93665494",
-            "anchorKind": "natural"
-          }
-        ]
       },
       "referenceClues": [
         {
@@ -9339,22 +5902,6 @@
         }
       ],
       "governmentSources": [
-        {
-          "title": "东平县志水利东平湖",
-          "publisher": "",
-          "url": "https://shandong-chorography.org/database/c94/section/6/article/19/",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "中国水土保持2024年12期：东平湖位置示意图1",
-          "publisher": "",
-          "url": "https://guifan-files.shuibao100.com/FsdajR0fn1VUllANdVxdV8-HvXzK",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "ChatGPT批2部分恢复答案",
           "publisher": "",
@@ -9454,52 +6001,21 @@
         "东平湖蓄滞洪区",
         "东平湖滞洪区",
         "东平湖水库"
-      ],
-      "chatgptExtractionPath": "automation/output/henan-chatgpt-2026-09-13/publications/2026-09-13T07-04-18-809Z-黄河-02/extraction.json"
+      ]
     },
     {
       "id": "淮河-01",
       "name": "蒙洼",
       "basin": "淮河流域",
-      "confidence": "medium",
-      "confidenceLabel": "确信度中",
-      "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 103,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "王家坝进洪口附近（底图参考）",
-            "location": "115.607439,32.429338",
-            "anchorKind": "hydrographic-context"
-          },
-          {
-            "id": "1",
-            "name": "濛河分洪道北侧转折（底图参考）",
-            "location": "115.8662796,32.62087018",
-            "anchorKind": "hydrographic-context"
-          },
-          {
-            "id": "2",
-            "name": "颍上侧东段（县界交叠参考）",
-            "location": "115.95923297,32.60721801",
-            "anchorKind": "hydrographic-context"
-          }
-        ]
       },
       "referenceClues": [
         {
@@ -9595,13 +6111,6 @@
           "locationSummary": "geo.datav.aliyun.com"
         },
         {
-          "title": "高德公开底图河道参考（12级）",
-          "url": "https://www.amap.com/",
-          "sourceType": "published-source",
-          "supportsLocation": true,
-          "locationSummary": "www.amap.com"
-        },
-        {
           "title": "线索",
           "url": "https://zh.wikipedia.org/wiki/%E8%92%99%E6%B4%BC%E8%93%84%E6%B4%AA%E5%8C%BA",
           "sourceType": "published-source",
@@ -9693,7 +6202,7 @@
       "confidence": "high",
       "confidenceLabel": "确信度高",
       "ruleId": "H1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "记录中有可用于定位的官方图件；地图表达仍不是法定边界。",
       "reviewedAt": "2026-09-13T05:15:25.954Z",
       "fieldVerified": false,
       "officialMap": {
@@ -9704,84 +6213,8 @@
         "publisher": "霍邱县人民政府",
         "description": "官方实施细则附件包含霍邱县行蓄洪区平面位置图。"
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 26,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "城西湖南部",
-            "location": "116.16540284,32.22134168",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "城西湖中部",
-            "location": "116.20241685,32.34780141",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "城西湖北部",
-            "location": "116.0546297,32.54286157",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "3",
-            "name": "城西湖乡人民政府",
-            "location": "116.26995746,32.37575863",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "2019行蓄洪区基本情况表",
-          "publisher": "",
-          "url": "https://file.xuancheng.gov.cn/5/201912/20191216113152312ix77ba.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "霍邱行蓄洪区负面清单及城西湖位置图",
-          "publisher": "",
-          "url": "https://www.huoqiu.gov.cn/xxgk/zfgb/34762402.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "六安水利局：城西湖蓄洪区的变迁",
-          "publisher": "",
-          "url": "https://slj.luan.gov.cn/zczx/slyw/3194051.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "六安水利局：城西湖进洪闸",
-          "publisher": "",
-          "url": "https://slj.luan.gov.cn/zczx/slyw/5171301.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "霍邱沿岗河工程环评",
-          "publisher": "",
-          "url": "https://www.huoqiu.gov.cn/group3/M00/6B/6C/wKgSG2ZZl-iAA4jsAD37K40MJsI050.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap水系与地名（2026-09-13下载）",
           "publisher": "",
@@ -9885,8 +6318,7 @@
       },
       "aliases": [
         "城西湖蓄洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/anhui-chatgpt-2026-09-13/publications/2026-09-13T05-15-25-954Z-淮河-02/extraction.json"
+      ]
     },
     {
       "id": "淮河-03",
@@ -9895,7 +6327,7 @@
       "confidence": "high",
       "confidenceLabel": "确信度高",
       "ruleId": "H1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "记录中有可用于定位的官方图件；地图表达仍不是法定边界。",
       "reviewedAt": "2026-09-13T05:15:42.499Z",
       "fieldVerified": false,
       "officialMap": {
@@ -9906,34 +6338,8 @@
         "publisher": "霍邱县人民政府",
         "description": "官方实施细则附件包含霍邱县行蓄洪区平面位置图。"
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 3,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "城东湖",
-            "location": "116.37782093,32.29918108",
-            "anchorKind": "natural"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "霍邱行蓄洪区负面清单实施细则",
-          "publisher": "",
-          "url": "https://www.huoqiu.gov.cn/xxgk/zfgb/34762402.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "霍邱县政府公报2021年第4期",
           "publisher": "",
@@ -9941,30 +6347,6 @@
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "第14页乡镇名录，第16页城东湖位置图"
-        },
-        {
-          "title": "六安水利局：汲河流域洪痕概况",
-          "publisher": "",
-          "url": "https://slj.luan.gov.cn/zczx/tzgg/5215752.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "六安市水资源综合规划（2011至2030）",
-          "publisher": "",
-          "url": "https://slj.luan.gov.cn/group1/M00/02/EF/wKgSGV_1fD-AFTetACmEfjMsDzo758.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "六安市官方防洪方案PDF",
-          "publisher": "",
-          "url": "https://www.luan.gov.cn/group1/M00/05/1E/wKgSGWEsZC-AZxPnAEpoW9FNlo8277.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
         },
         {
           "title": "OpenStreetMap水系与地名（2026-09-13下载）",
@@ -10069,58 +6451,21 @@
       },
       "aliases": [
         "城东湖蓄洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/anhui-chatgpt-2026-09-13/publications/2026-09-13T05-15-42-499Z-淮河-03/extraction.json"
+      ]
     },
     {
       "id": "淮河-04",
       "name": "瓦埠湖",
       "basin": "淮河流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "medium",
+      "confidenceLabel": "确信度中",
+      "ruleId": "M1",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 28,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "瓦埠湖",
-            "location": "116.8876907,32.40767771",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "瓦埠湖大桥",
-            "location": "116.90989897,32.34148971",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "2",
-            "name": "瓦埠湖北段",
-            "location": "116.91108565,32.42812069",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "长丰县界东侧湖汊（底图参考）",
-            "location": "117.06825256,32.38054134",
-            "anchorKind": "hydrographic-context"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -10158,13 +6503,6 @@
           "sourceType": "published-source",
           "supportsLocation": true,
           "locationSummary": "公告明确存在瓦埠湖蓄洪区（长丰县）项目，支持范围涉及长丰县；公告不提供完整边界或淹没线。"
-        },
-        {
-          "title": "高德底图与DataV长丰县界参考",
-          "url": "https://geo.datav.aliyun.com/areas_v3/bound/340121.json",
-          "sourceType": "published-source",
-          "supportsLocation": true,
-          "locationSummary": "geo.datav.aliyun.com"
         }
       ],
       "verifiedAdministrativeAreas": [
@@ -10239,30 +6577,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 6,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "宿州市河道管理中心老汪湖管理室",
-            "location": "117.42384894,33.83559819",
-            "anchorKind": "engineering"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -10349,57 +6669,15 @@
       "id": "淮河-06",
       "name": "泥河洼",
       "basin": "淮河流域",
-      "confidence": "medium",
-      "confidenceLabel": "确信度中",
-      "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T07:04:21.388Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 101,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "沙河西段",
-            "location": "113.59321203,33.69428745",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "沙河东段",
-            "location": "113.82042442,33.60183947",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "澧河西段",
-            "location": "113.56484365,33.50105118",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "3",
-            "name": "澧河东段",
-            "location": "113.83007368,33.55049276",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "4",
-            "name": "泥河洼地名点",
-            "location": "113.82453859,33.56925066",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -10497,69 +6775,24 @@
       "aliases": [
         "泥河洼滞洪区",
         "泥河洼蓄滞洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/henan-chatgpt-2026-09-13/publications/2026-09-13T07-04-21-388Z-淮河-06/extraction.json"
+      ]
     },
     {
       "id": "淮河-07",
       "name": "老王坡",
       "basin": "淮河流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T07:04:30.076Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 22,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "老王坡",
-            "location": "114.06275585,33.46737653",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "老王坡农场",
-            "location": "114.08772157,33.44501406",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "老王坡·村西花田",
-            "location": "114.06328801,33.41497275",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "老王坡管理委员会退役军人服务站",
-            "location": "114.07972802,33.42910293",
-            "anchorKind": "engineering"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "京港澳高速对老王坡影响分析（设计单位论文镜像）",
-          "publisher": "",
-          "url": "https://m.fx361.com/news/2017/0712/18186815.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "河南淮河滞洪区建设环评",
           "publisher": "",
@@ -10567,22 +6800,6 @@
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "附图18之1"
-        },
-        {
-          "title": "河南淮河滞洪建设环评批复",
-          "publisher": "",
-          "url": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201510/t20151020_315239.htm",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "2025河南洪水风险图包2",
-          "publisher": "",
-          "url": "https://sanmenxia.zfcg.henan.gov.cn/cmsweb81e27e/henan/rootfiles/2025/09/16/edd20ae1903641ff951bc88d4269036d.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
         },
         {
           "title": "OpenStreetMap众包地理参考",
@@ -10680,58 +6897,21 @@
       "aliases": [
         "老王坡滞洪区",
         "老王坡蓄滞洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/henan-chatgpt-2026-09-13/publications/2026-09-13T07-04-30-076Z-淮河-07/extraction.json"
+      ]
     },
     {
       "id": "淮河-08",
       "name": "蛟停湖",
       "basin": "淮河流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T07:04:39.123Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 21,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "蛟停湖乡",
-            "location": "114.68662983,32.71869606",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "蛟停湖大草原",
-            "location": "114.68526877,32.72694002",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "新蔡县蛟停湖滞洪区管理所",
-            "location": "114.6938783,32.71765849",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "3",
-            "name": "蛟停湖派出所",
-            "location": "114.67820961,32.71722682",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -10742,46 +6922,6 @@
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "附图18之3"
-        },
-        {
-          "title": "河南政务西洋店镇",
-          "publisher": "",
-          "url": "https://www.hnzwfw.gov.cn/411723105000/detail.html?region=411723105000",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "河南政务余店镇",
-          "publisher": "",
-          "url": "https://www.hnzwfw.gov.cn/411729111000/detail.html?region=411729111000",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "2025河南洪水风险图包2",
-          "publisher": "",
-          "url": "https://sanmenxia.zfcg.henan.gov.cn/cmsweb81e27e/henan/rootfiles/2025/09/16/edd20ae1903641ff951bc88d4269036d.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "2026防汛责任名单",
-          "publisher": "",
-          "url": "https://dzb.henandaily.cn/html5/2026-05/13/content_17_1792490.htm",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "ChatGPT批3原文（历史面积引用链未明）",
-          "publisher": "",
-          "url": "private-source-removed",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
         },
         {
           "title": "OpenStreetMap众包地理参考",
@@ -10895,93 +7035,24 @@
       "aliases": [
         "蛟停湖滞洪区",
         "蛟停湖蓄洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/henan-chatgpt-2026-09-13/publications/2026-09-13T07-04-39-123Z-淮河-08/extraction.json"
+      ]
     },
     {
       "id": "淮河-09",
       "name": "黄墩湖",
       "basin": "淮河流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T05:56:07.084Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 9,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "黄墩湖（邳州）",
-            "location": "118.05710181,34.19123231",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "黄墩湖（新沂）",
-            "location": "118.07849102,34.16976844",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "黄墩湖滞洪闸",
-            "location": "118.06330051,34.15796569",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "3",
-            "name": "黄墩湖现代渔业精品园",
-            "location": "118.07471688,34.12176745",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "蓄滞洪区运维管理保障政策需求调查研究",
-          "publisher": "",
-          "url": "https://www.waterinfo.com.cn/xsyj/zjgd/202402/t20240204_36227.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "江苏省生态空间管控区域规划",
-          "publisher": "",
-          "url": "https://www.jiangsu.gov.cn/module/download/downfile.jsp?classid=0&filename=41d4406973644c03b562924cf59cd693.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "黄墩湖滞洪闸",
-          "publisher": "",
-          "url": "https://ly.jswater.org.cn/lysl/gcgk/gcjj/art/2022/art_bba798bce8b847b7bbf08d3962bb14f3.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "中国财经报：宿迁滞洪区撤退集结驿站",
-          "publisher": "",
-          "url": "https://app.cfen.com.cn/detailArticle/21639435_46010_zgcjb.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap众包地理参考",
           "publisher": "",
@@ -11078,8 +7149,7 @@
       },
       "aliases": [
         "黄墩湖滞洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/jiangsu-chatgpt-2026-09-13/publications/2026-09-13T05-56-07-084Z-淮河-09/extraction.json"
+      ]
     },
     {
       "id": "淮河-10",
@@ -11088,83 +7158,15 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13T05:15:11.713Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "南照镇人民政府",
-            "location": "116.0005075,32.61364452",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "润河镇人民政府",
-            "location": "116.1057928,32.53687361",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "南润段进退水闸",
-            "location": "116.07612632,32.55493539",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "3",
-            "name": "南照镇卜林村",
-            "location": "115.97255806,32.63179277",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "2019年度农村住房保险试点通知附件4：行蓄洪区基本情况表",
-          "publisher": "",
-          "url": "https://file.xuancheng.gov.cn/5/201912/20191216113152312ix77ba.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "S238淮河特大桥及接线改建工程环评",
-          "publisher": "",
-          "url": "https://www.gushi.gov.cn/zfxxgk/rootfiles/2026/01/04/1768850313491726-1768850313784815.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "临淮岗水资源综合利用工程航道通航评价采购公告",
-          "publisher": "",
-          "url": "https://www.cwhh.com.cn/News.aspx?classid=5D311CA918CA9A03&id=02EADF0628EF4A34&mclassid=2B25C5E62F83A049",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "央广网：安徽颍上一日内启用三大行蓄洪区",
-          "publisher": "",
-          "url": "https://www.cnr.cn/ah/news/20200721/t20200721_525175017.shtml",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap水系与地名（2026-09-13下载）",
           "publisher": "",
@@ -11261,95 +7263,24 @@
         "南润段蓄洪区",
         "南润段行蓄洪区",
         "南润段行洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/anhui-chatgpt-2026-09-13/publications/2026-09-13T05-15-11-713Z-淮河-10/extraction.json"
+      ]
     },
     {
       "id": "淮河-11",
       "name": "邱家湖",
       "basin": "淮河流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "medium",
+      "confidenceLabel": "确信度中",
+      "ruleId": "M1",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13T05:15:35.278Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 46,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "邱家湖",
-            "location": "116.23885284,32.50179006",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "邱家湖大沟",
-            "location": "116.23658736,32.49368748",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "半岗镇人民政府",
-            "location": "116.20373971,32.5010637",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "2019行蓄洪区基本情况表",
-          "publisher": "",
-          "url": "https://file.xuancheng.gov.cn/5/201912/20191216113152312ix77ba.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "霍邱行蓄洪区负面清单及丘家湖霍邱县附图",
-          "publisher": "",
-          "url": "https://www.huoqiu.gov.cn/xxgk/zfgb/34762402.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "霍邱县政府公报2021年第4期",
-          "publisher": "",
-          "url": "https://www.huoqiu.gov.cn/group3/M00/28/A5/wKgSG2HBlZmAQHuSAXhhsvNpLbk136.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "央广网：蓄洪低地变产业发展宝地",
-          "publisher": "",
-          "url": "https://www.cnr.cn/ah/news/20211217/t20211217_525690129.shtml",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "S238淮河特大桥及接线改建工程环评",
-          "publisher": "",
-          "url": "https://www.gushi.gov.cn/zfxxgk/rootfiles/2026/01/04/1768850313491726-1768850313784815.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap水系与地名（2026-09-13下载）",
           "publisher": "",
@@ -11454,69 +7385,24 @@
       "aliases": [
         "邱家湖蓄洪区",
         "丘家湖蓄洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/anhui-chatgpt-2026-09-13/publications/2026-09-13T05-15-35-278Z-淮河-11/extraction.json"
+      ]
     },
     {
       "id": "淮河-12",
       "name": "姜唐湖",
       "basin": "淮河流域",
-      "confidence": "medium",
-      "confidenceLabel": "确信度中",
-      "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T05:15:48.863Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 4,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "姜唐湖退水闸",
-            "location": "116.50382523,32.48113601",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "1",
-            "name": "姜唐湖退水闸管理处",
-            "location": "116.50372623,32.479474",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "2",
-            "name": "姜唐湖北堤",
-            "location": "116.40953979,32.50549047",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "3",
-            "name": "姜唐湖西侧农场点",
-            "location": "116.40295899,32.51267191",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "霍邱行蓄洪区负面清单实施细则",
-          "publisher": "",
-          "url": "https://www.huoqiu.gov.cn/xxgk/zfgb/34762402.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "霍邱县政府公报2021年第4期",
           "publisher": "",
@@ -11534,36 +7420,12 @@
           "locationSummary": "作者单位安徽省临淮岗洪水控制工程管理局；图1工程平面"
         },
         {
-          "title": "霍邱河湖及水利工程管理保护范围划定公告",
-          "publisher": "",
-          "url": "https://www.huoqiu.gov.cn/public/6618991/37327579.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "中安在线/阜阳日报：颍上启用三个行蓄洪区",
-          "publisher": "",
-          "url": "https://api.app.anhuinews.com/appcontent/4678054.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
           "title": "安徽水利厅来源：水利工程正式开工（凤凰转载）",
           "publisher": "",
           "url": "https://ah.ifeng.com/c/8p4wpMH18mC",
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "119.2km²口径"
-        },
-        {
-          "title": "临沂生态环境局公开材料：唐垛湖下口门退水闸",
-          "publisher": "",
-          "url": "https://hbj.linyi.gov.cn/info/1812/50493.htm",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "由ChatGPT引用，未单独逐页核验"
         },
         {
           "title": "OpenStreetMap水系与地名（2026-09-13下载）",
@@ -11683,8 +7545,7 @@
       "aliases": [
         "姜唐湖行洪区",
         "姜唐湖行蓄洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/anhui-chatgpt-2026-09-13/publications/2026-09-13T05-15-48-863Z-淮河-12/extraction.json"
+      ]
     },
     {
       "id": "淮河-13",
@@ -11693,42 +7554,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 21,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "安徽省寿西湖农场",
-            "location": "116.76602596,32.5707282",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "寿西湖农场场部",
-            "location": "116.76868856,32.57814173",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "寿西湖退洪闸管理房",
-            "location": "116.74829689,32.61139778",
-            "anchorKind": "engineering"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -11810,48 +7641,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "焦岗湖",
-            "location": "116.61230493,32.59464716",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "毛集镇人民政府",
-            "location": "116.63522289,32.64376317",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "焦岗湖镇人民政府",
-            "location": "116.65239329,32.62260901",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "焦岗村服务站",
-            "location": "116.60701428,32.61603432",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -11939,39 +7734,15 @@
       "id": "淮河-15",
       "name": "汤渔湖",
       "basin": "淮河流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "medium",
+      "confidenceLabel": "确信度中",
+      "ruleId": "M1",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 4,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "汤渔湖",
-            "location": "117.08910653,32.70605181",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "淮南市汤渔湖排灌站",
-            "location": "117.08890246,32.70558775",
-            "anchorKind": "engineering"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -12055,42 +7826,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 6,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "荆山湖进洪闸",
-            "location": "117.07726292,32.77898091",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "1",
-            "name": "荆山湖风景区",
-            "location": "117.17985502,32.90019775",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "荆山湖路亚垂钓场",
-            "location": "117.14906131,32.95342744",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -12177,51 +7918,15 @@
       "id": "淮河-17",
       "name": "花园湖",
       "basin": "淮河流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H3",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "medium",
+      "confidenceLabel": "确信度中",
+      "ruleId": "M1",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "multiple-resolved",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 25,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "花园湖（凤阳）",
-            "location": "117.85913956,33.01166187",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "花园湖进洪闸",
-            "location": "117.69289368,32.94273634",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "2",
-            "name": "淮河花园湖移民安置点",
-            "location": "117.88568046,33.01085651",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "淮河路与花园湖路交叉口",
-            "location": "117.71386766,32.97859072",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -12304,10 +8009,10 @@
       "id": "淮河-18",
       "name": "杨庄",
       "basin": "淮河流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T07:04:25.381Z",
       "fieldVerified": false,
       "officialMap": {
@@ -12317,24 +8022,6 @@
         "url": "https://www.mee.gov.cn/ywgz/hjyxpj/jsxmhjyxpj/xmslqk/201605/W020160522154049212554.pdf",
         "publisher": "生态环境部",
         "description": "环境影响报告书包含杨庄滞洪区环保措施平面布置图。"
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "杨庄乡人民政府",
-            "location": "113.84063829,33.33311383",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -12432,8 +8119,7 @@
       "aliases": [
         "杨庄滞洪区",
         "杨庄蓄滞洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/henan-chatgpt-2026-09-13/publications/2026-09-13T07-04-25-381Z-淮河-18/extraction.json"
+      ]
     },
     {
       "id": "淮河-19",
@@ -12442,93 +8128,15 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-13T06:01:43.205Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "洪泽湖",
-            "location": "118.71884947,33.26628666",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "洪泽湖大堤",
-            "location": "118.81185171,33.22311933",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "2",
-            "name": "洪泽湖大桥",
-            "location": "118.84342898,33.29977155",
-            "anchorKind": "engineering"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "淮河入海水道二期工程环境影响报告书",
-          "publisher": "",
-          "url": "https://www.mee.gov.cn/ywgz/hjyxpj/jsxmhjyxpj/xmslqk/201703/W020170317519265114044.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "洪泽湖周边近期建设可研通过审查",
-          "publisher": "",
-          "url": "https://www.taihudesign.com/31/2572",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "蓄滞洪区运维管理保障政策需求调查研究",
-          "publisher": "",
-          "url": "https://www.waterinfo.com.cn/xsyj/zjgd/202402/t20240204_36227.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "生态环境部：浮山以下行洪区调整和建设工程环评批复",
-          "publisher": "",
-          "url": "https://www.mee.gov.cn/xxgk2018/xxgk/xxgk11/202503/t20250303_1103201.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "盱眙洪泽湖周边（含鲍集圩）划界项目成交公告",
-          "publisher": "",
-          "url": "https://czj.huaian.gov.cn/col/17148_618535/content/17460288/ff808081971d6c520197202f54400041.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "2017年盱眙县政府工作报告",
-          "publisher": "",
-          "url": "https://www.xuyi.gov.cn/col/1158_255456/art/xyx_932465.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap众包地理参考",
           "publisher": "",
@@ -12643,8 +8251,7 @@
       },
       "aliases": [
         "洪泽湖周边滞洪区（含鲍集圩）"
-      ],
-      "chatgptExtractionPath": "automation/output/jiangsu-chatgpt-2026-09-13/publications/2026-09-13T06-01-43-205Z-淮河-19/extraction.json"
+      ]
     },
     {
       "id": "淮河-20",
@@ -12653,48 +8260,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "南四湖",
-            "location": "117.15932883,34.7029253",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "微山县南四湖综合管理委员会",
-            "location": "117.1378187,34.79998176",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "2",
-            "name": "二级坝水利枢纽管理局",
-            "location": "116.98411534,34.87079179",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "3",
-            "name": "韩庄水利枢纽管理局",
-            "location": "117.36852954,34.59538551",
-            "anchorKind": "engineering"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -12774,100 +8345,18 @@
       "id": "淮河-21",
       "name": "大逍遥",
       "basin": "淮河流域",
-      "confidence": "medium",
-      "confidenceLabel": "确信度中",
-      "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T07:04:33.722Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 12,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "逍遥镇",
-            "location": "114.26320289,33.74588101",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "李大庄乡",
-            "location": "114.55439896,33.65396667",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "黄桥乡",
-            "location": "114.45476456,33.76506609",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "西夏亭镇",
-            "location": "114.37870163,33.74380257",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "艾岗乡",
-            "location": "114.3387034,33.82404673",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "淮委到西华调研大逍遥规划",
-          "publisher": "",
-          "url": "https://www.zhoukou.gov.cn/page_pc/xwzx/xqdt/xqdt/articled424d2b57f5440699d310daa6b9ae0ea.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "周口巡河督导防汛及总体布局",
-          "publisher": "",
-          "url": "https://www.zhoukou.gov.cn/page_pc/xwzx/zkyw/article022b04552b7c4832b136d3e3e612db57.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "淮河防洪规划概要",
-          "publisher": "",
-          "url": "https://www.chinawater.com.cn/newscenter/ly/huaih/200905/t20090513_42647.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "西华2025重点工作分解",
-          "publisher": "",
-          "url": "https://www.xihua.gov.cn/sitesources/xhxrmzf/page_pc/zwgk/zfwj/articleff7b546cd2784081ad5cbd63170a4d7a.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "河南四水同治规划",
-          "publisher": "",
-          "url": "https://oss.henan.gov.cn/typtfile/20240123/f191e6f92c6b40e8b782d4533a0bb154.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap众包地理参考",
           "publisher": "",
@@ -12970,8 +8459,7 @@
       "aliases": [
         "大逍遥滞洪区",
         "河南省沙颍河大逍遥滞洪区工程"
-      ],
-      "chatgptExtractionPath": "automation/output/henan-chatgpt-2026-09-13/publications/2026-09-13T07-04-33-722Z-淮河-21/extraction.json"
+      ]
     },
     {
       "id": "海河-01",
@@ -12980,36 +8468,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "梁各庄村委（入口附近位置参考）",
-            "location": "116.456317,39.437156",
-            "anchorKind": "unknown"
-          },
-          {
-            "id": "1",
-            "name": "屈家店工程端点（环评坐标）",
-            "location": "117.10241195,39.2472583",
-            "anchorKind": "unknown"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -13129,134 +8593,18 @@
       "id": "海河-02",
       "name": "小清河分洪区",
       "basin": "海河流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T08:03:16.496Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "小清河",
-            "location": "116.19408963,39.75169136",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "小清河",
-            "location": "116.17053023,39.6302482",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "小清河",
-            "location": "116.14402908,39.57444002",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "3",
-            "name": "小清河",
-            "location": "116.20183934,39.70305784",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "4",
-            "name": "小清河",
-            "location": "116.12985315,39.53073421",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "5",
-            "name": "小清河",
-            "location": "116.13791752,39.56790354",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "6",
-            "name": "小清河",
-            "location": "116.19818727,39.79558642",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "小清河桥",
-            "location": "116.21465454,39.84963548",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "小清河与G4京港澳高速交叉口",
-            "location": "116.19889628,39.7944031",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "小清河桥",
-            "location": "116.2017819,39.69837025",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "10",
-            "name": "小清河桥",
-            "location": "116.180844,39.66930323",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "11",
-            "name": "小清河2号桥",
-            "location": "116.16996077,39.60579097",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "2024北京小清河四预能力建设招标",
-          "publisher": "",
-          "url": "https://ggzyfw.beijing.gov.cn/cmsbj/u/cms/cn.gov.bjggzyfw.www/202405/7320804541295.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "小清河行洪通道围堤",
-          "publisher": "",
-          "url": "https://ggzyfw.beijing.gov.cn/jyxxggjtbyqs/20231117/4260892.html",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "水土保持涿州部分工程管理资料",
-          "publisher": "",
-          "url": "https://www.stbc.cn/stbc/index/article?id=c149fd19e24b698f447309a905158b01",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "房山2023防汛责任表",
-          "publisher": "",
-          "url": "https://www.bjfsh.gov.cn/zhxw/fsb/202306/P020230626637989511119.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "丰台段风险图项目页",
           "publisher": "",
@@ -13370,17 +8718,16 @@
       },
       "aliases": [
         "小清河蓄滞洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/remaining-chatgpt-2026-09-13/publications/2026-09-13T08-03-16-496Z-海河-02/extraction.json"
+      ]
     },
     {
       "id": "海河-03",
       "name": "东淀",
       "basin": "海河流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
@@ -13390,30 +8737,6 @@
         "url": "https://www.tjxq.gov.cn/xwzx/ztzl/xczx/202406/W020240614377186983575.pdf",
         "publisher": "天津市西青区人民政府",
         "description": "导则印刷第4页介绍全区379平方公里与四至，第27页示意图仅覆盖西青区段；全区候选另参照2023年论文第38页图1，均不提供完整测量坐标。"
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 120,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "西接新盖房分洪道（论文图件近似）",
-            "location": "116.26255978,38.99062091",
-            "anchorKind": "source-map-outline"
-          },
-          {
-            "id": "1",
-            "name": "西河闸端点（论文图件近似）",
-            "location": "116.95791147,39.1217482",
-            "anchorKind": "source-map-outline"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -13473,7 +8796,7 @@
       "conclusion": {
         "hasFuzzyLocation": true,
         "positionText": "位于大清河系下游，跨河北省霸州市、文安县和天津市静海区、西青区。北靠中亭河及东淀北大堤，南界千里堤、隔淀堤等分隔堤，东侧沿子牙河右堤、西河堤至西河闸枢纽，西接新盖房分洪道及下码头北洼、溢流洼一带。全区东西约66公里、南北约2.5—9公里，总面积约379平方公里；进退洪通道不作为东淀全区外包络。",
-        "reasoning": "以379平方公里为全区面积参考，按中国防汛抗旱2023年第10期第38页图1的全区外轮廓手工描点，以河道转折和枢纽对照高德底图作仿射配准。重新生成狭长且不规则的完整候选，舍弃旧3178平方公里椭圆。图件无坐标网，配准残差最大约19底图像素，故堤线仅为低精度近似；不强行缩放来凑足379平方公里。",
+        "reasoning": "公开资料仅支持行政区域或模糊范围；未保留第三方地图坐标或地物检索结果。",
         "reasoningSteps": [
           {
             "stage": "source-verification",
@@ -13550,36 +8873,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 21,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "津保南线大城县城段（底图参考）",
-            "location": "116.64321899,38.69676461",
-            "anchorKind": "road-context"
-          },
-          {
-            "id": "1",
-            "name": "津保南线子牙河附近（底图参考）",
-            "location": "116.71463013,38.68336578",
-            "anchorKind": "road-context"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -13704,36 +9003,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 5,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "贾口洼",
-            "location": "116.84956538,38.99478618",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "天津市贾口洼蓄滞洪区工程与安全建设施工五标段项目经理部",
-            "location": "116.91609284,38.83905569",
-            "anchorKind": "engineering"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -13816,36 +9091,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 25,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "兰沟洼-琉璃河特大桥",
-            "location": "115.86631915,39.16960837",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "兰沟洼特大桥",
-            "location": "115.96681335,39.13112967",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [
         {
@@ -13985,36 +9236,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 29,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "大陆泽宁晋泊蓄滞洪区防洪工程与安全建设指挥部",
-            "location": "114.79454432,37.37921494",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "1",
-            "name": "宁晋泊生态湿地示范区",
-            "location": "115.05398768,37.50157302",
-            "anchorKind": "administrative"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -14097,48 +9324,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 23,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "天口镇杜家庄村核心参考",
-            "location": "114.823289,37.154496",
-            "anchorKind": "core-location-reference"
-          },
-          {
-            "id": "1",
-            "name": "骆六村区内参考",
-            "location": "114.81371,37.114531",
-            "anchorKind": "settlement-context"
-          },
-          {
-            "id": "2",
-            "name": "环水村北部参考",
-            "location": "114.796868,37.229546",
-            "anchorKind": "settlement-context"
-          },
-          {
-            "id": "3",
-            "name": "邢家湾北部参考",
-            "location": "114.804761,37.256552",
-            "anchorKind": "settlement-context"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -14269,118 +9460,18 @@
       "id": "海河-09",
       "name": "良相坡",
       "basin": "海河流域",
-      "confidence": "medium",
-      "confidenceLabel": "确信度中",
-      "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T07:03:02.782Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "淇河",
-            "location": "114.2136593,35.78117894",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "西岗镇人民政府",
-            "location": "114.24796434,35.56534198",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "西岗镇大李庄村民委员会",
-            "location": "114.25569557,35.51755187",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "3",
-            "name": "西岗镇便民服务中心",
-            "location": "114.24991487,35.57000137",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "4",
-            "name": "中共淇县西岗镇委员会",
-            "location": "114.24836089,35.56499766",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "5",
-            "name": "西岗镇西岗村退役军人服务站",
-            "location": "114.25047156,35.57213657",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "6",
-            "name": "西岗镇河口村退役军人服务站",
-            "location": "114.28422005,35.60526095",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "7",
-            "name": "西岗镇商贸综合服务中心",
-            "location": "114.24796903,35.571885",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "8",
-            "name": "西岗镇大车村退役军人服务站",
-            "location": "114.26416491,35.59784781",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "9",
-            "name": "西岗镇宋庄村退役军人服务站",
-            "location": "114.27909957,35.61530069",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "10",
-            "name": "淇县西岗镇宋庄村儿童之家",
-            "location": "114.27448143,35.61703201",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "11",
-            "name": "淇县西岗镇退役军人服务站",
-            "location": "114.24809219,35.56520386",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "2026河南防汛责任名单",
-          "publisher": "",
-          "url": "https://dzb.henandaily.cn/html5/2026-05/13/content_17_1792490.htm",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "海河23·7特大洪水国家蓄滞洪区统计",
-          "publisher": "",
-          "url": "https://www.cfdm.cn/cn/article/pdf/preview/10.16867/j.issn.1673-9264.2023359.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "鹤壁朝歌堤提升报道",
           "publisher": "",
@@ -14396,14 +9487,6 @@
           "sourceType": "web-research-source",
           "supportsLocation": true,
           "locationSummary": "坐标基准未知"
-        },
-        {
-          "title": "河南良相坡被洪水淹没村庄",
-          "publisher": "",
-          "url": "https://www.cicphoto.com/cn/view14334494",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
         },
         {
           "title": "OpenStreetMap众包地理参考",
@@ -14507,76 +9590,21 @@
       "aliases": [
         "良相坡蓄滞洪区",
         "良相坡滞洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/henan-chatgpt-2026-09-13/publications/2026-09-13T07-03-02-782Z-海河-09/extraction.json"
+      ]
     },
     {
       "id": "海河-10",
       "name": "长虹渠",
       "basin": "海河流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "medium",
+      "confidenceLabel": "确信度中",
+      "ruleId": "M1",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 23,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "淇门村附近（非分洪闸坐标）",
-            "location": "114.300776,35.486559",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "1",
-            "name": "申店村（隔堤位置参考）",
-            "location": "114.322396,35.456158",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "2",
-            "name": "新镇（区域参考）",
-            "location": "114.368105,35.50841",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "3",
-            "name": "王庄镇新集村（区内河道入口参考）",
-            "location": "114.417744,35.499538",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "4",
-            "name": "小铺（区域参考）",
-            "location": "114.488803,35.530687",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "5",
-            "name": "道口南街附近（非退水闸坐标）",
-            "location": "114.509172,35.573053",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "6",
-            "name": "浚县曹湾村（非溢洪堰坐标）",
-            "location": "114.481914,35.599215",
-            "anchorKind": "location-context"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -14665,54 +9693,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 38,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "上乐村镇范围参考",
-            "location": "114.22,35.47",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "1",
-            "name": "申店村（非隔堤实测点）",
-            "location": "114.322396,35.456158",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "2",
-            "name": "濮卫高速道路位置参考",
-            "location": "114.213046,35.430547",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "3",
-            "name": "S72濮卫高速道路位置参考",
-            "location": "114.263452,35.430771",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "4",
-            "name": "S72濮卫高速道路位置参考",
-            "location": "114.290869,35.440046",
-            "anchorKind": "location-context"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -14796,134 +9782,18 @@
       "id": "海河-12",
       "name": "白寺坡",
       "basin": "海河流域",
-      "confidence": "medium",
-      "confidenceLabel": "确信度中",
-      "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "none",
+      "confidenceLabel": "暂不判断",
+      "ruleId": "N1",
+      "confidenceReason": "原推定范围包含不可再分发的第三方地图定位材料，已移除，等待可核验资料重建。",
       "reviewedAt": "2026-09-13T07:03:54.105Z",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
       },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 120,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "卫河",
-            "location": "114.34155411,35.51809809",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "卫河",
-            "location": "114.53712475,35.68039922",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "卫河",
-            "location": "114.41217314,35.55532114",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "3",
-            "name": "卫河",
-            "location": "114.53280835,35.6143047",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "4",
-            "name": "卫河",
-            "location": "114.44823559,35.58632526",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "5",
-            "name": "卫河",
-            "location": "114.50089585,35.76757613",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "6",
-            "name": "卫河",
-            "location": "114.50307103,35.73921243",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "7",
-            "name": "卫河",
-            "location": "114.52260671,35.80538607",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "8",
-            "name": "卫河",
-            "location": "114.5278205,35.70741385",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "9",
-            "name": "卫河",
-            "location": "114.5105141,35.57912076",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "10",
-            "name": "屯子镇人民政府",
-            "location": "114.48808524,35.7778458",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "11",
-            "name": "浚县屯子镇民政所",
-            "location": "114.49274164,35.77635468",
-            "anchorKind": "administrative"
-          }
-        ]
-      },
       "referenceClues": [],
       "governmentSources": [
-        {
-          "title": "滑县白寺坡2025运用预案",
-          "publisher": "",
-          "url": "https://www.hnhx.gov.cn/cms/cmsadmin/infopub/infopre.jsp?channelcode=A00020342&infoid=1751277793605634&pubpath=portal&pubtype=D&templetid=1611986277702238&userId=10002",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "2021鹤壁启用白寺坡公告转载",
-          "publisher": "",
-          "url": "https://www.thepaper.cn/newsDetail_forward_13736844",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "国家蓄滞洪区统计",
-          "publisher": "",
-          "url": "https://www.cfdm.cn/cn/article/pdf/preview/10.16867/j.issn.1673-9264.2023359.pdf",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
-        {
-          "title": "2026防汛责任名单",
-          "publisher": "",
-          "url": "https://dzb.henandaily.cn/html5/2026-05/13/content_17_1792490.htm",
-          "sourceType": "web-research-source",
-          "supportsLocation": true,
-          "locationSummary": "ChatGPT引用，须结合原文核对"
-        },
         {
           "title": "OpenStreetMap众包地理参考",
           "publisher": "",
@@ -15019,8 +9889,7 @@
       "aliases": [
         "白寺坡蓄滞洪区",
         "白寺坡滞洪区"
-      ],
-      "chatgptExtractionPath": "automation/output/henan-chatgpt-2026-09-13/publications/2026-09-13T07-03-54-105Z-海河-12/extraction.json"
+      ]
     },
     {
       "id": "海河-13",
@@ -15029,54 +9898,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "大名县城（内部参考）",
-            "location": "115.147985,36.286406",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "1",
-            "name": "升斗铺村（分洪口附近参考，非口门坐标）",
-            "location": "115.130607,36.311881",
-            "anchorKind": "administrative"
-          },
-          {
-            "id": "2",
-            "name": "漳河右岸侧（河道代理）",
-            "location": "115.20228601,36.40052103",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "3",
-            "name": "卫河左岸侧（河道代理）",
-            "location": "115.30261308,36.34440507",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "4",
-            "name": "漳卫汇合处（河道参考）",
-            "location": "115.28356988,36.47690689",
-            "anchorKind": "natural"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -15183,42 +10010,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 2,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "西郑庄闸附近（村委位置代理）",
-            "location": "116.040495,37.351713",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "1",
-            "name": "四女寺枢纽附近（大桥位置代理）",
-            "location": "116.238229,37.362042",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "2",
-            "name": "大屯水库（水域位置参考）",
-            "location": "116.208568,37.265334",
-            "anchorKind": "location-context"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -15330,54 +10127,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 0,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "九丈窝村民委员会",
-            "location": "117.735832,39.594383",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "1",
-            "name": "大盘龙庄村村委会",
-            "location": "117.720401,39.55914",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "2",
-            "name": "北单庄村民委员会",
-            "location": "117.74104,39.577994",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "3",
-            "name": "流涧头村委会",
-            "location": "117.724589,39.57445",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "4",
-            "name": "河北省唐山市玉田县潮洛窝乡盛家庄村村民委员会",
-            "location": "117.710811,39.547479",
-            "anchorKind": "location-context"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -15496,7 +10251,7 @@
       "confidence": "high",
       "confidenceLabel": "确信度高",
       "ruleId": "H1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "记录中有可用于定位的官方图件；地图表达仍不是法定边界。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
@@ -15506,42 +10261,6 @@
         "url": "https://www.tjjz.gov.cn/zwgk/zcwj/qjwj/qjjg/SWJ3/202310/W020231019726519980367.pdf",
         "publisher": "天津市蓟州区人民政府",
         "description": "专项规划给出经纬度范围和多幅位置示意图。"
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 6,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "青甸洼",
-            "location": "117.34284387,39.82849949",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "州河右岸侧（河道代理）",
-            "location": "117.43298743,39.8396399",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "2",
-            "name": "泃河左岸侧（河道代理）",
-            "location": "117.30640115,39.80839188",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "3",
-            "name": "西北自然高地方向（规划图参考）",
-            "location": "117.34573529,39.933023",
-            "anchorKind": "natural"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -15648,54 +10367,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 5,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "北围堤起点（报告工程点）",
-            "location": "117.37985333,39.65335232",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "1",
-            "name": "北围堤终点（报告工程点）",
-            "location": "117.4822494,39.64575653",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "2",
-            "name": "东北围堤终点（报告工程点）",
-            "location": "117.61135888,39.58495391",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "3",
-            "name": "南围堤起点（报告工程点）",
-            "location": "117.48796992,39.44841347",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "4",
-            "name": "南围堤终点（报告工程点）",
-            "location": "117.70581213,39.537538",
-            "anchorKind": "location-context"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -15712,13 +10389,6 @@
           "sourceType": "published-source",
           "supportsLocation": true,
           "locationSummary": "2024年4月3日报批前公示，提供本次完整环评附件；与E1为同源公示关系，不算独立佐证。"
-        },
-        {
-          "title": "天津市水务局：黄庄洼工程与安全建设",
-          "url": "https://swj.tj.gov.cn/xwzx_17135/mtjj/202405/t20240508_6619886.html",
-          "sourceType": "official-document",
-          "supportsLocation": true,
-          "locationSummary": "天津工程资料给出外围堤和分区隔堤，高德检得同名退水渠"
         },
         {
           "title": "水利部：国家蓄滞洪区名录",
@@ -15818,42 +10488,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "青龙湾河参考点（非堤顶）",
-            "location": "117.35503985,39.48364156",
-            "anchorKind": "water"
-          },
-          {
-            "id": "1",
-            "name": "龙凤河参考点（非堤顶）",
-            "location": "117.31424131,39.35618489",
-            "anchorKind": "water"
-          },
-          {
-            "id": "2",
-            "name": "青排渠参考点",
-            "location": "117.40225263,39.28897919",
-            "anchorKind": "water"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -15948,36 +10588,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 65,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "陈咀二支渠桥（西界参考）",
-            "location": "116.984245,39.289133",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "1",
-            "name": "陈咀镇人民政府（行政参照）",
-            "location": "117.008043,39.293156",
-            "anchorKind": "location-context"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -16095,42 +10711,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 120,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "共产主义渠（河道参考，非堤顶）",
-            "location": "114.51990914,35.80414089",
-            "anchorKind": "water"
-          },
-          {
-            "id": "1",
-            "name": "卫河汇流段（河道参考）",
-            "location": "114.55099337,35.82694138",
-            "anchorKind": "water"
-          },
-          {
-            "id": "2",
-            "name": "杨梁村（浚县段方向参考）",
-            "location": "114.65495649,35.78622778",
-            "anchorKind": "locality"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -16259,42 +10845,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 20,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "汤永河右堤工程起点",
-            "location": "114.60542951,35.99611507",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "1",
-            "name": "汤永河右堤工程终点（经度排印待核）",
-            "location": "114.69214803,35.97046395",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "2",
-            "name": "五陵方向卫河左岸（河道参考）",
-            "location": "114.61202654,35.8507116",
-            "anchorKind": "water"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -16384,48 +10940,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 12,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "刘庄闸附近共渠起点",
-            "location": "114.292769,35.501382",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "1",
-            "name": "大海线共产主义渠大桥",
-            "location": "114.380427,35.593611",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "2",
-            "name": "邢固村（间隔南侧参考）",
-            "location": "114.348852,35.571321",
-            "anchorKind": "location-context"
-          },
-          {
-            "id": "3",
-            "name": "同山（间隔高地参考）",
-            "location": "114.379676,35.621979",
-            "anchorKind": "location-context"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -16548,42 +11068,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 1,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "西防洪堤工程起点",
-            "location": "114.50549288,35.99749263",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "1",
-            "name": "西防洪堤工程终点",
-            "location": "114.49421292,36.03488519",
-            "anchorKind": "engineering"
-          },
-          {
-            "id": "2",
-            "name": "汤永河堤工程参考点",
-            "location": "114.60542951,35.99611507",
-            "anchorKind": "engineering"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -16679,45 +11169,15 @@
       "id": "海河-24",
       "name": "团泊洼",
       "basin": "海河流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "medium",
+      "confidenceLabel": "确信度中",
+      "ruleId": "M1",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "南运河与独流减河交会代理点",
-            "location": "116.92882202,39.05457838",
-            "anchorKind": "river-junction-proxy"
-          },
-          {
-            "id": "1",
-            "name": "独流减河与马厂减河交会点",
-            "location": "117.31253141,38.82740363",
-            "anchorKind": "river-junction-proxy"
-          },
-          {
-            "id": "2",
-            "name": "马厂减河西端参考点",
-            "location": "116.88971604,38.69750638",
-            "anchorKind": "river-junction-proxy"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -16813,54 +11273,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 19,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "广府古城",
-            "location": "114.729273,36.701056",
-            "anchorKind": "unknown"
-          },
-          {
-            "id": "1",
-            "name": "贞元门（北门）",
-            "location": "114.7293,36.70643",
-            "anchorKind": "unknown"
-          },
-          {
-            "id": "2",
-            "name": "阳明门（南门）",
-            "location": "114.729359,36.695902",
-            "anchorKind": "unknown"
-          },
-          {
-            "id": "3",
-            "name": "借马庄泄洪闸（图示位置）",
-            "location": "114.70903161,36.72086324",
-            "anchorKind": "unknown"
-          },
-          {
-            "id": "4",
-            "name": "莲花口进洪闸（图示位置）",
-            "location": "114.71017119,36.67104255",
-            "anchorKind": "unknown"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -16972,36 +11390,12 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "none",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 9,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "献县枢纽管理所（东端附近参考）",
-            "location": "116.092282,38.210034",
-            "anchorKind": "unknown"
-          },
-          {
-            "id": "1",
-            "name": "大齐村村委（独立位置参考）",
-            "location": "115.802397,38.261489",
-            "anchorKind": "unknown"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -17107,45 +11501,15 @@
       "id": "海河-27",
       "name": "崔家桥",
       "basin": "海河流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "medium",
+      "confidenceLabel": "确信度中",
+      "ruleId": "M1",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "安阳河左堤硬化工程起点",
-            "location": "114.44929467,36.11108254",
-            "anchorKind": "engineering-reference"
-          },
-          {
-            "id": "1",
-            "name": "安阳河左堤硬化工程终点",
-            "location": "114.47168591,36.11416328",
-            "anchorKind": "engineering-reference"
-          },
-          {
-            "id": "2",
-            "name": "朱小庄围村堤参考位置（非全区界址）",
-            "location": "114.57951619,36.12831076",
-            "anchorKind": "engineering-reference"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -17239,39 +11603,15 @@
       "id": "松花江-01",
       "name": "月亮泡",
       "basin": "松花江流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "medium",
+      "confidenceLabel": "确信度中",
+      "ruleId": "M1",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 24,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "月亮泡",
-            "location": "123.90606004,45.73839304",
-            "anchorKind": "natural"
-          },
-          {
-            "id": "1",
-            "name": "月亮泡水库",
-            "location": "124.026649,45.70397603",
-            "anchorKind": "natural"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -17387,39 +11727,15 @@
       "id": "松花江-02",
       "name": "胖头泡",
       "basin": "松花江流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H2",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "medium",
+      "confidenceLabel": "确信度中",
+      "ruleId": "M1",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "unique",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 28,
-        "contextAnchors": [
-          {
-            "id": "0",
-            "name": "南引水库（地图地物参考）",
-            "location": "124.331952,45.990249",
-            "anchorKind": "unknown"
-          },
-          {
-            "id": "1",
-            "name": "古恰镇政府（在约略东界之外，待审）",
-            "location": "124.882489,45.520542",
-            "anchorKind": "unknown"
-          }
-        ]
       },
       "referenceClues": [],
       "governmentSources": [
@@ -17520,26 +11836,15 @@
       "id": "珠江-01",
       "name": "潖江",
       "basin": "珠江流域",
-      "confidence": "high",
-      "confidenceLabel": "确信度高",
-      "ruleId": "H3",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
+      "confidence": "medium",
+      "confidenceLabel": "确信度中",
+      "ruleId": "M1",
+      "confidenceReason": "至少一条已记录的公开资料支持行政区域或模糊位置，但未保留第三方地图检索结果。",
       "reviewedAt": "2026-09-12",
       "fieldVerified": false,
       "officialMap": {
         "available": false,
         "usableForLocation": false
-      },
-      "placeSearch": {
-        "provider": "高德地图",
-        "searchedAt": "2026-07-24T06:24:30.069Z",
-        "status": "multiple-resolved",
-        "candidateCount": 0,
-        "candidates": [],
-        "selectedCandidateId": null,
-        "selectedCandidate": null,
-        "rawCandidateCount": 30,
-        "contextAnchors": []
       },
       "referenceClues": [],
       "governmentSources": [
