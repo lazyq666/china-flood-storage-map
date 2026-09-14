@@ -1,0 +1,21 @@
+.location-search-options { display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:space-between; margin:7px 0; font:12px/1.5 sans-serif; color:#52696c; }
+.location-search-options select { max-width:140px; min-height:30px; background:#fff; color:#23545c; border:1px solid #c9d6d9; border-radius:5px; }
+.location-search-options button { padding:4px 7px; min-height:30px; border:1px solid #c9d6d9; background:#fff; border-radius:5px; cursor:pointer; color:#23545c; }
+.location-search-results { max-height:240px; overflow:auto; }
+.location-search-results h3 { font-size:12px; margin:10px 7px 4px; color:#315c68; }
+.location-search-results .location-search-result { display:block; width:100%; text-align:left; padding:9px; border:0; border-bottom:1px solid #e0e8e9; background:#fff; cursor:pointer; color:#176d82; border-radius:0; }
+.location-search-result strong, .location-search-result small { display:block; }
+.location-search-result small { margin-top:3px; font-size:11px; color:#657a80; font-weight:400; }
+.location-search-results p { margin:8px; font-size:11px; color:#657a80; }
+.location-search-results a { color:#176d82; }
+.location-search-details { margin-top:10px; padding-top:10px; border-top:1px solid #dbe3e4; }
+.location-search-details summary { cursor:pointer; color:#176d82; font-weight:700; }
+.location-search-form { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px; margin-top:9px; }
+.location-search-form input { width:100%; min-width:0; padding:8px; border:1px solid #c7d5d8; border-radius:5px; font:12px sans-serif; }
+.location-search-form button { border:0; padding:7px; background:#176d72; color:#fff; border-radius:5px; cursor:pointer; }
+.location-search-details #place-search-status { font-size:11px; color:#56717a; }
+.location-search-details #place-search-status[data-tone="error"] { color:#a13d2e; }
+.location-search-options [hidden] { display:none!important; }
+.map-stage > .admin-boundaries:has(.location-search-details[open]) { max-height:calc(100% - 32px); overflow:auto; }
+
+.map-shell:has(.location-search-results:not(:empty)) .zone-nav.previous { left:auto; right:150px; }
