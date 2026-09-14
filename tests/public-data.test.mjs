@@ -64,11 +64,10 @@ test("confidence calculation cannot approve a record without publishable geometr
   assert.equal(module.exports.calculateLocationConfidence(evidence, { hasPublishableBoundary: false }).confidence, "none");
 });
 
-test("removed network-sourced images are not referenced or present", async () => {
+test("keeps the restored brand logo while removed replacement assets stay absent", async () => {
   const removedAssets = [
     "about-flood-zone-infographic.png",
     "bg_deail.png",
-    "logo.png",
     "zone-row-selected.png"
   ];
   const interfaceSource = [
@@ -80,6 +79,8 @@ test("removed network-sourced images are not referenced or present", async () =>
     assert.doesNotMatch(interfaceSource, new RegExp(asset.replace(".", "\\.")));
     await assert.rejects(access(new URL(`assets/${asset}`, root)));
   }
+  assert.match(interfaceSource, /assets\/logo\.png/);
+  await access(new URL("assets/logo.png", root));
 });
 
 test("ships an explicit 404 page so normalized unsafe paths cannot fall back to the app shell", async () => {

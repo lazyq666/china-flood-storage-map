@@ -16,14 +16,15 @@ Required Notice: Copyright © 2026 lazyq666.
 
 ## 图片与视觉素材
 
-2026-09-14，项目移除了以下四张来源于网络检索、无法证明再分发权的 PNG：
+2026-09-14，项目移除了以下三张来源于网络检索、无法证明再分发权的 PNG：
 
 - `assets/about-flood-zone-infographic.png`
 - `assets/bg_deail.png`
-- `assets/logo.png`
 - `assets/zone-row-selected.png`
 
-替代视觉专为本项目以 `index.html` 中的内联 SVG 与 `styles.css` 中的 CSS 渐变、线条和排版重新制作，没有复制上述 PNG 文件。根目录 `logo.svg` 也是项目代码内的简单矢量图形。上述代码原生视觉与项目原创代码采用相同的 PolyForm Noncommercial 1.0.0 许可。
+原 `assets/logo.png` 已按项目维护者要求恢复。该文件不因恢复而自动适用项目的 PolyForm Noncommercial 1.0.0 许可；对外再分发前仍应由项目维护者确认其权利来源和授权范围。
+
+其余替代视觉专为本项目以 `index.html` 中的内联 SVG 与 `styles.css` 中的 CSS 渐变、线条和排版重新制作，没有复制上述三张 PNG 文件。根目录 `logo.svg` 也是项目代码内的简单矢量图形。上述代码原生视觉与项目原创代码采用相同的 PolyForm Noncommercial 1.0.0 许可。
 
 ## 第三方在线服务
 

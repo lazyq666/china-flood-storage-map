@@ -9,13 +9,8 @@ a { color: inherit; }
 .app-shell { width: 100%; height: 100%; background: radial-gradient(circle at 75% 20%, var(--color-shell-glow), transparent 34%), radial-gradient(circle at 92% 92%, var(--color-shell-glow-deep), transparent 28%), var(--color-bg); }
 .modal-header, .modal-actions { display: flex; align-items: center; }
 .brand-lockup { position: relative; display: flex; align-items: center; justify-content: center; gap: var(--space-12); min-height: 52px; }
-.brand-title { flex: 0 1 218px; width: 100%; min-width: 0; max-width: 218px; margin: 0; display: flex; align-items: center; gap: 9px; }
-.brand-symbol { width: 38px; height: 38px; flex: 0 0 38px; fill: none; }
-.brand-symbol-land { stroke: var(--color-brand-blue); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.brand-symbol-water { stroke: var(--color-brand-teal); stroke-width: 2.1; stroke-linecap: round; }
-.brand-title > span { min-width: 0; display: grid; gap: 3px; }
-.brand-title b { color: var(--color-brand-navy); font-size: 16px; line-height: 1.15; letter-spacing: .02em; white-space: nowrap; }
-.brand-title small { color: var(--color-text-faint); font-size: 9px; line-height: 1.2; font-weight: var(--font-weight-500); letter-spacing: .12em; }
+.brand-title { flex: 0 1 194px; width: 100%; min-width: 0; max-width: 194px; margin: 0; line-height: 0; }
+.brand-title img { display: block; width: 100%; height: auto; }
 .about-zone-button { position: absolute; z-index: 2; top: 0; right: 0; width: 14px; height: 14px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(0, 126, 241, .24); border-radius: 50%; background: rgba(255, 255, 255, .88); color: rgba(0, 126, 241, .5); font-size: 9px; line-height: 1; font-weight: var(--font-weight-600); cursor: pointer; box-shadow: 0 2px 6px rgba(0, 126, 241, .06); }
 .about-zone-button:hover { color: rgba(0, 126, 241, .78); border-color: rgba(0, 126, 241, .4); background: var(--color-white); }
 .about-zone-tooltip { position: absolute; z-index: 3; top: 21px; right: -2px; padding: var(--space-4) var(--space-8); border-radius: 4px; background: var(--color-feedback-neutral); color: var(--color-feedback-neutral-text); font-size: var(--font-size-10); line-height: 1.5; white-space: nowrap; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-2px); transition: opacity 120ms ease, transform 120ms ease, visibility 120ms; box-shadow: 0 4px 12px var(--color-shadow-28); }
@@ -274,9 +269,6 @@ a { color: inherit; }
   .sidebar { border-right: 0; border-bottom: 1px solid var(--color-border); }
   .brand-lockup { min-height: 48px; }
   .brand-title { max-width: 184px; }
-  .brand-symbol { width: 32px; height: 32px; flex-basis: 32px; }
-  .brand-title b { font-size: 14px; }
-  .brand-title small { letter-spacing: .06em; }
   .sidebar-header { padding-top: var(--space-12); }
   .catalog-toolbar { padding-top: var(--space-12); }
   .detail-panel { left: 10px; top: 10px; bottom: 10px; width: min(300px, calc(100% - 64px)); max-height: none; }
