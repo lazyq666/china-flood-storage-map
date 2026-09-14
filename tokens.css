@@ -1,0 +1,143 @@
+:root {
+  color-scheme: light;
+
+  /* Typography */
+  --font-family-sans: ui-rounded, "SF Pro Rounded", "Avenir Next Rounded", "Nunito", "Hiragino Maru Gothic ProN", "PingFang SC", "Microsoft YaHei UI", system-ui, sans-serif;
+  --font-size-10: 10px;
+  --font-size-12: 12px;
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+  --font-size-18: 18px;
+  --font-size-22: 22px;
+  --font-weight-300: 300;
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+
+  /* Spacing */
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-32: 32px;
+  --space-64: 64px;
+  --space-128: 128px;
+
+  /*
+   * Executable visual contract
+   * - Blue: every interactive state, including hover, focus and selection.
+   * - Teal: inferred flood-storage geography only; never generic interaction.
+   * - Grey-blue: administrative extents that are not flood-storage boundaries.
+   * - Purple: the supplied multicolor logo only; never interface decoration.
+   * - Red: real danger, errors or an explicit alert; never ordinary selection.
+   * Spatial meaning also uses fill presence, line pattern and visible text.
+   */
+  --color-brand-blue: #007ef1;
+  --color-brand-teal: #07ad98;
+  --color-brand-purple: #6f58c9;
+  --color-brand-navy: #064a74;
+  --color-bg: #f4f9fc;
+  --color-panel: #ffffff;
+  --color-panel-2: #f3f9fd;
+  --color-panel-3: #e9f5fb;
+  --color-border: rgba(6, 74, 116, 0.14);
+  --color-border-strong: rgba(6, 74, 116, 0.26);
+  --color-text: #123e5b;
+  --color-text-muted: #527087;
+  --color-text-faint: #7992a4;
+
+  /* Interaction: blue is the single state color across every component. */
+  --color-interactive: #007ef1;
+  --color-interactive-hover: #006fd8;
+  --color-interactive-pressed: #005fbb;
+  --color-interactive-border: rgba(0, 126, 241, 0.42);
+  --color-interactive-bg-faint: rgba(0, 126, 241, 0.018);
+  --color-interactive-bg-soft: rgba(0, 126, 241, 0.055);
+  --color-interactive-bg-hover: rgba(0, 126, 241, 0.07);
+  --color-interactive-bg-selected: rgba(0, 126, 241, 0.1);
+  --color-focus-ring: #007ef1;
+  --color-selection-glow: rgba(0, 126, 241, 0.24);
+  --color-feedback-neutral: #244f6a;
+  --color-feedback-neutral-text: #ffffff;
+
+  /* Spatial data: green and grey-blue retain their meaning through interaction. */
+  --color-danger: #c94c50;
+  --color-spatial-inferred: #079b89;
+  --color-spatial-inferred-fill: rgba(7, 173, 152, 0.13);
+  --color-spatial-inferred-fill-subtle: rgba(7, 173, 152, 0.06);
+  --color-spatial-inferred-border: rgba(7, 173, 152, 0.32);
+  --color-spatial-inferred-on-blue: #c7f5e9;
+  --color-spatial-administrative: #6e8ca1;
+  --color-spatial-administrative-fill: rgba(110, 140, 161, 0.025);
+  --color-spatial-administrative-on-blue: #d2e0e8;
+  --color-white: #fff;
+
+  /* Fixed light UI surfaces and states */
+  --color-shell-glow: rgba(0, 126, 241, 0.1);
+  --color-shell-glow-deep: rgba(6, 74, 116, 0.06);
+  --color-sidebar-bg: #ffffff;
+  --color-coordinate-bg: rgba(255, 255, 255, 0.82);
+  --color-modal-bg: #ffffff;
+  --color-map-error-bg: #f4f8fc;
+  --color-text-status: #4e6b7e;
+  --color-text-strong: #064a74;
+  --color-surface-tint: rgba(0, 126, 241, 0.025);
+  --color-surface-grid: rgba(0, 126, 241, 0.03);
+  --color-border-subtle: rgba(6, 74, 116, 0.08);
+  --color-border-emphasis: rgba(6, 74, 116, 0.32);
+  --color-muted-scrollbar: rgba(62, 111, 150, 0.24);
+
+  /* Status colors are reserved for evidence tooling and true warnings/errors. */
+  --color-warning: #99631f;
+  --color-warning-border: rgba(153, 99, 31, 0.34);
+  --color-warning-bg: rgba(153, 99, 31, 0.055);
+  --color-info: #007ef1;
+  --color-info-border: rgba(0, 126, 241, 0.3);
+  --color-info-bg: rgba(0, 126, 241, 0.05);
+  --color-map-bg: #edf5f8;
+  --color-map-vignette: rgba(6, 74, 116, 0.045);
+  --color-map-control-border: rgba(67, 78, 84, 0.25);
+  --color-map-control-shadow: rgba(41, 51, 56, 0.12);
+  --color-map-scale: #586166;
+  --color-map-tooltip-text: #2f3034;
+  --color-map-tooltip-bg: rgba(255, 255, 255, 0.97);
+  --color-map-tooltip-border: rgba(73, 80, 85, 0.2);
+  --color-map-tooltip-shadow: rgba(55, 65, 70, 0.18);
+
+  /* Opaque elevated reading surface; deliberately distinct from the Sidebar. */
+  --color-detail-text: #123e5b;
+  --color-detail-surface: #fbfdff;
+  --color-detail-surface-raised: #eff8fd;
+  --color-detail-border: rgba(6, 74, 116, 0.2);
+  --color-detail-shadow-lg: rgba(28, 72, 106, 0.18);
+  --color-detail-shadow-sm: rgba(28, 72, 106, 0.1);
+  --color-detail-shadow-tip: rgba(28, 72, 106, 0.12);
+  --color-detail-shadow-tip-above: rgba(28, 72, 106, 0.09);
+  --color-detail-header: #027ff2;
+  --color-detail-header-start: rgba(2, 127, 242, 0.93);
+  --color-detail-header-end: rgba(4, 79, 139, 0.9);
+  --color-detail-summary: #405f73;
+  --color-detail-close: rgba(0, 126, 241, 0.05);
+  --color-detail-close-hover: rgba(0, 126, 241, 0.1);
+  --color-detail-scrollbar: rgba(62, 111, 150, 0.25);
+  --color-detail-heading: #064a74;
+  --color-detail-body-text: #526f82;
+  --color-detail-interactive: #0074d9;
+  --color-detail-interactive-hover: #064a74;
+  --color-detail-divider: rgba(6, 74, 116, 0.11);
+  --color-detail-source-bg: rgba(0, 126, 241, 0.025);
+  --color-detail-source-border: rgba(6, 74, 116, 0.14);
+  --color-detail-source-border-hover: rgba(0, 126, 241, 0.38);
+  --color-detail-source-bg-hover: rgba(0, 126, 241, 0.055);
+  --color-detail-footer: #788d9d;
+
+  /* Shadows and overlays */
+  --color-shadow-28: rgba(28, 72, 106, 0.16);
+  --color-shadow-35: rgba(28, 72, 106, 0.2);
+  --color-shadow-66: rgba(28, 72, 106, 0.32);
+  --color-backdrop: rgba(19, 48, 72, 0.42);
+
+  /* Layout dimensions */
+  --sidebar-width: 285px;
+}

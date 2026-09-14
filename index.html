@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/svg+xml" href="./logo.svg" />
+    <title>全国蓄滞洪区地图 · 位置证据版</title>
+    <link rel="preconnect" href="https://webapi.amap.com" />
+    <link rel="preconnect" href="https://restapi.amap.com" />
+    <link rel="preconnect" href="https://nominatim.openstreetmap.org" />
+    <link rel="stylesheet" href="./tokens.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./administrative-boundaries.css" />
+    <link rel="stylesheet" href="./map-location-search.css" />
+    <link rel="stylesheet" href="./prototype-selection-animation.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <main class="workspace">
+        <aside class="sidebar" aria-label="蓄滞洪区目录">
+          <header class="sidebar-header">
+            <div class="brand-lockup">
+              <h1 class="brand-title">
+                <img src="./assets/logo.png" alt="全国蓄滞洪区地图" />
+              </h1>
+              <button class="about-zone-button" id="aboutZoneButton" type="button" aria-label="什么是蓄滞洪区？" aria-describedby="aboutZoneTooltip">?</button>
+              <span class="about-zone-tooltip" id="aboutZoneTooltip" role="tooltip">什么是蓄滞洪区？</span>
+            </div>
+            <section class="catalog-toolbar" aria-label="检索与分类">
+              <label class="search-box">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z" /></svg>
+                <input id="searchInput" type="search" placeholder="搜索蓄滞洪区名称" autocomplete="off" />
+              </label>
+              <div class="classification-row">
+                <div class="classification-switch" id="classificationSwitch" aria-label="切换目录分组">
+                  <button class="active" data-classification="province" type="button">按省份</button>
+                  <button data-classification="basin" type="button">按流域</button>
+                </div>
+                <span class="catalog-count" id="searchCount">共 97 处</span>
+              </div>
+              <div class="category-filters" id="categoryFilters" aria-label="按省份筛选"></div>
+            </section>
+          </header>
+
+          <div class="zone-list-shell">
+            <section class="zone-list" id="zoneList" aria-live="polite"></section>
+            <div class="zone-scrollbar" id="zoneScrollbar" aria-hidden="true" hidden>
+              <span class="zone-scrollbar-thumb" id="zoneScrollbarThumb"></span>
+            </div>
+          </div>
+          <footer class="sidebar-footer">
+            <p class="sidebar-identity">资料仅供参考 · 不构成官方认定或决策依据</p>
+            <button id="sourceButton" type="button">数据与方法</button>
+          </footer>
+        </aside>
+
+        <section class="map-stage" aria-label="全国蓄滞洪区地图">
+          <div id="map"></div>
+          <section id="adminBoundaries" aria-label="行政区参考图层" hidden></section>
+          <div class="map-error" id="mapError" hidden>
+            <strong id="mapErrorTitle">地图引擎未加载</strong>
+            <span id="mapErrorText">请检查高德地图配置和网络连接。</span>
+          </div>
+
+          <div class="coordinate-readout" id="coordinateReadout">经度 —　纬度 —</div>
+
+          <aside class="detail-panel" id="detailPanel" aria-label="蓄滞洪区详情" aria-hidden="true">
+            <div class="detail-header">
+              <span class="detail-header-art" aria-hidden="true"></span>
+              <button class="detail-close" id="detailClose" type="button" aria-label="关闭详情">
+                <svg aria-hidden="true" viewBox="0 0 16 16">
+                  <path d="M3 3l10 10M13 3L3 13" />
+                </svg>
+              </button>
+              <h2 id="detailName">选择一个蓄滞洪区</h2>
+              <div class="detail-badges" id="detailBadges"></div>
+              <p class="detail-summary" id="detailSummary"></p>
+            </div>
+            <div class="detail-body" id="detailBody" tabindex="0">
+              <section class="detail-section-block detail-key-facts" aria-label="关键事实">
+                <div class="key-fact-grid" id="detailKeyFacts"></div>
+              </section>
+
+              <section class="detail-section-block" aria-labelledby="detailEvidenceTitle">
+                <h3 id="detailEvidenceTitle">证据链</h3>
+                <div class="evidence-value" id="detailEvidenceConclusion"></div>
+              </section>
+
+              <section class="detail-section-block detail-limitations" aria-labelledby="detailLimitationsTitle">
+                <h3 id="detailLimitationsTitle">限制与不确定性</h3>
+                <ul id="detailLimitations"></ul>
+              </section>
+
+              <section class="detail-section-block detail-references" aria-labelledby="detailReferencesTitle">
+                <h3 id="detailReferencesTitle">参考资料</h3>
+                <div id="detailOfficialMap"></div>
+                <div id="detailReferenceCluesRow" hidden>
+                  <div class="evidence-source-stack" id="detailReferenceClues"></div>
+                </div>
+                <div class="evidence-source-stack" id="detailGovernmentSources"></div>
+              </section>
+
+              <section class="detail-section-block detail-secondary" aria-labelledby="detailLandmarksTitle">
+                <h3 id="detailLandmarksTitle">同名地物与相关地标</h3>
+                <div class="evidence-value" id="detailAmapCandidates"></div>
+              </section>
+
+              <section class="detail-section-block detail-secondary" aria-labelledby="detailMapExpressionTitle">
+                <h3 id="detailMapExpressionTitle">地图如何表达</h3>
+                <div class="evidence-value" id="detailApproximateBoundary"></div>
+              </section>
+
+              <footer class="detail-footer">
+                <span>数据更新：<time id="detailUpdatedAt">—</time></span>
+                <span>仅供位置理解，不替代主管部门法定边界。</span>
+              </footer>
+            </div>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="modal source-modal" id="sourceDialog">
+      <form method="dialog">
+        <div class="modal-header">
+          <div>
+            <span class="eyebrow">公开资料与空间表达</span>
+            <h2>数据与方法</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="关闭">×</button>
+        </div>
+        <div class="source-content">
+          <p>本页保留 97 处国家蓄滞洪区名录对象，并将公开资料中的位置描述落实为便于理解的地图表达。名录存在性与地图空间表达是两件事：地图不宣称发布法定边界。</p>
+          <div class="spatial-methods">
+            <div><i class="method-inferred"></i><span><b>推定范围</b>依据河湖、堤防、乡镇、村和工程等公开线索形成的连续资料范围。</span></div>
+            <div><i class="method-administrative"></i><span><b>所在行政区</b>资料暂时只能落实到行政范围时，以无强填充的虚线轮廓表达。</span></div>
+          </div>
+          <p class="warning-copy">所有位置均未经实地核验。本工具不能替代洪水影响评价、国土空间规划“一张图”核验或水行政主管部门出具的正式意见。</p>
+          <div class="source-links">
+            <a href="https://spjc.mwr.gov.cn/spjc/hallg/16008/16008_003_001.jsp?mindex=2" target="_blank" rel="noreferrer">水利部：国家蓄滞洪区名录 ↗</a>
+            <a href="https://xzfg.moj.gov.cn/mobile/law/detail?LawID=1773&amp;Query=" target="_blank" rel="noreferrer">国家行政法规库：2025 年补偿办法 ↗</a>
+            <a href="https://lbs.amap.com/api/javascript-api-v2/summary/" target="_blank" rel="noreferrer">高德地图 JavaScript API 2.0 ↗</a>
+          </div>
+        </div>
+        <div class="modal-actions"><button class="button button-primary" value="cancel">知道了</button></div>
+      </form>
+    </dialog>
+
+    <dialog class="modal about-zone-modal" id="aboutZoneDialog">
+      <form method="dialog">
+        <div class="modal-header">
+          <div>
+            <span class="eyebrow">一分钟漫画科普</span>
+            <h2>什么是蓄滞洪区？</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="关闭">×</button>
+        </div>
+        <div class="about-zone-content">
+          <figure class="about-zone-figure">
+            <img src="./assets/about-flood-zone-infographic.png" alt="蓄滞洪区科普图：强降雨使河道水位升高，经过统一调度开启闸门，把部分洪水临时引入蓄滞洪区，分担洪峰并减轻下游压力。" />
+          </figure>
+        </div>
+        <div class="modal-actions"><button class="button button-primary" value="cancel">明白了</button></div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="./data/map-config.js"></script>
+    <script src="./data/zones.js"></script>
+    <script src="./data/zone-locations.js"></script>
+    <script src="./data/location-cache.js"></script>
+    <script src="./data/amap-d-locations.js"></script>
+    <script src="./data/d-location-estimates.js"></script>
+    <script src="./data/location-evidence.js?v=20260913-jiangxi-accepted"></script>
+    <script src="./data/location-boundaries.js?v=20260913-jiangxi-accepted"></script>
+    <script src="./core.js"></script>
+    <script src="./prototype-selection-animation.js"></script>
+    <script src="./map-location-search.js"></script>
+    <script src="./administrative-boundaries.js"></script>
+    <script src="./app.js?v=20260913-selection-fit"></script>
+  </body>
+</html>

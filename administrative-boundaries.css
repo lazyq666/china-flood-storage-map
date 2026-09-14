@@ -1,0 +1,21 @@
+.admin-boundaries { color: #453b51; font: 12px/1.5 Inter, "PingFang SC", "Microsoft YaHei", sans-serif; }
+.admin-boundaries fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.admin-boundaries legend { padding: 0; margin: 0 0 7px; font-size: 12px; font-weight: 750; }
+.admin-boundaries .admin-options { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
+.admin-boundaries label { display: inline-flex; align-items: center; gap: 5px; min-height: 28px; cursor: pointer; white-space: nowrap; }
+.admin-boundaries input[type="checkbox"] { width: 15px; height: 15px; min-height: 15px; margin: 0; padding: 0; accent-color: #7952a3; cursor: pointer; }
+.admin-boundaries input:focus-visible, .admin-boundaries button:focus-visible { outline: 2px solid #7952a3; outline-offset: 3px; }
+.admin-boundaries i { display: inline-block; width: 16px; border-top: 2px solid #7952a3; }
+.admin-boundaries .admin-county-swatch { border-top: 1px solid #9b83b4; }
+.admin-boundaries .admin-status { font-size: 11px; line-height: 1.6; margin: 6px 0 0; color: #73687c; }
+.admin-boundaries .admin-retry { margin-top: 6px; padding: 4px 8px; color: #62458a; border: 1px solid #c8bad6; border-radius: 5px; background: #fff; cursor: pointer; font: inherit; }
+.admin-boundaries .water-options { margin-top: 9px; padding-top: 8px; border-top: 1px solid #e2e4e8; }
+.admin-boundaries .water-legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.admin-boundaries .water-options input { accent-color: #247eac; }
+.admin-boundaries .water-swatch { height: 8px; border: 1px solid #529eca; border-radius: 3px; background: #b7d9ef; }
+.admin-boundaries .water-status { margin: 3px 0 0; color: #607885; font-size: 11px; line-height: 1.6; }
+.admin-boundaries [hidden] { display: none !important; }
+.map-stage > .admin-boundaries { position: absolute; top: 16px; right: 16px; z-index: 110; width: 312px; max-width: calc(100% - 32px); padding: 12px 14px; border: 1px solid rgba(210,203,219,.8); border-radius: 10px; background: rgba(255,255,255,.95); box-shadow: 0 3px 16px rgba(42,31,57,.12); }
+.map-tools > .admin-boundaries { border-bottom: 1px solid #deddd5; margin-bottom: 10px; padding-bottom: 10px; }
+.map-shell:has(.water-options) .zone-nav { top: auto; bottom: 56px; transform: none; }
+@media (max-width: 820px) { .map-stage > .admin-boundaries { top: 10px; right: 10px; max-width: calc(100% - 20px); padding: 9px 11px; } }
