@@ -81,3 +81,9 @@ test("removed network-sourced images are not referenced or present", async () =>
     await assert.rejects(access(new URL(`assets/${asset}`, root)));
   }
 });
+
+test("ships an explicit 404 page so normalized unsafe paths cannot fall back to the app shell", async () => {
+  const notFoundPage = await readFile(new URL("404.html", root), "utf8");
+  assert.match(notFoundPage, /<title>页面不存在/);
+  assert.doesNotMatch(notFoundPage, /<script\b/i);
+});
