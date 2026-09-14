@@ -364,10 +364,12 @@
 
   function loadAMap() {
     if (window.AMap) return Promise.resolve(window.AMap);
-    if (!mapConfig.key || !mapConfig.securityJsCode) {
+    if (!mapConfig.key || (!mapConfig.serviceHost && !mapConfig.securityJsCode)) {
       return Promise.reject(new Error("AMAP_CONFIG_MISSING"));
     }
-    window._AMapSecurityConfig = { securityJsCode: mapConfig.securityJsCode };
+    window._AMapSecurityConfig = mapConfig.serviceHost
+      ? { serviceHost: new URL(mapConfig.serviceHost, window.location.origin).href.replace(/\/$/, "") }
+      : { securityJsCode: mapConfig.securityJsCode };
     return new Promise((resolve, reject) => {
       const callbackName = `__floodStorageAmapReady_${Date.now()}`;
       const script = document.createElement("script");
@@ -462,7 +464,7 @@
       await loadAMap();
     } catch (error) {
       if (error.message === "AMAP_CONFIG_MISSING") {
-        showMapError("需要配置高德地图 Key", "请在 data/map-config.js 中填写 Web 端 Key 和 securityJsCode。");
+        showMapError("需要配置高德地图 Key", "本地请填写 data/map-config.js；线上请检查 AMAP_KEY、AMAP_SECURITY_JS_CODE 和同域代理配置。");
       } else {
         showMapError("高德地图加载失败", "请检查 Key、安全密钥、域名白名单和网络连接。");
       }
@@ -487,7 +489,12 @@
     } catch (_) { /* 控件不影响地图主体 */ }
 
     window.FloodAdminBoundaries.mount({ map: state.map, AMap, container: document.getElementById("adminBoundaries") });
-    window.FloodLocationSearch.mount({ map: state.map, AMap, container: document.getElementById("adminBoundaries") });
+    window.FloodLocationSearch.mount({
+      map: state.map,
+      AMap,
+      container: document.getElementById("adminBoundaries"),
+      overpassEndpoint: mapConfig.osmServices?.overpassEndpoint
+    });
 
     const container = mapContainer();
     container.dataset.mapProvider = "amap";
@@ -1378,6 +1385,8 @@
   }
 
   async function fetchTargetGeometries(targets) {
+    const endpoint = String(mapConfig.osmServices?.nominatimEndpoint || "").trim();
+    if (!endpoint) return null;
     const polygonTargets = targets.filter((target) =>
       !(["approximate-boundary", "approximate-area", "engineering-anchor"].includes(target.__locationKind)
         || (target.__locationKind === "landmark" && target.osmType === "node"))
@@ -1387,10 +1396,11 @@
     const cacheKey = `flood-storage-osm-geometry:v3:${ids.slice().sort().join(",")}`;
     const cached = readGeometryCache(cacheKey);
     if (cached) return cached;
-    const params = new URLSearchParams({
+    const requestUrl = new URL(endpoint, window.location.href);
+    requestUrl.search = new URLSearchParams({
       format: "jsonv2", polygon_geojson: "1", "accept-language": "zh-CN", osm_ids: ids.join(",")
-    });
-    const response = await fetch(`https://nominatim.openstreetmap.org/lookup?${params.toString()}`, { headers: { Accept: "application/json" } });
+    }).toString();
+    const response = await fetch(requestUrl, { headers: { Accept: "application/json" } });
     if (!response.ok) throw new Error(`位置服务返回 ${response.status}`);
     const results = await response.json();
     const features = results.filter((item) => item.geojson).map((item) => ({
