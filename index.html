@@ -7,8 +7,6 @@
     <link rel="icon" type="image/svg+xml" href="./logo.svg" />
     <title>全国蓄滞洪区地图 · 位置证据版</title>
     <link rel="preconnect" href="https://webapi.amap.com" />
-    <link rel="preconnect" href="https://restapi.amap.com" />
-    <link rel="preconnect" href="https://nominatim.openstreetmap.org" />
     <link rel="stylesheet" href="./tokens.css" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./administrative-boundaries.css" />
@@ -50,7 +48,10 @@
             </div>
           </div>
           <footer class="sidebar-footer">
-            <p class="sidebar-identity">资料仅供参考 · 不构成官方认定或决策依据</p>
+            <div class="sidebar-identity">
+              <p>资料仅供参考 · 不构成官方认定或决策依据</p>
+              <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap contributors</a>
+            </div>
             <button id="sourceButton" type="button">数据与方法</button>
           </footer>
         </aside>
@@ -137,6 +138,7 @@
             <div><i class="method-administrative"></i><span><b>所在行政区</b>资料暂时只能落实到行政范围时，以无强填充的虚线轮廓表达。</span></div>
           </div>
           <p class="warning-copy">所有位置均未经实地核验。本工具不能替代洪水影响评价、国土空间规划“一张图”核验或水行政主管部门出具的正式意见。</p>
+          <p class="warning-copy">地点搜索会将搜索词和必要的网络信息发送给高德地图。仅当部署者配置自有或已获授权的 OSM 服务端点时，河流搜索和 OSM 几何细化功能才会启用。</p>
           <div class="source-links">
             <a href="https://spjc.mwr.gov.cn/spjc/hallg/16008/16008_003_001.jsp?mindex=2" target="_blank" rel="noreferrer">水利部：国家蓄滞洪区名录 ↗</a>
             <a href="https://xzfg.moj.gov.cn/mobile/law/detail?LawID=1773&amp;Query=" target="_blank" rel="noreferrer">国家行政法规库：2025 年补偿办法 ↗</a>

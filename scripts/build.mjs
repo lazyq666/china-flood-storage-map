@@ -5,10 +5,12 @@ import path from "node:path";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const output = path.join(root, "dist");
 const key = process.env.AMAP_KEY?.trim();
-const securityJsCode = process.env.AMAP_SECURITY_JS_CODE?.trim();
+const serviceHost = process.env.AMAP_SERVICE_HOST?.trim() || "/_AMapService";
+const nominatimEndpoint = process.env.OSM_NOMINATIM_ENDPOINT?.trim() || "";
+const overpassEndpoint = process.env.OSM_OVERPASS_ENDPOINT?.trim() || "";
 
-if (!key || !securityJsCode) {
-  throw new Error("请在部署平台设置 AMAP_KEY 和 AMAP_SECURITY_JS_CODE 环境变量。");
+if (!key) {
+  throw new Error("请在部署平台设置 AMAP_KEY 环境变量。");
 }
 
 await rm(output, { recursive: true, force: true });
@@ -28,6 +30,14 @@ for (const entry of await readdir(path.join(root, "data"), { withFileTypes: true
 }
 await writeFile(
   path.join(output, "data/map-config.js"),
-  `window.FLOOD_STORAGE_MAP_CONFIG = ${JSON.stringify({ key, securityJsCode }, null, 2)};\n`
+  `window.FLOOD_STORAGE_MAP_CONFIG = ${JSON.stringify({
+    key,
+    serviceHost,
+    osmServices: { nominatimEndpoint, overpassEndpoint }
+  }, null, 2)};\n`
+);
+await writeFile(
+  path.join(output, "_routes.json"),
+  `${JSON.stringify({ version: 1, include: ["/_AMapService/*"], exclude: [] }, null, 2)}\n`
 );
 console.log("站点已生成到 dist/。");
