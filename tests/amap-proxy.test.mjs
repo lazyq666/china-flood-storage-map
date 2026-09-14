@@ -30,7 +30,7 @@ function context(path, method = "GET", code = "test-only-secret") {
   return {
     env: { AMAP_SECURITY_JS_CODE: code },
     request: {
-      url: `https://example.test${path}`,
+      url: `https://hongqu.wayout.top${path}`,
       method,
       headers: new Headers({ accept: "application/json" })
     }
@@ -48,7 +48,20 @@ test("forwards only a recognized endpoint to its fixed AMap origin", async () =>
     assert.equal(target.pathname, "/v3/place/polygon");
     assert.equal(target.searchParams.get("keywords"), "river");
     assert.equal(target.searchParams.get("jscode"), "test-only-secret");
+    assert.equal(requests[0].init.headers.get("origin"), "https://hongqu.wayout.top");
+    assert.equal(requests[0].init.headers.get("referer"), "https://hongqu.wayout.top/");
     assert.equal(requests[0].init.redirect, "manual");
+  });
+});
+
+test("rejects requests from origins outside the production allowlist", async () => {
+  await withMockFetch(async ({ onRequest, requests }) => {
+    const untrusted = context("/_AMapService/v3/place/text");
+    untrusted.request.url = "https://preview.attacker.invalid/_AMapService/v3/place/text";
+    const response = await onRequest(untrusted);
+
+    assert.equal(response.status, 403);
+    assert.equal(requests.length, 0);
   });
 });
 

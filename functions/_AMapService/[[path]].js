@@ -5,6 +5,10 @@ const ALLOWED_PATHS = new Set([
   "/v3/place/text",
   "/v4/map/styles"
 ]);
+const TRUSTED_SITE_ORIGINS = new Set([
+  "https://hongqu.wayout.top",
+  "https://china-flood-storage-map.pages.dev"
+]);
 
 function rejected(message, status = 400, extraHeaders = {}) {
   return new Response(message, {
@@ -48,6 +52,9 @@ export async function onRequest(context) {
   }
 
   const incoming = new URL(context.request.url);
+  if (!TRUSTED_SITE_ORIGINS.has(incoming.origin)) {
+    return rejected("Unsupported site origin.", 403);
+  }
   const upstreamPath = validatedUpstreamPath(incoming.pathname);
   if (!upstreamPath) return rejected("Unsupported AMap proxy path.");
 
@@ -65,6 +72,8 @@ export async function onRequest(context) {
     const value = context.request.headers.get(name);
     if (value) headers.set(name, value);
   }
+  headers.set("origin", incoming.origin);
+  headers.set("referer", `${incoming.origin}/`);
 
   const upstreamResponse = await fetch(target, {
     method,
