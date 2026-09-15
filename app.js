@@ -5,6 +5,7 @@
   const basins = window.FLOOD_STORAGE_BASINS || [];
   const locationHints = window.FLOOD_STORAGE_LOCATION_HINTS || {};
   const locationCache = window.FLOOD_STORAGE_LOCATION_CACHE?.zones || {};
+  const amapDLocations = window.FLOOD_STORAGE_AMAP_D_LOCATIONS?.zones || {};
   const dLocationEstimates = window.FLOOD_STORAGE_D_LOCATION_ESTIMATES?.zones || {};
   const locationEvidencePayload = window.FLOOD_STORAGE_LOCATION_EVIDENCE || {};
   const locationEvidence = locationEvidencePayload.zones || {};
@@ -110,6 +111,7 @@
     detailKeyFacts: document.getElementById("detailKeyFacts"),
     detailLimitations: document.getElementById("detailLimitations"),
     detailOfficialMap: document.getElementById("detailOfficialMap"),
+    detailAmapCandidates: document.getElementById("detailAmapCandidates"),
     detailApproximateBoundary: document.getElementById("detailApproximateBoundary"),
     detailReferenceCluesRow: document.getElementById("detailReferenceCluesRow"),
     detailReferenceClues: document.getElementById("detailReferenceClues"),
@@ -223,7 +225,7 @@
   }
 
   function locationEntry(zoneName) {
-    const entry = { ...(locationCache[zoneName] || {}) };
+    const entry = { ...(locationCache[zoneName] || {}), ...(amapDLocations[zoneName] || {}) };
     if (locationBoundaries[zoneName]) entry.approximateBoundary = locationBoundaries[zoneName];
     const estimate = dLocationEstimates[zoneName];
     if (estimate?.mapTarget && !entry.areaApproximation && !entry.engineeringAnchor) {
@@ -241,6 +243,7 @@
       reviewedAt: null,
       fieldVerified: false,
       officialMap: { available: false, usableForLocation: false },
+      placeSearch: { status: "none", candidates: [], selectedCandidate: null },
       referenceClues: [],
       governmentSources: [],
       administrativeMatch: { overall: "unavailable", matchedAreas: [] },
@@ -1569,6 +1572,14 @@
     }
   }
 
+  function compactAdministrativeText(candidate) {
+    return [...new Set([
+      candidate?.province,
+      candidate?.city,
+      candidate?.district
+    ].filter(Boolean))].join("");
+  }
+
   function uniqueSourcesByUrl(sources, seenUrls) {
     return sources.filter((source) => {
       const url = String(source?.url || "").trim();
@@ -1581,6 +1592,26 @@
   function renderEvidenceDetails(zone, evidence, boundary) {
     const spatial = publicSpatialMeta(zone.name);
     const officialMap = evidence.officialMap || {};
+    const candidates = evidence.placeSearch?.candidates || [];
+    const contextAnchors = (evidence.placeSearch?.contextAnchors || [])
+      .filter((anchor) => !candidates.some((candidate) => candidate.id === anchor.id));
+    const displayedCandidates = [
+      ...candidates.map((candidate) => ({ ...candidate, displayRole: candidate.id === evidence.placeSearch.selectedCandidateId ? "采用" : "同名地物" })),
+      ...contextAnchors.map((candidate) => ({ ...candidate, displayRole: "位置侧证" }))
+    ];
+    if (displayedCandidates.length) {
+      els.detailAmapCandidates.innerHTML = displayedCandidates.map((candidate) => {
+        const selected = candidate.id === evidence.placeSearch.selectedCandidateId;
+        const area = compactAdministrativeText(candidate);
+        return `<div class="evidence-candidate${selected ? " is-selected" : ""}">
+          <span>${escapeHtml(candidate.name)}${area ? `（${escapeHtml(area)}）` : ""}</span>
+          <i>${escapeHtml(candidate.displayRole)}</i>
+        </div>`;
+      }).join("");
+    } else {
+      els.detailAmapCandidates.innerHTML = '<p>未找到可用于定位的同名地物或相关地标。</p>';
+    }
+
     if (boundary) {
       const areaText = boundary.referenceAreaSqKm
         ? `资料面积约 ${escapeHtml(boundary.referenceAreaSqKm)} km² · 图示面积约 ${escapeHtml(Number(Number(boundary.geometryAreaSqKm).toFixed(2)))} km²`
