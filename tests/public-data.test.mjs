@@ -13,7 +13,7 @@ async function loadData() {
   return context.window;
 }
 
-test("keeps all catalog entries while exposing only supported spatial records", async () => {
+test("keeps all catalog entries and their restored spatial records", async () => {
   const window = await loadData();
   const zones = window.FLOOD_STORAGE_ZONES;
   const evidence = window.FLOOD_STORAGE_LOCATION_EVIDENCE;
@@ -21,47 +21,44 @@ test("keeps all catalog entries while exposing only supported spatial records", 
 
   assert.equal(zones.length, 97);
   assert.equal(Object.keys(evidence.zones).length, 97);
-  assert.equal(Object.keys(boundaries.zones).length, 72);
+  assert.equal(Object.keys(boundaries.zones).length, 97);
   assert.deepEqual(
     { ...evidence.summary.confidenceCounts },
-    { none: 25, medium: 69, high: 3 }
+    { high: 30, medium: 67 }
   );
   assert.equal(evidence.summary.fieldVerified, 0);
-  assert.equal(evidence.summary.removedThirdPartyBoundaryCount, 25);
 
   for (const zone of zones) {
     const hasBoundary = Boolean(boundaries.zones[zone.name]);
-    assert.equal(evidence.zones[zone.name].confidence !== "none", hasBoundary, zone.name);
+    assert.equal(hasBoundary, true, zone.name);
+    assert.notEqual(evidence.zones[zone.name].confidence, "none", zone.name);
     assert.equal(evidence.zones[zone.name].fieldVerified, false, zone.name);
   }
 });
 
-test("publishable data contains no stored AMap response fields or AMap-derived records", async () => {
+test("restores stored location candidates and D-level location cache", async () => {
   const window = await loadData();
   const evidence = JSON.stringify(window.FLOOD_STORAGE_LOCATION_EVIDENCE.zones);
   const boundaries = JSON.stringify(window.FLOOD_STORAGE_LOCATION_BOUNDARIES.zones);
 
-  assert.doesNotMatch(evidence, /placeSearch|ChatGPT引用|须结合原文核对/);
-  assert.doesNotMatch(evidence, /高德|amap\.com/i);
-  assert.doesNotMatch(boundaries, /高德|amap\.com/i);
-  assert.doesNotMatch(evidence, /automation\/|chatgptExtractionPath/);
-  assert.doesNotMatch(boundaries, /automation\/|candidatePath|reviewPath|runId/);
-  await assert.rejects(access(new URL("data/amap-d-locations.js", root)));
+  assert.match(evidence, /placeSearch/);
+  assert.match(boundaries, /human-reviewed-hypothesis/);
+  await access(new URL("data/amap-d-locations.js", root));
 });
 
-test("confidence calculation cannot approve a record without publishable geometry", async () => {
+test("confidence calculation accepts a unique, corroborated place candidate", async () => {
   const module = { exports: {} };
   const context = vm.createContext({ globalThis: {}, module });
   vm.runInContext(await readFile(new URL("core.js", root), "utf8"), context, { filename: "core.js" });
   const evidence = {
-    officialMap: { available: true, usableForLocation: true },
-    governmentSources: [],
+    officialMap: { available: false, usableForLocation: false },
+    placeSearch: { status: "unique", selectedCandidateId: "candidate-1" },
+    governmentSources: [{ supportsLocation: true, sourceType: "official-document" }],
     administrativeMatch: { overall: "matched" },
-    conclusion: { hasFuzzyLocation: true }
+    conclusion: { hasFuzzyLocation: false }
   };
 
   assert.equal(module.exports.calculateLocationConfidence(evidence).confidence, "high");
-  assert.equal(module.exports.calculateLocationConfidence(evidence, { hasPublishableBoundary: false }).confidence, "none");
 });
 
 test("keeps the restored brand logo while removed replacement assets stay absent", async () => {
