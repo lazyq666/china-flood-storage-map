@@ -43,10 +43,11 @@
     }
     return [...groups.values()];
   }
-  async function searchRivers(keyword, bbox, { core, signal, fetcher = fetch } = {}) {
+  async function searchRivers(keyword, bbox, { core, signal, fetcher = fetch, endpoint } = {}) {
+    if (!endpoint) throw new Error('河流在线查询未配置。');
     const query = queryFor(keyword, bbox);
     if (cache.has(query)) return cache.get(query);
-    const response = await fetcher('https://overpass-api.de/api/interpreter', {
+    const response = await fetcher(endpoint, {
       method: 'POST', body: new URLSearchParams({ data: query }), signal
     });
     if (!response.ok) throw new Error('河流服务暂不可用（' + response.status + '），请稍后重试。');
@@ -67,7 +68,8 @@
       });
     });
   }
-  function mount({ map, AMap, container, core = window.FloodStorageCore }) {
+  function mount({ map, AMap, container, core = window.FloodStorageCore, overpassEndpoint = '' }) {
+    const riverSearchEnabled = Boolean(String(overpassEndpoint).trim());
     let form = document.getElementById('place-search-form');
     if (!form && container) {
       const details = document.createElement('details');
@@ -89,8 +91,11 @@
     panel.classList.add('location-search-results');
     const options = document.createElement('div');
     options.className = 'location-search-options';
-    options.innerHTML = '<label>搜索类型 <select aria-label="搜索类型"><option value="auto">自动</option>'
-      + '<option value="place">地点</option><option value="river">河流</option></select></label>'
+    options.innerHTML = '<label>搜索类型 <select aria-label="搜索类型">'
+      + (riverSearchEnabled
+        ? '<option value="auto">自动</option><option value="place">地点</option><option value="river">河流</option>'
+        : '<option value="place">地点</option>')
+      + '</select></label>'
       + '<button type="button" class="clear-location-search" hidden>清除搜索结果</button>';
     form.after(options);
     const mode = options.querySelector('select');
@@ -98,6 +103,7 @@
     let generation = 0, controller, overlays = [], timer;
     function message(text, tone = '') { status.textContent = text; status.dataset.tone = tone; }
     function removeOverlays() { if (overlays.length) map.remove(overlays); overlays = []; }
+    if (!riverSearchEnabled) input.placeholder = '搜索附近地点';
     function reset() {
       ++generation; controller?.abort(); clearTimeout(timer);
       removeOverlays(); panel.replaceChildren(); clear.hidden = true;
@@ -141,7 +147,11 @@
           const sw = bounds.getSouthWest(), ne = bounds.getNorthEast();
           const a = core.gcj02ToWgs84([sw.lng, sw.lat]), b = core.gcj02ToWgs84([ne.lng, ne.lat]);
           // Pad for conversion nonlinearity near the corners (roughly 1 km).
-          return searchRivers(keyword, [a[1] - .01, a[0] - .01, b[1] + .01, b[0] + .01], { core, signal: requestController.signal });
+          return searchRivers(keyword, [a[1] - .01, a[0] - .01, b[1] + .01, b[0] + .01], {
+            core,
+            signal: requestController.signal,
+            endpoint: overpassEndpoint
+          });
         })());
       }
       if (places) jobs.push(searchPlaces(AMap, keyword, bounds));
@@ -180,7 +190,9 @@
       message(summaries.join('；'), count ? 'success' : 'error');
     });
     map.on('destroy', reset);
-    message('搜索当前视野；输入“淮河”等河名可查找并高亮附近河段。');
+    message(riverSearchEnabled
+      ? '搜索当前视野；输入“淮河”等河名可查找并高亮附近河段。'
+      : '搜索当前视野内的地点。');
   }
   return { mount, queryFor, riverResults, searchRivers, searchPlaces };
 });

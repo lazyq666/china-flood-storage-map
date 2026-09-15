@@ -30,6 +30,17 @@
     minSize: 8,
     maxSize: 26
   });
+  const BASIN_SLUGS = Object.freeze({
+    "长江流域": "changjiang",
+    "黄河流域": "huanghe",
+    "淮河流域": "huaihe",
+    "海河流域": "haihe",
+    "松花江流域": "songhuajiang",
+    "珠江流域": "zhujiang"
+  });
+  const DEFAULT_PAGE_TITLE = "全国蓄滞洪区地图｜97处名录、位置与公开证据";
+  const DEFAULT_PAGE_DESCRIPTION = "查询全国97处国家蓄滞洪区的名称、所属流域、所在省份、资料推定范围、位置证据与公开来源。地图不代表法定边界，仅供位置理解。";
+  const CANONICAL_SITE_ROOT = document.head.querySelector('link[rel="canonical"]')?.href || "";
   const LIMITATION_ICONS = Object.freeze({
     officialMap: '<svg class="limitation-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 5-3 8 3 5-3v15l-5 3-8-3-5 3V6Z"/><path d="M8 3v15M16 6v15M4 4l16 16"/></svg>',
     fieldVerification: '<svg class="limitation-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><path d="M12 7v4M12 15h.01"/></svg>',
@@ -118,6 +129,58 @@
     return String(value ?? "").replace(/[&<>'"]/g, (char) => ({
       "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
     })[char]);
+  }
+
+  function zoneSlug(zone) {
+    const index = String(zone.id || "").match(/(\d+)$/)?.[1] || "00";
+    return `${BASIN_SLUGS[zone.basin] || "zone"}-${index}`;
+  }
+
+  function setMetaContent(selector, content) {
+    document.head.querySelector(selector)?.setAttribute("content", content);
+  }
+
+  function updateDocumentMetadata(zone) {
+    const canonical = document.head.querySelector('link[rel="canonical"]');
+    if (!zone) {
+      document.title = DEFAULT_PAGE_TITLE;
+      setMetaContent('meta[name="description"]', DEFAULT_PAGE_DESCRIPTION);
+      setMetaContent('meta[property="og:title"]', DEFAULT_PAGE_TITLE);
+      setMetaContent('meta[property="og:description"]', DEFAULT_PAGE_DESCRIPTION);
+      setMetaContent('meta[name="twitter:title"]', DEFAULT_PAGE_TITLE);
+      setMetaContent('meta[name="twitter:description"]', DEFAULT_PAGE_DESCRIPTION);
+      if (canonical && CANONICAL_SITE_ROOT) {
+        canonical.href = CANONICAL_SITE_ROOT;
+        setMetaContent('meta[property="og:url"]', CANONICAL_SITE_ROOT);
+      }
+      return;
+    }
+
+    const evidence = evidenceEntry(zone.name);
+    const hint = locationHints[zone.name] || {};
+    const position = String(evidence.conclusion?.positionText || hint.rawLocation || "相关行政区域")
+      .replace(/[。；;\s]+$/, "");
+    const title = `${zone.name}在哪里？位置与公开证据｜全国蓄滞洪区地图`;
+    const description = `${zone.name}是${zone.basin}国家蓄滞洪区名录对象。查看其${position}的位置资料、地图表达、证据来源与不确定性说明。`;
+    document.title = title;
+    setMetaContent('meta[name="description"]', description);
+    setMetaContent('meta[property="og:title"]', title);
+    setMetaContent('meta[property="og:description"]', description);
+    setMetaContent('meta[name="twitter:title"]', title);
+    setMetaContent('meta[name="twitter:description"]', description);
+    if (canonical && CANONICAL_SITE_ROOT) {
+      const zoneUrl = new URL(`zones/${zoneSlug(zone)}/`, CANONICAL_SITE_ROOT);
+      canonical.href = zoneUrl.href;
+      setMetaContent('meta[property="og:url"]', zoneUrl.href);
+    }
+  }
+
+  function syncSelectedZoneUrl(zone) {
+    const url = new URL(window.location.href);
+    if (zone) url.searchParams.set("zone", zone.id);
+    else url.searchParams.delete("zone");
+    window.history.replaceState(null, "", url);
+    updateDocumentMetadata(zone);
   }
 
   function showToast(message) {
@@ -364,10 +427,12 @@
 
   function loadAMap() {
     if (window.AMap) return Promise.resolve(window.AMap);
-    if (!mapConfig.key || !mapConfig.securityJsCode) {
+    if (!mapConfig.key || (!mapConfig.serviceHost && !mapConfig.securityJsCode)) {
       return Promise.reject(new Error("AMAP_CONFIG_MISSING"));
     }
-    window._AMapSecurityConfig = { securityJsCode: mapConfig.securityJsCode };
+    window._AMapSecurityConfig = mapConfig.serviceHost
+      ? { serviceHost: new URL(mapConfig.serviceHost, window.location.origin).href.replace(/\/$/, "") }
+      : { securityJsCode: mapConfig.securityJsCode };
     return new Promise((resolve, reject) => {
       const callbackName = `__floodStorageAmapReady_${Date.now()}`;
       const script = document.createElement("script");
@@ -462,7 +527,7 @@
       await loadAMap();
     } catch (error) {
       if (error.message === "AMAP_CONFIG_MISSING") {
-        showMapError("需要配置高德地图 Key", "请在 data/map-config.js 中填写 Web 端 Key 和 securityJsCode。");
+        showMapError("需要配置高德地图 Key", "本地请填写 data/map-config.js；线上请检查 AMAP_KEY、AMAP_SECURITY_JS_CODE 和同域代理配置。");
       } else {
         showMapError("高德地图加载失败", "请检查 Key、安全密钥、域名白名单和网络连接。");
       }
@@ -487,7 +552,12 @@
     } catch (_) { /* 控件不影响地图主体 */ }
 
     window.FloodAdminBoundaries.mount({ map: state.map, AMap, container: document.getElementById("adminBoundaries") });
-    window.FloodLocationSearch.mount({ map: state.map, AMap, container: document.getElementById("adminBoundaries") });
+    window.FloodLocationSearch.mount({
+      map: state.map,
+      AMap,
+      container: document.getElementById("adminBoundaries"),
+      overpassEndpoint: mapConfig.osmServices?.overpassEndpoint
+    });
 
     const container = mapContainer();
     container.dataset.mapProvider = "amap";
@@ -511,6 +581,8 @@
     });
     updateZoneMarkerMode();
     renderApproximateLocations();
+    const selectedZone = zones.find((zone) => zone.id === state.selectedZoneId);
+    if (selectedZone) focusLocation(selectedZone);
     if (state.classification === "province" && state.category !== "全部") {
       focusProvince(state.category);
     } else if (state.classification === "basin" && state.category !== "全部") {
@@ -1378,6 +1450,8 @@
   }
 
   async function fetchTargetGeometries(targets) {
+    const endpoint = String(mapConfig.osmServices?.nominatimEndpoint || "").trim();
+    if (!endpoint) return null;
     const polygonTargets = targets.filter((target) =>
       !(["approximate-boundary", "approximate-area", "engineering-anchor"].includes(target.__locationKind)
         || (target.__locationKind === "landmark" && target.osmType === "node"))
@@ -1387,10 +1461,11 @@
     const cacheKey = `flood-storage-osm-geometry:v3:${ids.slice().sort().join(",")}`;
     const cached = readGeometryCache(cacheKey);
     if (cached) return cached;
-    const params = new URLSearchParams({
+    const requestUrl = new URL(endpoint, window.location.href);
+    requestUrl.search = new URLSearchParams({
       format: "jsonv2", polygon_geojson: "1", "accept-language": "zh-CN", osm_ids: ids.join(",")
-    });
-    const response = await fetch(`https://nominatim.openstreetmap.org/lookup?${params.toString()}`, { headers: { Accept: "application/json" } });
+    }).toString();
+    const response = await fetch(requestUrl, { headers: { Accept: "application/json" } });
     if (!response.ok) throw new Error(`位置服务返回 ${response.status}`);
     const results = await response.json();
     const features = results.filter((item) => item.geojson).map((item) => ({
@@ -1657,6 +1732,7 @@
     if (!zone) return;
     clearMapHover();
     state.selectedZoneId = zoneId;
+    syncSelectedZoneUrl(zone);
     renderList();
     const entry = locationEntry(zone.name);
     const hint = locationHints[zone.name];
@@ -1690,6 +1766,7 @@
     els.detailPanel.classList.remove("open");
     els.detailPanel.setAttribute("aria-hidden", "true");
     state.selectedZoneId = null;
+    syncSelectedZoneUrl(null);
     clearFocus();
     renderList();
     updateMapLabelSelection();
@@ -1814,6 +1891,10 @@
     renderFilters();
     renderList();
     bindEvents();
+    const requestedZoneId = new URLSearchParams(window.location.search).get("zone");
+    if (requestedZoneId && zones.some((zone) => zone.id === requestedZoneId)) {
+      selectZone(requestedZoneId, false);
+    }
     initMap();
   }
 
