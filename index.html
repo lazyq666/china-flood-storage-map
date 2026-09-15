@@ -4,16 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#f4f9fc" />
+    <meta name="description" content="查询全国97处国家蓄滞洪区的名称、所属流域、所在省份、资料推定范围、位置证据与公开来源。地图不代表法定边界，仅供位置理解。" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="全国蓄滞洪区地图" />
+    <meta property="og:title" content="全国蓄滞洪区地图｜97处名录、位置与公开证据" />
+    <meta property="og:description" content="查询全国97处国家蓄滞洪区的名称、所属流域、所在省份、资料推定范围、位置证据与公开来源。" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="全国蓄滞洪区地图｜97处名录、位置与公开证据" />
+    <meta name="twitter:description" content="查询全国97处国家蓄滞洪区的名称、所属流域、所在省份、资料推定范围、位置证据与公开来源。" />
+    <!-- SEO_BUILD_URLS -->
     <link rel="icon" type="image/svg+xml" href="./logo.svg" />
-    <title>全国蓄滞洪区地图 · 位置证据版</title>
+    <title>全国蓄滞洪区地图｜97处名录、位置与公开证据</title>
     <link rel="preconnect" href="https://webapi.amap.com" />
-    <link rel="preconnect" href="https://restapi.amap.com" />
-    <link rel="preconnect" href="https://nominatim.openstreetmap.org" />
     <link rel="stylesheet" href="./tokens.css" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./administrative-boundaries.css" />
     <link rel="stylesheet" href="./map-location-search.css" />
     <link rel="stylesheet" href="./prototype-selection-animation.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "全国蓄滞洪区地图",
+            "description": "全国97处国家蓄滞洪区的名称、所属流域、位置证据与资料推定范围查询工具",
+            "inLanguage": "zh-CN"
+          },
+          {
+            "@type": ["WebApplication", "Dataset"],
+            "name": "全国蓄滞洪区地图与位置证据",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "Any",
+            "isAccessibleForFree": true,
+            "inLanguage": "zh-CN",
+            "description": "收录97处国家蓄滞洪区名录对象，提供所属流域、所在省份、资料推定范围、位置证据、限制与公开来源。",
+            "spatialCoverage": "中国",
+            "keywords": ["蓄滞洪区", "蓄洪区", "滞洪区", "防洪", "地图", "国家蓄滞洪区名录"]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div class="app-shell">
@@ -50,7 +84,11 @@
             </div>
           </div>
           <footer class="sidebar-footer">
-            <p class="sidebar-identity">资料仅供参考 · 不构成官方认定或决策依据</p>
+            <div class="sidebar-identity">
+              <p>资料仅供参考 · 不构成官方认定或决策依据</p>
+              <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap contributors</a>
+              <!-- SEO_DIRECTORY_LINK -->
+            </div>
             <button id="sourceButton" type="button">数据与方法</button>
           </footer>
         </aside>
@@ -131,12 +169,13 @@
           <button class="icon-button" value="cancel" aria-label="关闭">×</button>
         </div>
         <div class="source-content">
-          <p>本页保留 97 处国家蓄滞洪区名录对象，并将公开资料中的位置描述落实为便于理解的地图表达。名录存在性与地图空间表达是两件事：地图不宣称发布法定边界。</p>
+          <p>本页保留 97 处国家蓄滞洪区名录对象，并将已整理的位置资料落实为便于理解的地图表达。名录存在性与地图空间表达是两件事：所有范围均为资料推定，不是主管部门发布的法定边界。</p>
           <div class="spatial-methods">
             <div><i class="method-inferred"></i><span><b>推定范围</b>依据河湖、堤防、乡镇、村和工程等公开线索形成的连续资料范围。</span></div>
             <div><i class="method-administrative"></i><span><b>所在行政区</b>资料暂时只能落实到行政范围时，以无强填充的虚线轮廓表达。</span></div>
           </div>
           <p class="warning-copy">所有位置均未经实地核验。本工具不能替代洪水影响评价、国土空间规划“一张图”核验或水行政主管部门出具的正式意见。</p>
+          <p class="warning-copy">地点搜索会将搜索词和必要的网络信息发送给高德地图。仅当部署者配置自有或已获授权的 OSM 服务端点时，河流搜索和 OSM 几何细化功能才会启用。</p>
           <div class="source-links">
             <a href="https://spjc.mwr.gov.cn/spjc/hallg/16008/16008_003_001.jsp?mindex=2" target="_blank" rel="noreferrer">水利部：国家蓄滞洪区名录 ↗</a>
             <a href="https://xzfg.moj.gov.cn/mobile/law/detail?LawID=1773&amp;Query=" target="_blank" rel="noreferrer">国家行政法规库：2025 年补偿办法 ↗</a>
@@ -158,7 +197,27 @@
         </div>
         <div class="about-zone-content">
           <figure class="about-zone-figure">
-            <img src="./assets/about-flood-zone-infographic.webp" alt="蓄滞洪区科普图：强降雨使河道水位升高，经过统一调度开启闸门，把部分洪水临时引入蓄滞洪区，分担洪峰并减轻下游压力。" />
+            <figcaption>蓄滞洪区如何分担洪峰</figcaption>
+            <div class="flood-story" role="img" aria-label="强降雨使河道水位升高；经统一调度启用蓄滞洪区；部分洪水临时进入蓄滞洪区，为下游分担洪峰。">
+              <article>
+                <svg viewBox="0 0 120 86" aria-hidden="true"><path class="story-cloud" d="M29 38c1-13 12-22 25-20 6-13 27-10 29 5 15-2 24 18 12 27H32c-10-2-12-9-3-12Z"/><path class="story-rain" d="m38 57-5 11m20-11-5 11m20-11-5 11m20-11-5 11"/><path class="story-river" d="M5 79c20-10 37 9 57 0s37 8 53-1"/></svg>
+                <b>洪水上涨</b>
+                <span>持续强降雨使河道流量和水位快速上升。</span>
+              </article>
+              <i aria-hidden="true">→</i>
+              <article>
+                <svg viewBox="0 0 120 86" aria-hidden="true"><path class="story-bank" d="M8 67h104M31 67V28h17v39m25 0V28h17v39M48 37h25M48 50h25"/><path class="story-water" d="M4 75c18-8 32 7 50 0s31 7 47 0 13 0 16 1"/><path class="story-arrow" d="M60 8v17m-7-7 7 7 7-7"/></svg>
+                <b>统一调度</b>
+                <span>达到法定条件后，由有权部门决定是否启用。</span>
+              </article>
+              <i aria-hidden="true">→</i>
+              <article>
+                <svg viewBox="0 0 120 86" aria-hidden="true"><path class="story-field" d="M7 68c18-14 33-5 48-15 16-11 36-8 58 5v21H7Z"/><path class="story-water" d="M9 69c17-8 31 6 47-1s31 7 50 0"/><path class="story-home" d="m73 42 14-11 14 11v17H73Zm8 17V48h11v11"/></svg>
+                <b>临时蓄洪</b>
+                <span>部分洪水进入指定区域，分担洪峰并减轻下游压力。</span>
+              </article>
+            </div>
+            <p>启用范围、时机与人员转移以主管部门发布的信息为准。</p>
           </figure>
         </div>
         <div class="modal-actions"><button class="button button-primary" value="cancel">明白了</button></div>
