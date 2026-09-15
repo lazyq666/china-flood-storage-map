@@ -84,7 +84,7 @@ a { color: inherit; }
 .zone-row > * { position: relative; z-index: 1; }
 .zone-row:hover { background: var(--color-interactive-bg-hover); }
 .zone-row.active { --zone-active-accent: var(--color-interactive); background: #fff; box-shadow: inset 0 1px 0 rgba(0, 126, 241, .08), inset 0 -1px 0 rgba(0, 126, 241, .08); }
-.zone-row.active::before { content: ""; position: absolute; z-index: 0; inset: 0; pointer-events: none; background: url("./assets/zone-row-selected.png") center / 100% auto no-repeat; }
+.zone-row.active::before { content: ""; position: absolute; z-index: 0; inset: 0; pointer-events: none; background: url("./assets/zone-row-selected.webp") center / 100% auto no-repeat; }
 .zone-row.active .zone-name { color: var(--color-text-strong); font-weight: var(--font-weight-600); }
 .zone-main { min-width: 0; display: flex; align-items: baseline; gap: var(--space-8); }
 .zone-name { display: block; flex: 1 1 auto; min-width: 0; font-size: var(--font-size-12); font-weight: var(--font-weight-600); color: var(--color-text-strong); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -157,7 +157,7 @@ a { color: inherit; }
 .detail-header { position: relative; isolation: isolate; flex: 0 0 auto; overflow: hidden; padding: 22px 22px 20px; color: var(--color-detail-text); background: var(--color-detail-header); border-bottom: 1px solid var(--color-detail-divider); border-radius: 9px 9px 0 0; }
 .detail-header > h2, .detail-header > .detail-badges, .detail-header > .detail-summary { position: relative; z-index: 2; }
 .detail-header::after { content: ""; position: absolute; z-index: 1; inset: 0; background: none; pointer-events: none; }
-.detail-header-art { position: absolute; z-index: 0; inset: 0; overflow: hidden; background: url("./assets/bg_deail.png") center / cover no-repeat; pointer-events: none; }
+.detail-header-art { position: absolute; z-index: 0; inset: 0; overflow: hidden; background: url("./assets/bg_deail.webp") center / cover no-repeat; pointer-events: none; }
 .detail-close { position: absolute; z-index: 3; right: 14px; top: 14px; width: 34px; height: 34px; display: grid; place-items: center; padding: 0; border: 1px solid var(--color-detail-divider); border-radius: 50%; background: var(--color-detail-close); color: var(--color-detail-text); cursor: pointer; }
 .detail-close svg { display: block; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.25; stroke-linecap: round; }
 .detail-close:hover { background: var(--color-detail-close-hover); }
