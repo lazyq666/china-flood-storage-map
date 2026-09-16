@@ -1352,7 +1352,7 @@
     if (!state.map || !layers.length) return;
     const stage = mapContainer().parentElement;
     const compact = window.innerWidth <= 680;
-    const mobileSheetPrototype = compact && document.body.classList.contains("mobile-sheet-prototype");
+    const mobileSheetLayout = compact && document.body.classList.contains("mobile-sheet-layout");
     const panelWidth = els.detailPanel.classList.contains("open") ? els.detailPanel.offsetWidth : 0;
     let topPadding = 24;
     let rightPadding = 20;
@@ -1362,13 +1362,13 @@
     let availableWidth = Math.max(1, stage.clientWidth - leftPadding - rightPadding);
     let availableHeight = Math.max(1, stage.clientHeight - topPadding - bottomPadding);
     let avoid = [topPadding, bottomPadding, leftPadding, rightPadding];
-    if (mobileSheetPrototype) {
+    if (mobileSheetLayout) {
       const activeSheet = els.detailPanel.classList.contains("open")
         ? els.detailPanel
         : document.querySelector(".sidebar");
       topPadding = 56;
       rightPadding = 28;
-      bottomPadding = Math.round((activeSheet?.getBoundingClientRect().height || stage.clientHeight * 0.4) + 24);
+      bottomPadding = Math.round((activeSheet?.getBoundingClientRect().height || stage.clientHeight * 0.45) + 24);
       leftPadding = 28;
       availableLeft = leftPadding;
       availableWidth = Math.max(1, stage.clientWidth - leftPadding - rightPadding);
@@ -1393,7 +1393,7 @@
     }
     const markerClearance = compact ? 64 : 76;
     topPadding = Math.max(topPadding, compact ? 56 : 64);
-    rightPadding = Math.max(rightPadding, mobileSheetPrototype ? 28 : markerClearance);
+    rightPadding = Math.max(rightPadding, mobileSheetLayout ? 28 : markerClearance);
     availableWidth = Math.max(1, stage.clientWidth - leftPadding - rightPadding);
     availableHeight = Math.max(1, stage.clientHeight - topPadding - bottomPadding);
     avoid = [topPadding, bottomPadding, leftPadding, rightPadding];
@@ -1412,8 +1412,8 @@
     try {
       // One native smooth transition per selection. The documented setFitView
       // API has no duration argument; remote refinement must not refit below.
-      state.map.setFitView(layers, mobileSheetPrototype, avoid);
-      if (mobileSheetPrototype) {
+      state.map.setFitView(layers, mobileSheetLayout, avoid);
+      if (mobileSheetLayout) {
         const selectionLayer = layers.find((layer) => layer.getExtData?.()?.selectionCenter);
         const selectionPosition = selectionLayer?.getPosition?.();
         window.requestAnimationFrame(() => {
