@@ -565,6 +565,9 @@
     state.map.on("complete", () => {
       container.dataset.mapReady = "true";
       warmProvinceDistrictCache();
+      if (state.selectedZoneId && state.focusLayers.length) {
+        window.requestAnimationFrame(() => fitLayers(state.focusLayers));
+      }
     });
     state.map.on("mousemove", (event) => {
       const lng = event.lnglat?.getLng ? event.lnglat.getLng() : event.lnglat?.lng;
@@ -1349,6 +1352,7 @@
     if (!state.map || !layers.length) return;
     const stage = mapContainer().parentElement;
     const compact = window.innerWidth <= 680;
+    const mobileSheetPrototype = compact && document.body.classList.contains("mobile-sheet-prototype");
     const panelWidth = els.detailPanel.classList.contains("open") ? els.detailPanel.offsetWidth : 0;
     let topPadding = 24;
     let rightPadding = 20;
@@ -1358,7 +1362,19 @@
     let availableWidth = Math.max(1, stage.clientWidth - leftPadding - rightPadding);
     let availableHeight = Math.max(1, stage.clientHeight - topPadding - bottomPadding);
     let avoid = [topPadding, bottomPadding, leftPadding, rightPadding];
-    if (!compact) {
+    if (mobileSheetPrototype) {
+      const activeSheet = els.detailPanel.classList.contains("open")
+        ? els.detailPanel
+        : document.querySelector(".sidebar");
+      topPadding = 56;
+      rightPadding = 28;
+      bottomPadding = Math.round((activeSheet?.getBoundingClientRect().height || stage.clientHeight * 0.4) + 24);
+      leftPadding = 28;
+      availableLeft = leftPadding;
+      availableWidth = Math.max(1, stage.clientWidth - leftPadding - rightPadding);
+      availableHeight = Math.max(1, stage.clientHeight - topPadding - bottomPadding);
+      avoid = [topPadding, bottomPadding, leftPadding, rightPadding];
+    } else if (!compact) {
       availableLeft = Math.max(0, Math.min(stage.clientWidth, els.detailPanel.offsetLeft + panelWidth));
       const fit = selectionFitPadding({
         mapWidth: stage.clientWidth,
@@ -1377,7 +1393,7 @@
     }
     const markerClearance = compact ? 64 : 76;
     topPadding = Math.max(topPadding, compact ? 56 : 64);
-    rightPadding = Math.max(rightPadding, markerClearance);
+    rightPadding = Math.max(rightPadding, mobileSheetPrototype ? 28 : markerClearance);
     availableWidth = Math.max(1, stage.clientWidth - leftPadding - rightPadding);
     availableHeight = Math.max(1, stage.clientHeight - topPadding - bottomPadding);
     avoid = [topPadding, bottomPadding, leftPadding, rightPadding];
@@ -1396,7 +1412,27 @@
     try {
       // One native smooth transition per selection. The documented setFitView
       // API has no duration argument; remote refinement must not refit below.
-      state.map.setFitView(layers, false, avoid);
+      state.map.setFitView(layers, mobileSheetPrototype, avoid);
+      if (mobileSheetPrototype) {
+        const selectionLayer = layers.find((layer) => layer.getExtData?.()?.selectionCenter);
+        const selectionPosition = selectionLayer?.getPosition?.();
+        window.requestAnimationFrame(() => {
+          const current = selectionPosition ? screenPoint(selectionPosition) : null;
+          if (!current || !state.map) return;
+          const target = {
+            x: availableLeft + availableWidth / 2,
+            y: topPadding + availableHeight / 2
+          };
+          const correction = {
+            x: Math.round(current.x - target.x),
+            y: Math.round(current.y - target.y)
+          };
+          container.dataset.locationPanCorrection = `${correction.x},${correction.y}`;
+          if (Math.abs(correction.x) > 2 || Math.abs(correction.y) > 2) {
+            state.map.panBy(correction.x, correction.y, 220);
+          }
+        });
+      }
     } catch (_) { /* 仍保留当前视图 */ }
     window.setTimeout(() => {
       if (state.map) {
