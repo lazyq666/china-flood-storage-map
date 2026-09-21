@@ -10,13 +10,18 @@ test("promotes the three explicitly approved reference-map boundaries", async ()
     new URL("review/reference-map-boundary-trial-2026-09-16/candidates.geojson", root),
     "utf8"
   ));
+  const jingjiangCorrection = JSON.parse(await readFile(
+    new URL("review/laz-5-batch-2026-09-21/laz-24/jingjiang-river-aligned-context.geojson", root),
+    "utf8"
+  ));
   const source = await readFile(new URL("data/location-boundaries.js", root), "utf8");
   const context = { window: {} };
   vm.runInNewContext(source, context);
   const boundaries = context.window.FLOOD_STORAGE_LOCATION_BOUNDARIES.zones;
 
-  assert.equal(context.window.FLOOD_STORAGE_LOCATION_BOUNDARIES.qualityCounts["human-reviewed-hypothesis"], 94);
+  assert.equal(context.window.FLOOD_STORAGE_LOCATION_BOUNDARIES.qualityCounts["human-reviewed-hypothesis"], 89);
   assert.equal(context.window.FLOOD_STORAGE_LOCATION_BOUNDARIES.qualityCounts["human-reviewed-reference-map"], 3);
+  assert.equal(context.window.FLOOD_STORAGE_LOCATION_BOUNDARIES.qualityCounts["human-reviewed-user-approved"], 5);
 
   for (const feature of candidates.features) {
     const boundary = boundaries[feature.properties.name];
@@ -25,9 +30,12 @@ test("promotes the three explicitly approved reference-map boundaries", async ()
     assert.equal(boundary.reviewedAt, "2026-09-21");
     assert.equal(boundary.geometryType, feature.geometry.type);
     assert.equal(boundary.samplingGeometry.type, feature.geometry.type);
+    const expectedGeometry = feature.properties.name === "荆江分洪区"
+      ? jingjiangCorrection.geometry
+      : feature.geometry;
     assert.deepEqual(
       JSON.parse(JSON.stringify(boundary.samplingGeometry.coordinates)),
-      feature.geometry.coordinates,
+      expectedGeometry.coordinates,
       feature.properties.name
     );
     assert.equal(boundary.referenceMapPromotion.promotionReason, "explicit-user-acceptance");
