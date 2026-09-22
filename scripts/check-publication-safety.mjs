@@ -13,10 +13,21 @@ const findings = [];
 
 let base = requestedBase;
 if (!base || /^0+$/.test(base)) base = "HEAD^";
-runGit("rev-parse", "--verify", base);
+let fullHistory = false;
+try {
+  execFileSync("git", ["merge-base", base, "HEAD"], { stdio: "ignore" });
+} catch {
+  // A history cleanup can remove the previous push's commit entirely.
+  // Scan the full replacement history rather than silently checking HEAD^.
+  fullHistory = true;
+}
 
-const changedPaths = splitZero(runGit("diff", "--name-only", "-z", "--diff-filter=ACMR", `${base}...HEAD`));
-const addedPaths = new Set(splitZero(runGit("diff", "--name-only", "-z", "--diff-filter=A", `${base}...HEAD`)));
+const changedPaths = splitZero(fullHistory
+  ? runGit("ls-tree", "-r", "--name-only", "-z", "HEAD")
+  : runGit("diff", "--name-only", "-z", "--diff-filter=ACMR", `${base}...HEAD`));
+// Without a comparable baseline, existing files cannot be classified as new.
+// The release report must still compare sizes against the saved pre-cleanup tree.
+const addedPaths = new Set(fullHistory ? [] : splitZero(runGit("diff", "--name-only", "-z", "--diff-filter=A", `${base}...HEAD`)));
 const changedSet = new Set(changedPaths);
 const contentExemptPaths = new Set([
   "scripts/check-publication-safety.mjs",
@@ -74,11 +85,16 @@ for (const path of changedPaths) {
   }
 }
 
-const commits = runGit("rev-list", "--reverse", `${base}..HEAD`).trim().split("\n").filter(Boolean);
+const commits = runGit("rev-list", "--reverse", fullHistory ? "HEAD" : `${base}..HEAD`).trim().split("\n").filter(Boolean);
 for (const commit of commits) {
-  const paths = splitZero(runGit("diff-tree", "--no-commit-id", "--name-only", "-r", "-z", commit));
+  const paths = [...new Set(splitZero(runGit("diff-tree", "--root", "-m", "--no-commit-id", "--name-only", "-r", "-z", "--diff-filter=ACMR", commit)))];
   for (const path of paths) {
-    if (!changedSet.has(path) || contentExemptPaths.has(path)) continue;
+    if ((!fullHistory && !changedSet.has(path)) || contentExemptPaths.has(path)) continue;
+    if (fullHistory) {
+      for (const [pattern, message] of forbiddenPathRules) {
+        if (pattern.test(path)) findings.push(`${path}: ${message}（提交 ${commit.slice(0, 8)}）`);
+      }
+    }
     try {
       const blob = execFileSync("git", ["show", `${commit}:${path}`], { maxBuffer });
       if (!blob.includes(0)) scanText(path, blob.toString("utf8"), `（提交 ${commit.slice(0, 8)}）`);
@@ -108,4 +124,6 @@ if (findings.length) {
   process.exit(1);
 }
 
-console.log(`发布安全检查通过：${changedPaths.length} 个文件，新增 ${(addedBytes / 1048576).toFixed(2)} MiB。`);
+console.log(fullHistory
+  ? `发布安全检查通过：全量检查 ${changedPaths.length} 个当前文件及 ${commits.length} 个提交。旧基线不可比较，新增体积须结合发布前保存的差异检查。`
+  : `发布安全检查通过：${changedPaths.length} 个文件，新增 ${(addedBytes / 1048576).toFixed(2)} MiB。`);
