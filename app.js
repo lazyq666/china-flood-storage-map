@@ -1739,7 +1739,8 @@
     }
 
     const limitations = [
-      ...(!(officialMap.available && officialMap.usableForLocation) ? [{ icon: "officialMap", text: "未找到可用于定位的官方地图或图件" }] : []),
+      ...(boundary?.boundaryReview?.uncertainty ? [{ icon: "legalBoundary", text: boundary.boundaryReview.uncertainty }] : []),
+      ...(!(officialMap.available && officialMap.usableForLocation) ? [{ icon: "officialMap", text: officialMap.available ? "已有官方参考图，尚不足以确定精确界线" : "未找到可用于定位的官方地图或图件" }] : []),
       ...(!evidence.fieldVerified ? [{ icon: "fieldVerification", text: "位置结论未经实地核验" }] : []),
       ["所在行政区", "推定范围"].includes(spatial.label)
         ? { icon: "legalBoundary", text: `地图展示的是${spatial.label}，不是主管部门发布的法定边界` }

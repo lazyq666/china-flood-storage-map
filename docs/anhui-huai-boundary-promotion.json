@@ -1,0 +1,174 @@
+{
+  "version": "2026-09-22-boundary-v3",
+  "promotedAt": "2026-09-22",
+  "coordinateSystem": "GCJ-02",
+  "acceptedCandidateSha256": "e54d1ade864fb86e32575b2cf4119e5b19b21ee05d631384e29218a8a2dd0c4c",
+  "promotedNames": [
+    "蒙洼",
+    "城西湖",
+    "城东湖",
+    "瓦埠湖",
+    "南润段",
+    "邱家湖",
+    "姜唐湖",
+    "寿西湖",
+    "董峰湖",
+    "汤渔湖",
+    "荆山湖",
+    "花园湖",
+    "老汪湖"
+  ],
+  "unrelatedZoneCount": 84,
+  "unrelatedZonesSha256": "aece89f42b101d8fc48a376535e164963471c650a56a086ebef504d2fedea754",
+  "zones": [
+    {
+      "name": "蒙洼",
+      "geometryType": "MultiPolygon",
+      "displayGeometrySha256": "ed64e5755009deefb41cf114758f10c884b93aa8a7894e5cc40cdc527d5b5f95",
+      "samplingGeometrySha256": "09eb9a1d09112a87f75fcc0319c052419477087b20829a1b740a8f68d6734f54",
+      "geometryAreaSqKm": 206.159,
+      "referenceAreaSqKm": 180.4,
+      "parts": 6,
+      "holes": 33,
+      "outerRedrawn": false
+    },
+    {
+      "name": "城西湖",
+      "geometryType": "MultiPolygon",
+      "displayGeometrySha256": "21f4a1605c1d9291ff0de8b8c16387c293f6ccf023b01455caaa7319a6208aec",
+      "samplingGeometrySha256": "04dcdacb27799066a0c3411e0358d01a1207a78c2369e2a6433fcf2dd2eadaf2",
+      "geometryAreaSqKm": 391.673,
+      "referenceAreaSqKm": 517.1,
+      "parts": 7,
+      "holes": 5,
+      "outerRedrawn": false
+    },
+    {
+      "name": "城东湖",
+      "geometryType": "MultiPolygon",
+      "displayGeometrySha256": "19f86842434dfe6900f963e600e1d3c269754bbd4e4ecfdd1cf8d41ad2577917",
+      "samplingGeometrySha256": "7a0b3c3c3c01a9448baa932b3411633728aee6374705bdec1f8db55a3b62b680",
+      "geometryAreaSqKm": 74.891,
+      "referenceAreaSqKm": 378.1,
+      "parts": 2,
+      "holes": 0,
+      "outerRedrawn": false
+    },
+    {
+      "name": "瓦埠湖",
+      "geometryType": "MultiPolygon",
+      "displayGeometrySha256": "2c2533f28fd3cb0f61d9e158394d21558cda0ef5af11debf3afb559747f0420f",
+      "samplingGeometrySha256": "d9e33354c9b2ef1fd72baaafe1bb7800bb73ea07f2b87e9d8a37ce6c1a2f0455",
+      "geometryAreaSqKm": 524.532,
+      "referenceAreaSqKm": 776,
+      "parts": 6,
+      "holes": 0,
+      "outerRedrawn": true
+    },
+    {
+      "name": "老汪湖",
+      "geometryType": "Polygon",
+      "displayGeometrySha256": "1ad76d3239893b43500100f6fc413690fef979cf8fe539c605335044a5b9e422",
+      "samplingGeometrySha256": "e1c782d2c3f412ac5084f2da19dd4b8ca2798eecab51e050bb83f52ec30f4576",
+      "geometryAreaSqKm": 75.719,
+      "referenceAreaSqKm": 64.47,
+      "parts": 1,
+      "holes": 3,
+      "outerRedrawn": true
+    },
+    {
+      "name": "南润段",
+      "geometryType": "MultiPolygon",
+      "displayGeometrySha256": "efede349a69020a9812f7bce42a7ade095e0c9b374cad016c1522ae8463dfb85",
+      "samplingGeometrySha256": "1390de6a001f0e4511df32192279bcbc4834744e2f52faf293ecc43ea8dda266",
+      "geometryAreaSqKm": 4.07,
+      "referenceAreaSqKm": 11.8,
+      "parts": 7,
+      "holes": 1,
+      "outerRedrawn": false
+    },
+    {
+      "name": "邱家湖",
+      "geometryType": "Polygon",
+      "displayGeometrySha256": "35a778b852ff17aefeca4c2c96312bc856ba7c35999dfbc7bb2b68262dcdb1d1",
+      "samplingGeometrySha256": "fa055322c55099fab2f2e0600b3a0c96c1b2b4963fa5761a43871bb7396bd525",
+      "geometryAreaSqKm": 19.803,
+      "referenceAreaSqKm": 26.2,
+      "parts": 1,
+      "holes": 0,
+      "outerRedrawn": false
+    },
+    {
+      "name": "姜唐湖",
+      "geometryType": "MultiPolygon",
+      "displayGeometrySha256": "295ea375000922966536cb4e0213a922ae13202281ad85117af189d2de951c4f",
+      "samplingGeometrySha256": "868b02cab5c98c57526d68e8fe631678b60f87622b647499197fb07ac067abf9",
+      "geometryAreaSqKm": 152.372,
+      "referenceAreaSqKm": 119.2,
+      "parts": 4,
+      "holes": 1,
+      "outerRedrawn": false
+    },
+    {
+      "name": "寿西湖",
+      "geometryType": "MultiPolygon",
+      "displayGeometrySha256": "370922bf048f15a9f47f894bb64c06c87307d9545522a1e27e6d20d368f43536",
+      "samplingGeometrySha256": "4597750700718aca88dbf335ef9a1da167baeb7eeb5699d6da9a5701e94e93ba",
+      "geometryAreaSqKm": 165.062,
+      "referenceAreaSqKm": 154.5,
+      "parts": 3,
+      "holes": 10,
+      "outerRedrawn": true
+    },
+    {
+      "name": "董峰湖",
+      "geometryType": "MultiPolygon",
+      "displayGeometrySha256": "0a5bf8ae82438519d8dee3236dd4beda3c56bfe561341019c502b46724028c40",
+      "samplingGeometrySha256": "93c2792124cc873e26f5010de4773f2c4e448af7b995d471fc39b7c8e7871b1b",
+      "geometryAreaSqKm": 44.626,
+      "referenceAreaSqKm": 40.9,
+      "parts": 3,
+      "holes": 6,
+      "outerRedrawn": true
+    },
+    {
+      "name": "汤渔湖",
+      "geometryType": "MultiPolygon",
+      "displayGeometrySha256": "8e9192c6e12935b1189eaf9d1d0683484b46a5f9d677be957eb0915dca0e8930",
+      "samplingGeometrySha256": "2afe86528e715195dbf696d5f142b546c5c206b76da9ba09bd99e33570b26a56",
+      "geometryAreaSqKm": 58.425,
+      "referenceAreaSqKm": 72.63,
+      "parts": 3,
+      "holes": 4,
+      "outerRedrawn": true
+    },
+    {
+      "name": "荆山湖",
+      "geometryType": "Polygon",
+      "displayGeometrySha256": "5fa71c7c484ffecb7273a4c6ec9239cd78cda7b8a3a9ec49e2805f37eb8eec92",
+      "samplingGeometrySha256": "4c0e34f0eaa55886f2a989526cac60da311a21bc81708ede09c6d53f1dff9974",
+      "geometryAreaSqKm": 58.601,
+      "referenceAreaSqKm": 72.85,
+      "parts": 1,
+      "holes": 1,
+      "outerRedrawn": true
+    },
+    {
+      "name": "花园湖",
+      "geometryType": "Polygon",
+      "displayGeometrySha256": "130c1c36ad6ab0c0d341b388f7c323d2f2e74c0a6ee26a732698eac365eeb2f7",
+      "samplingGeometrySha256": "3b6897f37c348d54fcebc46cbce597fa40fcc4bd95ca3a170e023ec853dcc89c",
+      "geometryAreaSqKm": 188.611,
+      "referenceAreaSqKm": 218.3,
+      "parts": 1,
+      "holes": 3,
+      "outerRedrawn": true
+    }
+  ],
+  "unrelatedEvidenceSha256": "839a02859268643e93948c216a09df80ff6356f3408da160387c5f94d366c10a",
+  "unrelatedGeometrySha256": "5d0b36f4b339d58fdc047f922eca965bb2904fdfeb2d07d4da4b5a8ed3c59416",
+  "sourceLinkCleanup": {
+    "privateChatLinksRemoved": true,
+    "existingHistoryUnchanged": true
+  }
+}

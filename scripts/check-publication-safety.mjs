@@ -39,6 +39,7 @@ for (const path of changedPaths) {
 }
 
 const contentRules = [
+  [/https?:\/\/chatgpt\.com\/(?:g\/[^\s"'<>]*\/c\/|c\/)/i, "私有会话直链"],
   [/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/i, "疑似私钥"],
   [/AKIA[0-9A-Z]{16}/, "疑似 AWS Access Key"],
   [/AIza[0-9A-Za-z_-]{30,}/, "疑似 Google API Key"],

@@ -22,8 +22,8 @@ test("keeps all catalog entries and their restored spatial records", async () =>
   assert.equal(zones.length, 97);
   assert.equal(Object.keys(evidence.zones).length, 97);
   assert.equal(Object.keys(boundaries.zones).length, 97);
-  assert.equal(boundaries.qualityCounts["human-reviewed-user-approved"], 30);
-  assert.equal(boundaries.qualityCounts["human-reviewed-hypothesis"], 64);
+  assert.equal(boundaries.qualityCounts["human-reviewed-user-approved"], 43);
+  assert.equal(boundaries.qualityCounts["human-reviewed-hypothesis"], 51);
   assert.deepEqual(
     { ...evidence.summary.confidenceCounts },
     { high: 30, medium: 67 }
