@@ -22,6 +22,8 @@ test("keeps all catalog entries and their restored spatial records", async () =>
   assert.equal(zones.length, 97);
   assert.equal(Object.keys(evidence.zones).length, 97);
   assert.equal(Object.keys(boundaries.zones).length, 97);
+  assert.equal(boundaries.qualityCounts["human-reviewed-user-approved"], 30);
+  assert.equal(boundaries.qualityCounts["human-reviewed-hypothesis"], 64);
   assert.deepEqual(
     { ...evidence.summary.confidenceCounts },
     { high: 30, medium: 67 }
@@ -34,6 +36,33 @@ test("keeps all catalog entries and their restored spatial records", async () =>
     assert.notEqual(evidence.zones[zone.name].confidence, "none", zone.name);
     assert.equal(evidence.zones[zone.name].fieldVerified, false, zone.name);
   }
+
+  for (const name of ["华阳河", "洪湖分洪区", "西凉湖"]) {
+    const boundary = boundaries.zones[name];
+    assert.equal(boundary.humanReviewStatus, "accepted", name);
+    assert.equal(boundary.method, "user-approved-laz5-three-regions-boundary", name);
+    assert.equal(boundary.legalBoundary, false, name);
+    assert.equal(boundary.fieldVerified, false, name);
+  }
+});
+
+test("keeps private review metadata out of the public boundary payload", async () => {
+  const source = await readFile(new URL("data/location-boundaries.js", root), "utf8");
+  for (const privateKey of [
+    "candidatePath",
+    "reviewPath",
+    "referenceImage",
+    "tracePath",
+    "reportPath",
+    "issueId",
+    "linearAttachmentId",
+    "attachmentPath"
+  ]) {
+    assert.doesNotMatch(source, new RegExp(`"${privateKey}"\\s*:`), privateKey);
+  }
+  assert.doesNotMatch(source, /"[A-Za-z][A-Za-z0-9]*Path"\s*:/);
+  assert.doesNotMatch(source, /"(?:review|automation)\//);
+  assert.doesNotMatch(source, /uploads\.linear\.app|\/Users\/|C:\\Users\\/i);
 });
 
 test("restores stored location candidates and D-level location cache", async () => {

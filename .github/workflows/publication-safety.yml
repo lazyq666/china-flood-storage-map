@@ -1,0 +1,30 @@
+name: Publication safety
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Audit public changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check publication safety
+        env:
+          PUBLICATION_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: node scripts/check-publication-safety.mjs --base "$PUBLICATION_BASE"
+
+      - name: Run public tests
+        run: node --test tests/*.test.mjs

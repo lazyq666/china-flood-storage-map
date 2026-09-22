@@ -33,3 +33,13 @@ var/
 
 # Evidence pipeline scratch space; reviewed snapshots live elsewhere in evidence/.
 evidence/.tmp/
+
+# Private review evidence and cross-session handoff notes
+review/
+HANDOFF*.md
+
+# Common credential files
+*.pem
+*.key
+*.p12
+*.pfx
