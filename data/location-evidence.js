@@ -2,7 +2,7 @@
   "use strict";
   const payload = {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-22",
+  "generatedAt": "2026-09-23",
   "methodology": "automation/location-confidence-methodology.md",
   "reasoningMethod": "compact-three-stage-evidence-chain",
   "referenceCluePolicy": {
@@ -12228,8 +12228,8 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
-      "reviewedAt": "2026-09-12",
+      "confidenceReason": "根据用户提供的位置文字与公开资料重新约束展示范围；未取得测绘边界。",
+      "reviewedAt": null,
       "fieldVerified": false,
       "officialMap": {
         "available": false,
@@ -12293,11 +12293,34 @@
           "sourceType": "published-source",
           "supportsLocation": true,
           "locationSummary": "省级预案在响应条件中同时列出东平湖、南四湖湖东和恩县洼，交叉确认其山东省域归属。"
+        },
+        {
+          "title": "南四湖湖东公开面积资料",
+          "url": "https://www.waterinfo.com.cn/xsyj/zjgd/202402/t20240204_36227.html",
+          "sourceType": "published-source",
+          "supportsLocation": true,
+          "locationSummary": "面积口径参考：262.3 km²；仅用于展示尺度核验。"
+        },
+        {
+          "title": "南四湖湖东公开地理范围资料",
+          "url": "https://nrp.jining.gov.cn/art/2016/3/14/art_60644_2509564.html",
+          "sourceType": "published-source",
+          "supportsLocation": true,
+          "locationSummary": "山东省南四湖东岸湖东堤以东的滨湖陆地，沿泗河—青山、界河—城郭河、新薛河—郗山三个河段由北向南分布，涉及济宁与枣庄。"
+        },
+        {
+          "title": "南四湖湖东公开工程范围资料",
+          "url": "https://zgstbckx.xml-journal.net/en/article/pdf/preview/10.16843/j.sswc.2025073.pdf",
+          "sourceType": "published-source",
+          "supportsLocation": true,
+          "locationSummary": "山东省南四湖东岸湖东堤以东的滨湖陆地，沿泗河—青山、界河—城郭河、新薛河—郗山三个河段由北向南分布，涉及济宁与枣庄。"
         }
       ],
       "verifiedAdministrativeAreas": [
         "山东省济宁市微山县",
-        "山东省枣庄市滕州市"
+        "山东省济宁市邹城市",
+        "山东省枣庄市滕州市",
+        "山东省枣庄市薛城区"
       ],
       "administrativeMatch": {
         "overall": "partial",
@@ -12305,25 +12328,25 @@
       },
       "conclusion": {
         "hasFuzzyLocation": true,
-        "positionText": "南四湖湖东堤东侧，自微山、二级坝至韩庄相关湖东低地",
-        "reasoning": "独立使用南四湖湖东本区政府资料和地图锚点生成椭圆化低精度闭合候选；650 km²仅是锚点包络显示尺度，不是资料面积。",
+        "positionText": "山东省南四湖东岸湖东堤以东的滨湖陆地，沿泗河—青山、界河—城郭河、新薛河—郗山三个河段由北向南分布，涉及济宁与枣庄。",
+        "reasoning": "依济宁市项目选址的三个河段和高程描述、用户提供的湖东堤位置关系，把原先覆盖湖面的椭圆改为三个分离的狭长陆侧示意带。262.30 km²是资料滞洪面积；缺少等高线与堤线坐标，图形宽度和折点仅供位置理解。",
         "reasoningSteps": [
           {
             "stage": "source-verification",
             "title": "资料核验",
-            "outcome": "已验收",
-            "detail": "生态环境部批复明确跨济宁、枣庄，纠正项目原先仅写济宁；另有2条官方资料交叉核对",
+            "outcome": "已核对",
+            "detail": "济宁市湖东工程选址、水利行业调查与水土保持研究",
             "references": [
               {
-                "url": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201701/t20170109_394447.htm",
+                "url": "https://www.waterinfo.com.cn/xsyj/zjgd/202402/t20240204_36227.html",
                 "label": "引用 1"
               },
               {
-                "url": "https://spjc.mwr.gov.cn/spjc/hallg/16008/16008_003_001.jsp?mindex=2",
+                "url": "https://nrp.jining.gov.cn/art/2016/3/14/art_60644_2509564.html",
                 "label": "引用 2"
               },
               {
-                "url": "https://jtt.shandong.gov.cn/art/2021/9/6/art_231733_10293316.html?xxgkhide=1",
+                "url": "https://zgstbckx.xml-journal.net/en/article/pdf/preview/10.16843/j.sswc.2025073.pdf",
                 "label": "引用 3"
               }
             ]
@@ -12331,15 +12354,15 @@
           {
             "stage": "administrative-cross-check",
             "title": "区域交叉验证",
-            "outcome": "已验收",
-            "detail": "公开资料可确认到：山东省济宁市微山县、山东省枣庄市滕州市。",
+            "outcome": "已核对",
+            "detail": "位置涉及：山东省济宁市微山县、山东省济宁市邹城市、山东省枣庄市滕州市、山东省枣庄市薛城区。",
             "references": []
           },
           {
             "stage": "decision",
             "title": "位置结论",
-            "outcome": "已验收",
-            "detail": "位置结论：南四湖湖东堤东侧，跨济宁市与枣庄市，预估中心取南四湖东岸中段。现有证据只支持到该范围，确信度中。",
+            "outcome": "推测范围",
+            "detail": "山东省南四湖东岸湖东堤以东的滨湖陆地，沿泗河—青山、界河—城郭河、新薛河—郗山三个河段由北向南分布，涉及济宁与枣庄。 图示面积约272.31 km²；资料面积约262.3 km²。尚未取得法定边界坐标。",
             "references": []
           }
         ]
@@ -13381,8 +13404,8 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
-      "reviewedAt": "2026-09-12",
+      "confidenceReason": "根据用户提供的位置文字与公开资料重新约束展示范围；未取得测绘边界。",
+      "reviewedAt": null,
       "fieldVerified": false,
       "officialMap": {
         "available": false,
@@ -13471,23 +13494,24 @@
           "locationSummary": "河北省政府规章列明省内蓄滞洪区管理范围，用于交叉核对跨市县工程的河北段归属。"
         },
         {
-          "title": "线索",
-          "url": "https://zh.wikipedia.org/wiki/%E6%96%B0%E7%9B%96%E6%88%BF%E6%B0%B4%E5%88%A9%E6%9E%A2%E7%BA%BD",
-          "sourceType": "published-source",
-          "supportsLocation": true,
-          "locationSummary": "验收推断引用资料"
-        },
-        {
           "title": "新华网：兰沟洼高碑店段核心控制性工程",
           "url": "https://www.news.cn/photo/20250630/b0b565e8b7fb434d854e2eff03f3cb03/c.html",
           "sourceType": "mainstream-news",
           "supportsLocation": true,
           "locationSummary": "新华社报道确认两座核心闸门，中国建筑项目资料列出高碑店段6镇37村"
+        },
+        {
+          "title": "兰沟洼公开地理范围资料",
+          "url": "https://gaobeidian.gov.cn/ejmlgbdcon-31-16966.html",
+          "sourceType": "published-source",
+          "supportsLocation": true,
+          "locationSummary": "河北省保定市涿州东南部—高碑店—定兴相邻低地，处于白沟河西侧、南拒马河北侧；东务分洪闸、东马营退洪闸和北田分洪闸仅作方位参照。"
         }
       ],
       "verifiedAdministrativeAreas": [
-        "河北省保定市定兴县",
-        "河北省保定市高碑店市"
+        "河北省保定市涿州市",
+        "河北省保定市高碑店市",
+        "河北省保定市定兴县"
       ],
       "administrativeMatch": {
         "overall": "partial",
@@ -13495,49 +13519,41 @@
       },
       "conclusion": {
         "hasFuzzyLocation": true,
-        "positionText": "跨定兴县与高碑店市；高碑店段明确涉及肖官营、新城、辛桥、辛立庄、东马营、泗庄6镇，以东务分洪闸—东马营退洪闸为工程控制点",
-        "reasoning": "独立读取兰沟洼证据包；先锁定河北省保定市定兴县、河北省保定市高碑店市及“跨定兴县与高碑店市；高碑店段明确涉及肖官营、新城、辛桥、辛立庄、东马营、泗庄6镇，以东务分洪闸—东马营退洪闸为工程控制点”，再以本区地图锚点定中心与方向，用本区228km²公开资料面积校验显示尺度。旧主项目边界未参与生成。",
+        "positionText": "河北省保定市涿州东南部—高碑店—定兴相邻低地，处于白沟河西侧、南拒马河北侧；东务分洪闸、东马营退洪闸和北田分洪闸仅作方位参照。",
+        "reasoning": "依用户提供的三市县、两河与闸门关系，并与高碑店市政府河流水系资料、新华网工程报道交叉核对，绘制向涿州方向收窄的低精度展示范围。义和庄镇位置与两河夹持关系不符，未用于约束北端；折点不是堤线测量点。",
         "reasoningSteps": [
           {
             "stage": "source-verification",
             "title": "资料核验",
-            "outcome": "已验收",
-            "detail": "大清河水系北支兰沟洼蓄滞洪区全区面积；不是桥梁或单个工程标段范围。按228平方公里资料尺度重建闭合猜测边界，旧锚点只作定位及方向代理。采用2023年启用消息记载的228 km²，并以央广网记者从水利部获得的消息交叉核对；两篇报道可能共享消息来源，不视为两次独立测量。面积仅约束猜测边界尺度",
+            "outcome": "已核对",
+            "detail": "河北启用蓄滞洪区面积资料与高碑店市自然地理、新华网工程报道",
             "references": [
-              {
-                "url": "https://zh.wikipedia.org/wiki/%E6%96%B0%E7%9B%96%E6%88%BF%E6%B0%B4%E5%88%A9%E6%9E%A2%E7%BA%BD",
-                "label": "线索"
-              },
               {
                 "url": "https://www.xiongan.gov.cn/2023-08/02/c_1212251167.htm",
                 "label": "引用 1"
               },
               {
-                "url": "https://www.news.cn/photo/20250630/b0b565e8b7fb434d854e2eff03f3cb03/c.html",
+                "url": "https://gaobeidian.gov.cn/ejmlgbdcon-31-16966.html",
                 "label": "引用 2"
               },
               {
-                "url": "https://spjc.mwr.gov.cn/spjc/hallg/16008/16008_003_001.jsp?mindex=2",
+                "url": "https://www.news.cn/photo/20250630/b0b565e8b7fb434d854e2eff03f3cb03/c.html",
                 "label": "引用 3"
-              },
-              {
-                "url": "https://www.moj.gov.cn/pub/sfbgw/flfggz/flfggzdfzwgz/202103/t20210312_374070.html",
-                "label": "引用 4"
               }
             ]
           },
           {
             "stage": "administrative-cross-check",
             "title": "区域交叉验证",
-            "outcome": "已验收",
-            "detail": "公开资料可确认到：河北省保定市定兴县、河北省保定市高碑店市。",
+            "outcome": "已核对",
+            "detail": "位置涉及：河北省保定市涿州市、河北省保定市高碑店市、河北省保定市定兴县。",
             "references": []
           },
           {
             "stage": "decision",
             "title": "位置结论",
-            "outcome": "已验收",
-            "detail": "位置结论：跨定兴县与高碑店市；高碑店段明确涉及肖官营、新城、辛桥、辛立庄、东马营、泗庄6镇，以东务分洪闸—东马营退洪闸为工程控制点。现有证据只支持到该范围，确信度中。",
+            "outcome": "推测范围",
+            "detail": "河北省保定市涿州东南部—高碑店—定兴相邻低地，处于白沟河西侧、南拒马河北侧；东务分洪闸、东马营退洪闸和北田分洪闸仅作方位参照。 图示面积约228.16 km²；资料面积约228 km²。尚未取得法定边界坐标。",
             "references": []
           }
         ]
@@ -13550,8 +13566,8 @@
       "confidence": "medium",
       "confidenceLabel": "确信度中",
       "ruleId": "M1",
-      "confidenceReason": "位置结论、范围和资料已由项目所有者验收用于展示。",
-      "reviewedAt": "2026-09-12",
+      "confidenceReason": "根据用户提供的位置文字与公开资料重新约束展示范围；未取得测绘边界。",
+      "reviewedAt": null,
       "fieldVerified": false,
       "officialMap": {
         "available": false,
@@ -13603,11 +13619,25 @@
           "sourceType": "published-source",
           "supportsLocation": true,
           "locationSummary": "河北省政府规章列明省内蓄滞洪区管理范围，用于交叉核对跨市县工程的河北段归属。"
+        },
+        {
+          "title": "宁晋泊公开面积资料",
+          "url": "https://www.ningjin.gov.cn/main/file/2025-05-06/17465159683962c928381969cacca4360196a476c18c36b1.pdf",
+          "sourceType": "published-source",
+          "supportsLocation": true,
+          "locationSummary": "面积口径参考：1034.82 km²；仅用于展示尺度核验。"
+        },
+        {
+          "title": "宁晋泊公开地理范围资料",
+          "url": "https://www.ningjin.gov.cn/single/7/58164.html",
+          "sourceType": "published-source",
+          "supportsLocation": true,
+          "locationSummary": "河北省邢台市东北部、滏阳河中游的宁晋县东南部低地；北临洨河左堤（北围堤），东至老漳河左堤（东围堤），南在邢家湾附近接大陆泽，包含小宁晋泊、小南海及老小漳河区间。"
         }
       ],
       "verifiedAdministrativeAreas": [
-        "河北省邢台市隆尧县",
-        "河北省邢台市宁晋县"
+        "河北省邢台市宁晋县",
+        "河北省邢台市隆尧县"
       ],
       "administrativeMatch": {
         "overall": "partial",
@@ -13615,25 +13645,25 @@
       },
       "conclusion": {
         "hasFuzzyLocation": true,
-        "positionText": "隆尧县东部—宁晋县南部，重点为北河庄、大曹庄、徐家河、耿庄桥、东汪等乡镇",
-        "reasoning": "独立读取宁晋泊证据包；先锁定河北省邢台市隆尧县、河北省邢台市宁晋县及“隆尧县东部—宁晋县南部，重点为北河庄、大曹庄、徐家河、耿庄桥、东汪等乡镇”，再以本区地图锚点定中心与方向，按锚点跨度确定低精度显示尺度。旧主项目边界未参与生成。",
+        "positionText": "河北省邢台市东北部、滏阳河中游的宁晋县东南部低地；北临洨河左堤（北围堤），东至老漳河左堤（东围堤），南在邢家湾附近接大陆泽，包含小宁晋泊、小南海及老小漳河区间。",
+        "reasoning": "依用户提供的四向边界与宁晋县政府河流水系、官方环评中的三区和面积描述，扩大原来只覆盖两个检索锚点之间的椭圆，绘制与大陆泽北端相接的低精度范围。西侧高程线及围堤折点无坐标，不能视作法定界址。",
         "reasoningSteps": [
           {
             "stage": "source-verification",
             "title": "资料核验",
-            "outcome": "已验收",
-            "detail": "宁晋县项目与生态修复规划列明工程涉及乡镇和村庄；另有2条官方资料交叉核对",
+            "outcome": "已核对",
+            "detail": "宁晋县政府县情、宁晋县政府公开环评与工程招标资料",
             "references": [
               {
-                "url": "https://www.ningjin.gov.cn/single/121/59696.html",
+                "url": "https://www.ningjin.gov.cn/main/file/2025-05-06/17465159683962c928381969cacca4360196a476c18c36b1.pdf",
                 "label": "引用 1"
               },
               {
-                "url": "https://spjc.mwr.gov.cn/spjc/hallg/16008/16008_003_001.jsp?mindex=2",
+                "url": "https://www.ningjin.gov.cn/single/7/58164.html",
                 "label": "引用 2"
               },
               {
-                "url": "https://www.moj.gov.cn/pub/sfbgw/flfggz/flfggzdfzwgz/202103/t20210312_374070.html",
+                "url": "https://www.ningjin.gov.cn/single/121/59696.html",
                 "label": "引用 3"
               }
             ]
@@ -13641,15 +13671,15 @@
           {
             "stage": "administrative-cross-check",
             "title": "区域交叉验证",
-            "outcome": "已验收",
-            "detail": "公开资料可确认到：河北省邢台市隆尧县、河北省邢台市宁晋县。",
+            "outcome": "已核对",
+            "detail": "位置涉及：河北省邢台市宁晋县、河北省邢台市隆尧县。",
             "references": []
           },
           {
             "stage": "decision",
             "title": "位置结论",
-            "outcome": "已验收",
-            "detail": "位置结论：隆尧县东部—宁晋县南部，重点为北河庄、大曹庄、徐家河、耿庄桥、东汪等乡镇。现有证据只支持到该范围，确信度中。",
+            "outcome": "推测范围",
+            "detail": "河北省邢台市东北部、滏阳河中游的宁晋县东南部低地；北临洨河左堤（北围堤），东至老漳河左堤（东围堤），南在邢家湾附近接大陆泽，包含小宁晋泊、小南海及老小漳河区间。 图示面积约1007.14 km²；资料面积约1034.82 km²。尚未取得法定边界坐标。",
             "references": []
           }
         ]

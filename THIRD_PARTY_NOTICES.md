@@ -12,6 +12,8 @@ Required Notice: Copyright © 2026 lazyq666.
 
 部分位置线索或几何数据来自 OpenStreetMap。OpenStreetMap 数据依据 ODbL 1.0 提供，使用时应保留“© OpenStreetMap contributors”署名，并遵守其数据库许可要求：<https://www.openstreetmap.org/copyright>。
 
+2026-09-23 三处位置调整中的少量地名参考点通过 Mapcarta 查询，其中部分由 GeoNames 提供。GeoNames 地名数据按 Creative Commons Attribution 4.0 提供，署名为“GeoNames”，许可及项目说明见 <https://www.geonames.org/about.html>。这些参考点已转换坐标系，仅用于人工绘制低精度位置示意；没有收录 Mapcarta 底图或批量数据。
+
 仓库包含项目整理阶段保存的高德地物候选、D 级位置缓存，以及使用这些定位线索辅助配准的推定范围。它们用于公益地图的位置理解与资料追溯，不代表高德或主管部门对范围的确认，也不因收录在本仓库而自动适用项目的 PolyForm 许可证。复用、公开分发或商业使用前，接收者仍应自行核对高德开放平台条款及相关权利限制。
 
 ## 图片与视觉素材

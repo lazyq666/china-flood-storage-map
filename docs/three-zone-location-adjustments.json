@@ -1,0 +1,17 @@
+{
+  "version": "2026-09-23-source-guided-v1",
+  "changedNames": [
+    "兰沟洼",
+    "南四湖湖东",
+    "宁晋泊"
+  ],
+  "unchangedZoneCount": 81,
+  "unchangedZonesSha256": "8514e0d2cd9c928770b0c739a9008f08ed9339e8238f280ad11dcccb1d02ee1d",
+  "unchangedGeometrySha256": "1deb7b7155ef2f43aa91504b90a853ad9e9ae1cdab8a269b00ecdcab79bdbc9b",
+  "unchangedEvidenceSha256": "88dad0e5859c5353c7caee823f39f1001e391bb29c5909c5e5b8f0ed62737ea0",
+  "changedZoneHashes": {
+    "兰沟洼": "d57b53498b5b56ab366f0a9be4f78bd3a854dd525e6a915e53fd2c74f2594ca7",
+    "南四湖湖东": "1eb91039eb9f3c447a22c06e2af284d214910bc6096fe302d4efaca865b95b62",
+    "宁晋泊": "42bcecb8d5ac3dcdc5e98a4db6a94874ef0ced527290d0052db97040061d836b"
+  }
+}

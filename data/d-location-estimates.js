@@ -47,14 +47,14 @@
     "南润段": { estimatedArea: "颍上县南照镇—润河镇之间的淮河左岸行蓄洪区", basis: "安徽工程规划和历次启用资料明确南照、润河两镇", confidence: "high", sourceUrl: "https://ah.people.com.cn/n2/2022/0610/c358428-35308628.html", sourceTitle: "安徽淮河一般行蓄洪区工程规划公示" },
     "姜唐湖": { estimatedArea: "颍上县垂岗、王岗、赛涧、半岗4乡镇，淮河正阳关—临淮岗之间", basis: "行蓄洪启用报道明确4乡镇23村及河段位置", confidence: "high", sourceUrl: "https://www.kaiwind.com/n397/n398/c123112/content.html", sourceTitle: "颍上姜唐湖行蓄洪区范围资料" },
     "寿西湖": { estimatedArea: "寿县县城西侧寿西湖农场及周边低洼地", basis: "同名农场地物聚类和安徽行蓄洪区资料相互印证", confidence: "medium", sourceUrl: "https://www.panji.gov.cn/group1/M00/15/80/rB406mRi31eAJGdDAAelRoo3lr4882.pdf", sourceTitle: "安徽省行蓄洪区运用补偿资料" },
-    "南四湖湖东": { estimatedArea: "南四湖湖东堤东侧，跨济宁市与枣庄市，预估中心取南四湖东岸中段", basis: "生态环境部批复明确跨济宁、枣庄；纠正项目原先仅写济宁", confidence: "high", sourceUrl: "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201701/t20170109_394447.htm", sourceTitle: "生态环境部：山东省湖东滞洪区建设工程批复", mapTarget: { name: "南四湖湖东滞洪区预估中心", lng: 117.159319, lat: 34.702914, radiusKm: 32, coordinateSystem: "GCJ-02" } },
+    "南四湖湖东": { estimatedArea: "南四湖东岸湖东堤以东，泗河—青山、界河—城郭河、新薛河—郗山三段滨湖陆地，涉及济宁与枣庄", basis: "济宁市项目选址给出三段及高程控制，水利行业调查给出262.30平方公里滞洪面积；仅作位置示意", confidence: "high", sourceUrl: "https://nrp.jining.gov.cn/art/2016/3/14/art_60644_2509564.html", sourceTitle: "济宁市湖东滞洪区工程选址资料", mapTarget: { name: "南四湖湖东滞洪区陆侧预估中心", lng: 116.98724843, lat: 35.00600933, radiusKm: 40, coordinateSystem: "GCJ-02" } },
     "大逍遥": { estimatedArea: "西华县西南部沙河—颍河之间，以逍遥镇为中心，向李大庄、黄桥、西夏亭、艾岗等相邻乡镇延伸；具体界线待规划发布", basis: "西华县政府确认正在编制大逍遥规划，县级资料确认逍遥镇地处沙、颍河怀抱中；未沿用非官方来源的8乡镇确定边界", confidence: "medium", sourceUrl: "https://www.xihua.gov.cn/sitesources/xhxrmzf/page_pc/zwgk/zfwj/articleff7b546cd2784081ad5cbd63170a4d7a.html", sourceTitle: "西华县政府：推进大逍遥蓄滞洪区规划编制", mapTarget: { name: "大逍遥·逍遥镇周边预估中心", lng: 114.2574988, lat: 33.7473586, radiusKm: 22, coordinateSystem: "WGS84" } },
     "永定河泛区": { estimatedArea: "自廊坊固安县起，经永清、安次、广阳及天津武清、北辰，下至屈家店枢纽", basis: "廊坊市政府给出起讫点、跨区范围和面积", confidence: "high", sourceUrl: "https://www.lf.gov.cn/Item/156177.aspx", sourceTitle: "廊坊市政府：永定河泛区防汛备汛", mapTarget: { name: "永定河泛区河道中段预估中心", lng: 116.522766, lat: 39.475514, radiusKm: 28, coordinateSystem: "GCJ-02" } },
     "小清河分洪区": { estimatedArea: "永定河卢沟桥南侧，跨北京丰台、房山与河北涿州，涿州段重点涉及码头镇等7乡镇", basis: "北京水务招标资料明确跨3区市，2023年转移资料明确涿州段规模", confidence: "high", sourceUrl: "https://swj.beijing.gov.cn/zwgk/ztb/zbjg/201912/P020191219459857462621.pdf", sourceTitle: "北京市小清河分洪区水利工程资料", mapTarget: { name: "小清河分洪区·涿州段预估中心", lng: 116.137904, lat: 39.567896, radiusKm: 18, coordinateSystem: "GCJ-02" } },
     "文安洼": { estimatedArea: "以廊坊文安县为主体，西接任丘高地、东接天津静海，北靠千里堤/隔淀堤、南至津保公路南线", basis: "文安县转移预案和蓄滞洪区资料给出四至与12乡镇范围", confidence: "high", sourceUrl: "https://www.wenan.gov.cn/GOV1/Item/36206.aspx", sourceTitle: "文安县灾民防汛转移安置预案", mapTarget: { name: "文安洼·文安县主体区预估中心", lng: 116.4567788, lat: 38.8654817, radiusKm: 28, coordinateSystem: "WGS84" } },
     "贾口洼": { estimatedArea: "天津静海区西南部唐官屯—独流片区，并向河北青县北部延伸", basis: "天津工程资料确认静海区及独流安全区，项目原有资料确认跨青县", confidence: "medium", sourceUrl: "https://swj.tj.gov.cn/xwzx_17135/mtjj/202405/t20240508_6619886.html", sourceTitle: "天津市水务局：贾口洼工程与安全建设", mapTarget: { name: "贾口洼·唐官屯片区预估中心", lng: 116.9105415, lat: 38.7033381, radiusKm: 18, coordinateSystem: "WGS84" } },
-    "兰沟洼": { estimatedArea: "跨定兴县与高碑店市；高碑店段明确涉及肖官营、新城、辛桥、辛立庄、东马营、泗庄6镇，以东务分洪闸—东马营退洪闸为工程控制点", basis: "新华社报道确认两座核心闸门，中国建筑项目资料列出高碑店段6镇37村", confidence: "high", sourceUrl: "https://www.news.cn/photo/20250630/b0b565e8b7fb434d854e2eff03f3cb03/c.html", sourceTitle: "新华网：兰沟洼高碑店段核心控制性工程" },
-    "宁晋泊": { estimatedArea: "隆尧县东部—宁晋县南部，重点为北河庄、大曹庄、徐家河、耿庄桥、东汪等乡镇", basis: "宁晋县项目与生态修复规划列明工程涉及乡镇和村庄", confidence: "high", sourceUrl: "https://www.ningjin.gov.cn/single/121/59696.html", sourceTitle: "宁晋泊工程宁晋段临时用地复垦范围" },
+    "兰沟洼": { estimatedArea: "涿州东南部—高碑店—定兴相邻低地，处于白沟河西侧、南拒马河北侧，东务与北田分洪口门及东马营退洪闸为方向参照", basis: "高碑店市政府水系资料与新华网工程报道确认两河及三市县关系；约228平方公里为资料面积", confidence: "high", sourceUrl: "https://gaobeidian.gov.cn/ejmlgbdcon-31-16966.html", sourceTitle: "高碑店市政府：自然地理与两河间低地" },
+    "宁晋泊": { estimatedArea: "宁晋县东南部与隆尧县东部低地，北临洨河左堤、东临老漳河左堤，南在邢家湾附近接大陆泽", basis: "宁晋县政府与公开环评说明围堤、三区及1034.82平方公里总面积；463.1平方公里为设计淹没面积", confidence: "high", sourceUrl: "https://www.ningjin.gov.cn/main/file/2025-05-06/17465159683962c928381969cacca4360196a476c18c36b1.pdf", sourceTitle: "宁晋县政府公开环评：宁晋泊蓄滞洪区范围与面积" },
     "大陆泽": { estimatedArea: "以任泽区骆庄—任城片区为核心，沿北澧河扩展至隆尧、宁晋、巨鹿、平乡、广宗、柏乡、南和等县区", basis: "国家项目报道明确两大蓄滞洪区合计跨8县区49乡镇", confidence: "high", sourceUrl: "https://finance.sina.cn/2022-08-03/detail-imizirav6521125.d.html", sourceTitle: "大陆泽、宁晋泊蓄滞洪区工程范围资料" },
     "良相坡": { estimatedArea: "淇县西岗镇、北阳镇、朝歌街道至卫辉市北部，淇河、卫河、共产主义渠交汇处", basis: "淇县补偿资料和防洪工程报道明确3乡镇及河流四至", confidence: "high", sourceUrl: "https://www.pdsjjw.gov.cn/sitesources/hbsjcj/page_pc/jcfc/articledcea814429874a35a4d637834db8bdcb.html", sourceTitle: "淇县良相坡蓄滞洪区补偿范围" },
     "长虹渠": { estimatedArea: "浚县—滑县交界的长虹渠沿线，涉及2县4乡镇31村", basis: "工程研究资料给出县、乡镇和村庄数量，高德检得同名河流中心", confidence: "high", sourceUrl: "https://ojs.omniscient.sg/index.php/ntec/article/download/44903/43813/", sourceTitle: "长虹渠蓄滞洪区安全设施工程研究", mapTarget: { name: "长虹渠蓄滞洪区预估中心", lng: 114.279544, lat: 35.462015, radiusKm: 16, coordinateSystem: "GCJ-02" } },
@@ -88,9 +88,13 @@
       estimate.mapTarget.checkedAt = estimate.checkedAt;
     }
   });
+  ["兰沟洼", "南四湖湖东", "宁晋泊"].forEach((zoneName) => {
+    estimates[zoneName].checkedAt = "2026-09-23";
+    if (estimates[zoneName].mapTarget) estimates[zoneName].mapTarget.checkedAt = estimates[zoneName].checkedAt;
+  });
 
   window.FLOOD_STORAGE_D_LOCATION_ESTIMATES = Object.freeze({
-    generatedAt: "2026-07-17T12:00:00+08:00",
+    generatedAt: "2026-09-23",
     zones: Object.freeze(estimates)
   });
 })();
